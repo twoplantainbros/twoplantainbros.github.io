@@ -3,65 +3,260 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Two Plantain Bros</title>
-    <meta name="description" content="Two Plantain Bros — coming soon." />
+    <title>Gambit Chips</title>
+    <meta
+      name="description"
+      content="Gambit Chips — premium poker chips. Placeholder storefront; full story and artwork coming soon."
+    />
     <style>
       :root {
-        color-scheme: light dark;
-        --bg: #faf6ef;
-        --fg: #1a1a1a;
-        --accent: #c4a035;
-      }
-      @media (prefers-color-scheme: dark) {
-        :root {
-          --bg: #14120f;
-          --fg: #f2ebe0;
-          --accent: #e8c547;
-        }
+        --felt: #0d3b2e;
+        --felt-light: #145a42;
+        --gold: #d4af37;
+        --gold-soft: #e8c96a;
+        --cream: #f6f0e4;
+        --ink: #1a1510;
+        --muted: rgba(246, 240, 228, 0.72);
+        --card: rgba(255, 255, 255, 0.06);
+        --radius: 14px;
       }
       * {
         box-sizing: border-box;
       }
       body {
         margin: 0;
+        font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+        background: radial-gradient(ellipse 120% 80% at 50% -20%, var(--felt-light), var(--felt));
+        color: var(--cream);
+        line-height: 1.5;
         min-height: 100svh;
+      }
+      a {
+        color: inherit;
+      }
+      .wrap {
+        max-width: 960px;
+        margin: 0 auto;
+        padding: 2.5rem 1.25rem 4rem;
+      }
+      header {
+        text-align: center;
+        margin-bottom: 2.5rem;
+      }
+      .logo-mark {
+        width: 4rem;
+        height: 4rem;
+        margin: 0 auto 1rem;
+        border-radius: 50%;
+        background: conic-gradient(from 210deg, var(--gold), var(--gold-soft), var(--gold));
+        box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.25), 0 12px 32px rgba(0, 0, 0, 0.35);
         display: grid;
         place-items: center;
-        font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
-        background: var(--bg);
-        color: var(--fg);
-        padding: 2rem;
-      }
-      main {
-        max-width: 28rem;
-        text-align: center;
+        font-weight: 800;
+        font-size: 1.1rem;
+        color: var(--ink);
+        letter-spacing: -0.04em;
       }
       h1 {
-        font-size: clamp(1.75rem, 5vw, 2.25rem);
-        font-weight: 700;
-        letter-spacing: -0.02em;
-        margin: 0 0 0.5rem;
+        margin: 0 0 0.35rem;
+        font-size: clamp(2rem, 6vw, 2.75rem);
+        letter-spacing: -0.03em;
       }
-      p {
+      .tagline {
         margin: 0;
-        opacity: 0.85;
-        line-height: 1.5;
+        color: var(--muted);
+        font-size: 1.05rem;
+        max-width: 32rem;
+        margin-inline: auto;
       }
-      .mark {
+      .notice {
+        margin-top: 1.25rem;
         display: inline-block;
-        width: 3rem;
-        height: 0.25rem;
-        background: var(--accent);
+        padding: 0.35rem 0.75rem;
         border-radius: 999px;
-        margin-bottom: 1.25rem;
+        font-size: 0.8rem;
+        background: rgba(212, 175, 55, 0.15);
+        border: 1px solid rgba(212, 175, 55, 0.35);
+        color: var(--gold-soft);
+      }
+      .grid {
+        display: grid;
+        gap: 1.25rem;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      }
+      .chip-card {
+        background: var(--card);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: var(--radius);
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        backdrop-filter: blur(8px);
+      }
+      .chip-visual {
+        aspect-ratio: 4 / 3;
+        display: grid;
+        place-items: center;
+        position: relative;
+        background: linear-gradient(145deg, rgba(0, 0, 0, 0.25), transparent);
+      }
+      .chip-visual::before {
+        content: "";
+        width: 7.5rem;
+        height: 7.5rem;
+        border-radius: 50%;
+        background: var(--chip-bg, #888);
+        box-shadow:
+          inset 0 0 0 8px rgba(255, 255, 255, 0.15),
+          inset 0 0 0 14px rgba(0, 0, 0, 0.12),
+          0 10px 24px rgba(0, 0, 0, 0.35);
+      }
+      .chip-visual::after {
+        content: "Art soon";
+        position: absolute;
+        bottom: 0.75rem;
+        font-size: 0.7rem;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        opacity: 0.55;
+      }
+      .chip-card.classic .chip-visual {
+        --chip-bg: linear-gradient(145deg, #c41e3a, #8b0000);
+      }
+      .chip-card.classic .chip-visual::before {
+        background: linear-gradient(145deg, #e63946, #9d0208);
+      }
+      .chip-card.spicy .chip-visual {
+        --chip-bg: linear-gradient(145deg, #e85d04, #9a3412);
+      }
+      .chip-card.spicy .chip-visual::before {
+        background: linear-gradient(145deg, #f48c06, #dc2f02);
+      }
+      .chip-card.house .chip-visual {
+        --chip-bg: linear-gradient(145deg, #1d3557, #0b1320);
+      }
+      .chip-card.house .chip-visual::before {
+        background: linear-gradient(145deg, #457b9d, #1d3557);
+      }
+      .chip-body {
+        padding: 1.1rem 1.15rem 1.25rem;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+      }
+      .chip-body h2 {
+        margin: 0 0 0.35rem;
+        font-size: 1.15rem;
+      }
+      .chip-body p {
+        margin: 0 0 1rem;
+        font-size: 0.92rem;
+        color: var(--muted);
+        flex: 1;
+      }
+      .price {
+        font-weight: 700;
+        font-size: 1.05rem;
+        color: var(--gold-soft);
+        margin-bottom: 0.85rem;
+      }
+      .btn-buy {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.65rem 1rem;
+        border-radius: 10px;
+        font-weight: 600;
+        text-decoration: none;
+        background: linear-gradient(180deg, var(--gold-soft), var(--gold));
+        color: var(--ink);
+        border: none;
+        cursor: pointer;
+        transition: transform 0.15s ease, box-shadow 0.15s ease;
+        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+      }
+      .btn-buy:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
+      }
+      .btn-buy:focus-visible {
+        outline: 2px solid var(--cream);
+        outline-offset: 2px;
+      }
+      footer {
+        margin-top: 3rem;
+        text-align: center;
+        font-size: 0.85rem;
+        color: var(--muted);
+      }
+      footer a {
+        color: var(--gold-soft);
       }
     </style>
   </head>
   <body>
-    <main>
-      <span class="mark" aria-hidden="true"></span>
-      <h1>Two Plantain Bros</h1>
-      <p>Site coming soon.</p>
-    </main>
+    <div class="wrap">
+      <header>
+        <div class="logo-mark" aria-hidden="true">GC</div>
+        <h1>Gambit Chips</h1>
+        <p class="tagline">
+          Placeholder shop — real chip designs and our story land this week. Checkout is
+          powered by Stripe; no account needed.
+        </p>
+        <span class="notice">Test mode checkout · switch to live keys when you launch</span>
+      </header>
+
+      <section class="grid" aria-label="Chip products">
+        <article class="chip-card classic">
+          <div class="chip-visual" role="img" aria-label="Classic Blend chip placeholder"></div>
+          <div class="chip-body">
+            <h2>Classic Blend</h2>
+            <p>Balanced weight and feel. Product photo and description coming soon.</p>
+            <p class="price">$12.99</p>
+            <a
+              class="btn-buy"
+              href="https://buy.stripe.com/test_14AaEX4Kxfgi0an65tasg00"
+              rel="noopener noreferrer"
+              >Buy with Stripe</a
+            >
+          </div>
+        </article>
+
+        <article class="chip-card spicy">
+          <div class="chip-visual" role="img" aria-label="Spicy Stack chip placeholder"></div>
+          <div class="chip-body">
+            <h2>Spicy Stack</h2>
+            <p>Bold edge colors — artwork TBD. Same secure Stripe checkout.</p>
+            <p class="price">$12.99</p>
+            <a
+              class="btn-buy"
+              href="https://buy.stripe.com/test_00w8wPel7ececX965tasg01"
+              rel="noopener noreferrer"
+              >Buy with Stripe</a
+            >
+          </div>
+        </article>
+
+        <article class="chip-card house">
+          <div class="chip-visual" role="img" aria-label="House Special chip placeholder"></div>
+          <div class="chip-body">
+            <h2>House Special</h2>
+            <p>Signature set placeholder. Pricing and bundle details later.</p>
+            <p class="price">$14.99</p>
+            <a
+              class="btn-buy"
+              href="https://buy.stripe.com/test_aFa9AT0uhd8abT53Xlasg02"
+              rel="noopener noreferrer"
+              >Buy with Stripe</a
+            >
+          </div>
+        </article>
+      </section>
+
+      <footer>
+        <p>Payments via <a href="https://stripe.com">Stripe</a> Payment Links — static site, no backend.</p>
+        <p>Questions? <a href="mailto:twoplantainbros@gmail.com">twoplantainbros@gmail.com</a></p>
+      </footer>
+    </div>
   </body>
 </html>
