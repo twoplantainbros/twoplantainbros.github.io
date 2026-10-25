@@ -22,5 +22,6 @@
       "notes": "entry.1822855848"
     }
   },
+  "checkoutMode": "stripe",
   "appsScriptCheckoutUrl": ""
 }

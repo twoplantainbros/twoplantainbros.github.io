@@ -1151,7 +1151,7 @@
               </label>
             </div>
             <button type="submit" class="order-submit" id="order-submit" disabled>
-              Submit order
+              Continue to secure payment
             </button>
             <p class="order-setup-note" id="order-setup-note" hidden></p>
           </form>
@@ -1213,6 +1213,7 @@
         var cfg = {
           pricePerBag: 6,
           minBags: 6,
+          checkoutMode: "form",
           googleForm: { formResponseUrl: "", entries: {} },
           appsScriptCheckoutUrl: "",
         };
@@ -1245,9 +1246,22 @@
           summaryTotal.textContent = String(dollars);
           var ok = totalBags >= cfg.minBags;
           summary.classList.toggle("ok", ok);
-          var wired =
-            cfg.googleForm.formResponseUrl || cfg.appsScriptCheckoutUrl;
+          var useStripe =
+            cfg.checkoutMode === "stripe" && cfg.appsScriptCheckoutUrl;
+          var wired = useStripe || cfg.googleForm.formResponseUrl;
           submitBtn.disabled = !ok || !wired;
+          submitBtn.textContent = useStripe
+            ? "Continue to secure payment"
+            : "Submit order";
+        }
+
+        if (new URLSearchParams(window.location.search).get("paid") === "1") {
+          var banner = document.createElement("p");
+          banner.setAttribute("role", "status");
+          banner.style.cssText =
+            "margin:0;padding:0.85rem 1.25rem;background:#2e5a3a;color:#f4ede3;text-align:center;font-weight:600;";
+          banner.textContent = "Thanks — payment received. We’ll ship your order soon.";
+          document.body.prepend(banner);
         }
 
         document.querySelectorAll(".qty-stepper").forEach(function (stepper) {
@@ -1281,9 +1295,12 @@
             return;
           }
 
-          if (cfg.appsScriptCheckoutUrl) {
+          var useStripe =
+            cfg.checkoutMode === "stripe" && cfg.appsScriptCheckoutUrl;
+          if (useStripe) {
             ev.preventDefault();
             var p = new URLSearchParams({
+              action: "checkout",
               salt: salt,
               bbq: bbq,
               churro: churro,
@@ -1336,18 +1353,24 @@
           .then(function (json) {
             cfg.pricePerBag = json.pricePerBag || 6;
             cfg.minBags = json.minBags || 6;
+            cfg.checkoutMode = json.checkoutMode || "form";
             cfg.googleForm = json.googleForm || cfg.googleForm;
             cfg.appsScriptCheckoutUrl = json.appsScriptCheckoutUrl || "";
-            if (cfg.googleForm.formResponseUrl) {
+            var useStripe =
+              cfg.checkoutMode === "stripe" && cfg.appsScriptCheckoutUrl;
+            if (useStripe) {
+              setupNote.hidden = false;
+              setupNote.textContent =
+                "You’ll pay on Stripe first; your order is saved to our sheet after payment.";
+            } else if (cfg.googleForm.formResponseUrl) {
               form.action = cfg.googleForm.formResponseUrl;
-              setupNote.hidden = true;
-            } else if (cfg.appsScriptCheckoutUrl) {
-              setupNote.hidden = true;
-              submitBtn.disabled = false;
+              setupNote.hidden = false;
+              setupNote.textContent =
+                "Orders submit to our team (payment follow-up). Switch checkoutMode to stripe for pay-first checkout.";
             } else {
               setupNote.hidden = false;
               setupNote.textContent =
-                "Checkout is almost live — connect Google Form in order-config.json (see scripts/ORDER_SETUP.txt).";
+                "Checkout wiring: set appsScriptCheckoutUrl + checkoutMode stripe (see scripts/ORDER_SETUP.txt).";
             }
             refresh();
           })

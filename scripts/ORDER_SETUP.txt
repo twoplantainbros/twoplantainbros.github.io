@@ -1,47 +1,49 @@
-Gambit order flow — Google Form + Sheets (+ optional Stripe)
-==========================================================
+Gambit orders — Stripe FIRST, then Google Sheet (recommended)
+=============================================================
 
-Pricing on site: $6/bag, 80 g (~2.8 oz), 2.5 servings, shipping included, minimum 6 bags (any mix).
+Customers pay on Stripe before a row is added. The Google Form is optional / legacy;
+paid orders go straight into the same Sheet via Apps Script.
 
-A) Google Form → Sheet (required for the website checkout form)
----------------------------------------------------------------
-1. Create a new Google Sheet (e.g. "Gambit orders").
-2. Create a Form → Link responses to that sheet.
-3. Add questions IN THIS ORDER (short answer unless noted):
+A) Sheet column layout (add column P if needed)
+------------------------------------------------
+Row 1 headers (match your Form sheet or add manually):
+  A Timestamp | B Salt | C BBQ | D Churro | E Total bags | F Order total USD
+  G Name | H Email | I Phone | J Street | K Apt | L City | M State | N ZIP | O Notes
+  P Status (paid) | Q Stripe session ID
 
-   - Salt (number)
-   - BBQ (number)
-   - Churro (number)
-   - Total bags (number)
-   - Order total USD (short text, e.g. 36.00)
-   - Full name (short text)
-   - Email (short text)
-   - Phone (short text)
-   - Street address (short text)
-   - Apt / unit (short text, optional)
-   - City (short text)
-   - State (short text)
-   - ZIP (short text)
-   - Notes (paragraph, optional)
+B) Stripe — $6 bag price
+------------------------
+  STRIPE_SECRET_KEY=sk_test_... python3 scripts/create-stripe-bag-product.py
+  Save the printed price_id (price_...).
 
-4. Open the form in a browser. Use "Get pre-filled link" and enter 1 for Salt only.
-   Copy the URL — each entry.123456789 is the ID for that field.
-5. Paste IDs into order-config.json → googleForm.entries (match keys to questions).
-6. Set googleForm.formResponseUrl to:
-   https://docs.google.com/forms/d/e/YOUR_FORM_ID/formResponse
-   (From form → Send → link icon, or replace viewform with formResponse in the URL.)
+C) Apps Script (on the ORDERS spreadsheet)
+-------------------------------------------
+1. Open your orders Google Sheet → Extensions → Apps Script.
+2. Replace code with scripts/gambit-order.gs (copy/paste).
+3. Project settings → Script properties, add:
+     STRIPE_SECRET_KEY    = sk_test_... or sk_live_...
+     STRIPE_PRICE_ID      = price_... from step B
+     WEB_APP_URL          = (paste after step 4)
+4. Deploy → New deployment → Web app
+     Execute as: Me
+     Who has access: Anyone
+   Copy the /exec URL → set WEB_APP_URL to that exact URL (same value).
+5. Update deployment if you change code (Manage deployments → Edit → New version).
 
-7. Commit & push order-config.json. Site POSTs directly to the form; each submit = new sheet row.
+D) Website — order-config.json
+------------------------------
+  "checkoutMode": "stripe",
+  "appsScriptCheckoutUrl": "https://script.google.com/macros/s/XXXX/exec"
 
-B) Optional: Stripe Checkout after submit (Apps Script)
--------------------------------------------------------
-See scripts/gambit-order.gs — deploy as Web App, set Script Properties:
-  STRIPE_SECRET_KEY, SPREADSHEET_ID (if not using Form trigger only)
+Leave googleForm block in place for reference; stripe mode skips Form POST.
 
-Set order-config.json appsScriptCheckoutUrl to the Web App /exec URL to redirect
-to Stripe after saving the row (instead of only Form POST).
+E) Test (test mode)
+-------------------
+1. Site: 6+ bags, shipping, Submit → Stripe Checkout test card 4242 4242 4242 4242.
+2. After pay → redirect to gambitchips.com/?paid=1
+3. New Sheet row, Status = paid, Stripe session ID filled.
 
-C) Stripe products
-------------------
-Run scripts/create-stripe-bag-product.py with STRIPE_SECRET_KEY to create a $6
-"Gambit bag" price for Checkout line items (used by Apps Script).
+F) Google Form only (no Stripe)
+-------------------------------
+  "checkoutMode": "form"
+  Submit POSTs to Form → Sheet (no payment). Use for testing or manual invoicing.
