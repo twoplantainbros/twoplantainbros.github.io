@@ -1,0 +1,26 @@
+{
+  "pricePerBag": 6,
+  "minBags": 6,
+  "gramsPerBag": 80,
+  "servingsPerBag": 2.5,
+  "googleForm": {
+    "formResponseUrl": "https://docs.google.com/forms/d/e/1FAIpQLSfw8JjKxZPGt3aCCSteS1t58oriqd3AJk4Re4Ig19epbcMqOw/formResponse",
+    "entries": {
+      "salt": "entry.491738099",
+      "bbq": "entry.548883956",
+      "churro": "entry.1219665037",
+      "totalBags": "entry.1388469283",
+      "orderTotal": "entry.1508756189",
+      "name": "entry.688052767",
+      "email": "entry.959272687",
+      "phone": "entry.1488955838",
+      "street": "entry.1342231194",
+      "street2": "entry.997401295",
+      "city": "entry.2045311812",
+      "state": "entry.847734918",
+      "zip": "entry.1702086274",
+      "notes": "entry.1822855848"
+    }
+  },
+  "appsScriptCheckoutUrl": ""
+}

@@ -1,0 +1,47 @@
+Gambit order flow — Google Form + Sheets (+ optional Stripe)
+==========================================================
+
+Pricing on site: $6/bag, 80 g (~2.8 oz), 2.5 servings, shipping included, minimum 6 bags (any mix).
+
+A) Google Form → Sheet (required for the website checkout form)
+---------------------------------------------------------------
+1. Create a new Google Sheet (e.g. "Gambit orders").
+2. Create a Form → Link responses to that sheet.
+3. Add questions IN THIS ORDER (short answer unless noted):
+
+   - Salt (number)
+   - BBQ (number)
+   - Churro (number)
+   - Total bags (number)
+   - Order total USD (short text, e.g. 36.00)
+   - Full name (short text)
+   - Email (short text)
+   - Phone (short text)
+   - Street address (short text)
+   - Apt / unit (short text, optional)
+   - City (short text)
+   - State (short text)
+   - ZIP (short text)
+   - Notes (paragraph, optional)
+
+4. Open the form in a browser. Use "Get pre-filled link" and enter 1 for Salt only.
+   Copy the URL — each entry.123456789 is the ID for that field.
+5. Paste IDs into order-config.json → googleForm.entries (match keys to questions).
+6. Set googleForm.formResponseUrl to:
+   https://docs.google.com/forms/d/e/YOUR_FORM_ID/formResponse
+   (From form → Send → link icon, or replace viewform with formResponse in the URL.)
+
+7. Commit & push order-config.json. Site POSTs directly to the form; each submit = new sheet row.
+
+B) Optional: Stripe Checkout after submit (Apps Script)
+-------------------------------------------------------
+See scripts/gambit-order.gs — deploy as Web App, set Script Properties:
+  STRIPE_SECRET_KEY, SPREADSHEET_ID (if not using Form trigger only)
+
+Set order-config.json appsScriptCheckoutUrl to the Web App /exec URL to redirect
+to Stripe after saving the row (instead of only Form POST).
+
+C) Stripe products
+------------------
+Run scripts/create-stripe-bag-product.py with STRIPE_SECRET_KEY to create a $6
+"Gambit bag" price for Checkout line items (used by Apps Script).
