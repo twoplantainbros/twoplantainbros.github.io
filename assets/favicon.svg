@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="Gambit">
+  <rect width="32" height="32" rx="6" fill="#3d2314"/>
+  <path fill="none" stroke="#e8b923" stroke-width="2.2" d="M6 10h20M6 16h20M6 22h20M10 6v20M16 6v20M22 6v20"/>
+  <text x="16" y="21" text-anchor="middle" fill="#f4ede3" font-family="Georgia, serif" font-size="14" font-weight="700">G</text>
+</svg>
