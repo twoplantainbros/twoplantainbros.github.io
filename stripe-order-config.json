@@ -1,0 +1,7 @@
+{
+  "mode": "test",
+  "unit_amount_cents": 600,
+  "product_id": "prod_VVzQvHeTzGvYd7",
+  "price_id": "price_1UUxS0FzJ3XItrD7V4zasfGZ",
+  "apps_script_price_property": "STRIPE_PRICE_ID"
+}
