@@ -1,16 +1,14 @@
 /**
- * Gambit checkout — bind this script to your ORDERS Google Sheet (Extensions → Apps Script).
+ * Gambit checkout — bind to your ORDERS Google Sheet (Extensions → Apps Script).
  *
- * Flow: gambitchips.com → doGet checkout → Stripe → doGet fulfill → row in Sheet (paid).
- * Google Form is NOT used on this path (payment before fulfillment).
+ * Site uses JSONP (format=jsonp) so Stripe opens from gambitchips.com, not inside
+ * Google's iframe (which blocks redirects).
  *
- * Script properties (Project settings → Script properties):
- *   STRIPE_SECRET_KEY   sk_live_... or sk_test_...
- *   STRIPE_PRICE_ID     price_... ($6/bag, from create-stripe-bag-product.py)
- *   WEB_APP_URL         https://script.google.com/macros/s/XXXX/exec  (after deploy)
+ * Script properties:
+ *   STRIPE_SECRET_KEY
+ *   STRIPE_PRICE_ID   ($6/bag — stripe-order-config.json)
  *
- * Deploy: Deploy → New deployment → Web app → Execute as: Me → Who has access: Anyone
- * Paste WEB_APP_URL into order-config.json → appsScriptCheckoutUrl
+ * Deploy → Web app → Execute as: Me → Anyone
  */
 
 var MIN_BAGS = 6;
@@ -19,65 +17,101 @@ var SITE_URL = "https://gambitchips.com";
 
 function doGet(e) {
   var p = e.parameter || {};
-  if (p.action === "fulfill") {
-    return fulfillFromSession_(p.session_id);
+  if (p.format === "jsonp" && p.callback) {
+    return jsonp_(p.callback, jsonpAction_(p));
   }
-  return startCheckout_(p);
+  if (p.action === "fulfill") {
+    var result = fulfillSessionCore_(p.session_id);
+    if (result.ok) {
+      return externalRedirect_(SITE_URL + "/?paid=1", "Order confirmed…");
+    }
+    return htmlPage_("<p>" + (result.error || "Could not confirm order.") + "</p>");
+  }
+  return htmlPage_(
+    "<p>Use checkout from <a href='" + SITE_URL + "/#shop'>" + SITE_URL + "</a></p>"
+  );
 }
 
-function startCheckout_(p) {
+function jsonpAction_(p) {
+  if (p.action === "fulfill") {
+    return fulfillSessionCore_(p.session_id);
+  }
+  if (p.action === "checkout") {
+    return checkoutCore_(p);
+  }
+  return { error: "Unknown action" };
+}
+
+function checkoutCore_(p) {
   var salt = num_(p.salt);
   var bbq = num_(p.bbq);
   var churro = num_(p.churro);
   var total = salt + bbq + churro;
   if (total < MIN_BAGS) {
-    return htmlPage_("<p>Minimum order is " + MIN_BAGS + " bags. <a href='" + SITE_URL + "/#shop'>Go back</a></p>");
+    return { error: "Minimum order is " + MIN_BAGS + " bags." };
   }
   if (!p.email || !p.name || !p.street || !p.city || !p.state || !p.zip) {
-    return htmlPage_("<p>Missing shipping info. <a href='" + SITE_URL + "/#shop'>Go back</a></p>");
+    return { error: "Missing shipping info." };
   }
-
   var sessionUrl = createStripeCheckout_(p, salt, bbq, churro, total);
   if (sessionUrl) {
-    return externalRedirect_(sessionUrl, "Redirecting to Stripe…");
+    return { url: sessionUrl };
   }
-  return htmlPage_("<p>Checkout is not configured (Stripe keys in Apps Script). <a href='" + SITE_URL + "/#shop'>Go back</a></p>");
+  return { error: "Checkout not configured (Stripe keys in Apps Script)." };
 }
 
-function fulfillFromSession_(sessionId) {
+function fulfillSessionCore_(sessionId) {
   if (!sessionId) {
-    return htmlPage_("<p>Missing payment session. <a href='" + SITE_URL + "/#shop'>Shop</a></p>");
+    return { error: "Missing payment session." };
   }
   var key = PropertiesService.getScriptProperties().getProperty("STRIPE_SECRET_KEY");
   if (!key) {
-    return htmlPage_("<p>Stripe not configured.</p>");
+    return { error: "Stripe not configured." };
   }
 
-  var res = UrlFetchApp.fetch("https://api.stripe.com/v1/checkout/sessions/" + encodeURIComponent(sessionId), {
-    headers: { Authorization: "Bearer " + key },
-    muteHttpExceptions: true,
-  });
+  var res = UrlFetchApp.fetch(
+    "https://api.stripe.com/v1/checkout/sessions/" + encodeURIComponent(sessionId),
+    {
+      headers: { Authorization: "Bearer " + key },
+      muteHttpExceptions: true,
+    }
+  );
   var session = JSON.parse(res.getContentText());
   if (!session || session.error) {
-    return htmlPage_("<p>Could not verify payment. Email hello@gambitchips.com with ref " + sessionId + "</p>");
+    return { error: "Could not verify payment." };
   }
   if (session.payment_status !== "paid") {
-    return htmlPage_("<p>Payment not completed. <a href='" + SITE_URL + "/#shop'>Try again</a></p>");
+    return { error: "Payment not completed." };
   }
   if (sessionAlreadyRecorded_(sessionId)) {
-    return redirect_(SITE_URL + "/?paid=1");
+    return { ok: true, already: true };
   }
 
   var meta = session.metadata || {};
   appendPaidOrderRow_(meta, session);
-  return redirect_(SITE_URL + "/?paid=1");
+  return { ok: true };
+}
+
+function jsonp_(callback, data) {
+  var cb = sanitizeCallback_(callback);
+  if (!cb) {
+    return ContentService.createTextOutput("").setMimeType(ContentService.MimeType.TEXT);
+  }
+  return ContentService.createTextOutput(cb + "(" + JSON.stringify(data) + ");").setMimeType(
+    ContentService.MimeType.JAVASCRIPT
+  );
+}
+
+function sanitizeCallback_(name) {
+  if (!name || !/^[a-zA-Z_$][\w.$]*$/.test(name)) {
+    return null;
+  }
+  return name;
 }
 
 function sessionAlreadyRecorded_(sessionId) {
   var sheet = getOrderSheet_();
-  if (!sheet) return false;
-  var lastCol = sheet.getLastColumn();
-  if (sheet.getLastRow() < 2) return false;
+  if (!sheet || sheet.getLastRow() < 2) return false;
   var ids = sheet.getRange(2, 17, sheet.getLastRow(), 17).getValues();
   for (var i = 0; i < ids.length; i++) {
     if (ids[i][0] === sessionId) return true;
@@ -123,8 +157,7 @@ function getOrderSheet_() {
 function createStripeCheckout_(p, salt, bbq, churro, total) {
   var key = PropertiesService.getScriptProperties().getProperty("STRIPE_SECRET_KEY");
   var priceId = PropertiesService.getScriptProperties().getProperty("STRIPE_PRICE_ID");
-  var webAppUrl = PropertiesService.getScriptProperties().getProperty("WEB_APP_URL");
-  if (!key || !priceId || !webAppUrl) return null;
+  if (!key || !priceId) return null;
 
   var lineItems = [];
   if (salt > 0) lineItems.push({ price: priceId, quantity: salt });
@@ -134,7 +167,7 @@ function createStripeCheckout_(p, salt, bbq, churro, total) {
 
   var payload = {
     mode: "payment",
-    success_url: webAppUrl + "?action=fulfill&session_id={CHECKOUT_SESSION_ID}",
+    success_url: SITE_URL + "/?session_id={CHECKOUT_SESSION_ID}",
     cancel_url: SITE_URL + "/#shop",
     customer_email: p.email,
     line_items: lineItems,
@@ -206,30 +239,15 @@ function htmlPage_(body) {
   ).setXFrameOptionsMode(HtmlService.XFrameOptionsMode.ALLOWALL);
 }
 
-/** Meta refresh fails inside Google's sandbox iframe; break out to top window. */
 function externalRedirect_(url, message) {
   var safe = JSON.stringify(String(url));
   var html =
-    "<!doctype html><html><body>" +
-    "<p>" +
+    "<!doctype html><html><body><p>" +
     (message || "Redirecting…") +
-    "</p>" +
-    "<script>window.top.location.replace(" +
+    "</p><script>window.top.location.replace(" +
     safe +
-    ");</script>" +
-    "<noscript><p><a href=" +
-    safe +
-    ">Continue</a></p></noscript>" +
-    "</body></html>";
+    ");</script></body></html>";
   return HtmlService.createHtmlOutput(html).setXFrameOptionsMode(
     HtmlService.XFrameOptionsMode.ALLOWALL
   );
-}
-
-function redirect_(url) {
-  return externalRedirect_(url, "Redirecting…");
-}
-
-function escapeAttr_(url) {
-  return String(url).replace(/&/g, "&amp;").replace(/"/g, "&quot;");
 }

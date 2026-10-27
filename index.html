@@ -1285,6 +1285,59 @@
           return el;
         }
 
+        function jsonpToAppsScript(params, callbackName, onDone) {
+          var prior = document.getElementById("gambit-jsonp");
+          if (prior) prior.remove();
+          window[callbackName] = function (data) {
+            delete window[callbackName];
+            var tag = document.getElementById("gambit-jsonp");
+            if (tag) tag.remove();
+            onDone(data || {});
+          };
+          var q = new URLSearchParams(params);
+          q.set("format", "jsonp");
+          q.set("callback", callbackName);
+          var script = document.createElement("script");
+          script.id = "gambit-jsonp";
+          script.src = cfg.appsScriptCheckoutUrl + "?" + q.toString();
+          script.onerror = function () {
+            delete window[callbackName];
+            script.remove();
+            onDone({ error: "Could not reach checkout. Try again or email hello@gambitchips.com." });
+          };
+          document.body.appendChild(script);
+        }
+
+        function showPaidBanner() {
+          if (document.getElementById("paid-banner")) return;
+          var banner = document.createElement("p");
+          banner.id = "paid-banner";
+          banner.setAttribute("role", "status");
+          banner.style.cssText =
+            "margin:0;padding:0.85rem 1.25rem;background:#2e5a3a;color:#f4ede3;text-align:center;font-weight:600;";
+          banner.textContent = "Thanks — payment received. We’ll ship your order soon.";
+          document.body.prepend(banner);
+        }
+
+        function maybeFulfillFromReturn() {
+          var qs = new URLSearchParams(window.location.search);
+          var sessionId = qs.get("session_id");
+          if (!sessionId || !cfg.appsScriptCheckoutUrl) return;
+          jsonpToAppsScript(
+            { action: "fulfill", session_id: sessionId },
+            "gambitFulfillCb",
+            function (data) {
+              if (data.ok) {
+                showPaidBanner();
+                history.replaceState({}, "", window.location.pathname + "?paid=1");
+              } else if (data.error) {
+                setupNote.hidden = false;
+                setupNote.textContent = data.error;
+              }
+            }
+          );
+        }
+
         form.addEventListener("submit", function (ev) {
           var salt = qty("salt");
           var bbq = qty("bbq");
@@ -1299,22 +1352,36 @@
             cfg.checkoutMode === "stripe" && cfg.appsScriptCheckoutUrl;
           if (useStripe) {
             ev.preventDefault();
-            var p = new URLSearchParams({
-              action: "checkout",
-              salt: salt,
-              bbq: bbq,
-              churro: churro,
-              name: document.getElementById("field-name").value,
-              email: document.getElementById("field-email").value,
-              phone: document.getElementById("field-phone").value,
-              street: document.getElementById("field-street").value,
-              street2: document.getElementById("field-street2").value,
-              city: document.getElementById("field-city").value,
-              state: document.getElementById("field-state").value,
-              zip: document.getElementById("field-zip").value,
-              notes: document.getElementById("field-notes").value,
-            });
-            window.location.href = cfg.appsScriptCheckoutUrl + "?" + p.toString();
+            submitBtn.disabled = true;
+            submitBtn.textContent = "Opening Stripe…";
+            jsonpToAppsScript(
+              {
+                action: "checkout",
+                salt: salt,
+                bbq: bbq,
+                churro: churro,
+                name: document.getElementById("field-name").value,
+                email: document.getElementById("field-email").value,
+                phone: document.getElementById("field-phone").value,
+                street: document.getElementById("field-street").value,
+                street2: document.getElementById("field-street2").value,
+                city: document.getElementById("field-city").value,
+                state: document.getElementById("field-state").value,
+                zip: document.getElementById("field-zip").value,
+                notes: document.getElementById("field-notes").value,
+              },
+              "gambitCheckoutCb",
+              function (data) {
+                if (data.url) {
+                  window.location.href = data.url;
+                  return;
+                }
+                submitBtn.disabled = false;
+                submitBtn.textContent = "Continue to secure payment";
+                setupNote.hidden = false;
+                setupNote.textContent = data.error || "Checkout failed.";
+              }
+            );
             return;
           }
 
@@ -1373,12 +1440,17 @@
                 "Checkout wiring: set appsScriptCheckoutUrl + checkoutMode stripe (see scripts/ORDER_SETUP.txt).";
             }
             refresh();
+            maybeFulfillFromReturn();
           })
           .catch(function () {
             setupNote.hidden = false;
             setupNote.textContent = "Could not load order-config.json.";
             refresh();
           });
+
+        if (new URLSearchParams(window.location.search).get("paid") === "1") {
+          showPaidBanner();
+        }
 
         refresh();
       })();
