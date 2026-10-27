@@ -3,20 +3,20 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Gambit — Waffle-Cut Plantain Chips</title>
+    <title>Gambit | Waffle-Cut Plantain Chips</title>
     <meta
       name="description"
-      content="Gambit waffle-cut plantain chips — Salt, BBQ, and Churro. Crisp lattice-cut plantain, shipped to your door."
+      content="Gambit waffle-cut plantain chips: Salt, BBQ, and Churro. Crisp lattice-cut plantain with free shipping."
     />
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="Gambit — Waffle-Cut Plantain Chips" />
+    <meta property="og:title" content="Gambit | Waffle-Cut Plantain Chips" />
     <meta
       property="og:description"
       content="Salt, BBQ, and Churro. One chip and you'll get it."
     />
     <meta property="og:image" content="https://gambitchips.com/assets/chips-three-bags.jpeg" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Gambit — Waffle-Cut Plantain Chips" />
+    <meta name="twitter:title" content="Gambit | Waffle-Cut Plantain Chips" />
     <meta
       name="twitter:description"
       content="Salt, BBQ, and Churro. One chip and you'll get it."
@@ -909,6 +909,85 @@
       footer p {
         margin: 0.35rem 0;
       }
+
+      .celebrate-overlay {
+        position: fixed;
+        inset: 0;
+        z-index: 200;
+        display: grid;
+        place-items: center;
+        padding: 1.25rem;
+        background: rgba(26, 18, 12, 0.55);
+        backdrop-filter: blur(6px);
+        animation: celebrate-in 0.35s ease;
+      }
+
+      @keyframes celebrate-in {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      .celebrate-card {
+        max-width: 420px;
+        width: 100%;
+        padding: clamp(1.75rem, 5vw, 2.25rem);
+        border-radius: 20px;
+        background: linear-gradient(165deg, #faf6ef, var(--cream));
+        border: 2px solid rgba(232, 185, 35, 0.45);
+        box-shadow: 0 32px 64px rgba(26, 18, 12, 0.35);
+        text-align: center;
+      }
+
+      .celebrate-card .emoji {
+        font-size: 2.5rem;
+        line-height: 1;
+        margin-bottom: 0.5rem;
+      }
+
+      .celebrate-card h2 {
+        margin: 0 0 0.65rem;
+        font-family: "Permanent Marker", cursive;
+        font-size: clamp(1.75rem, 5vw, 2.25rem);
+        color: var(--brown);
+        line-height: 1.1;
+      }
+
+      .celebrate-card p {
+        margin: 0 0 1rem;
+        color: var(--brown-soft);
+        font-size: 1rem;
+      }
+
+      .celebrate-card .order-recap {
+        margin: 0 0 1.25rem;
+        padding: 0.75rem 1rem;
+        border-radius: 12px;
+        background: rgba(255, 255, 255, 0.65);
+        font-size: 0.9rem;
+        color: var(--brown);
+      }
+
+      .celebrate-dismiss {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.7rem 1.35rem;
+        border: none;
+        border-radius: 999px;
+        font: inherit;
+        font-weight: 700;
+        cursor: pointer;
+        background: var(--brown);
+        color: var(--cream);
+      }
+
+      .celebrate-dismiss:hover {
+        filter: brightness(1.05);
+      }
     </style>
   </head>
   <body>
@@ -933,12 +1012,12 @@
             <h1 id="hero-title">Gambit</h1>
             <p class="hero-flavor-line">Waffle-cut. Ridiculously crisp.</p>
             <p class="hero-lede">
-              Unconventional cuts and flavors—Salt, BBQ, and Churro. We took a gambit building
+              Unconventional cuts and flavors: Salt, BBQ, and Churro. We took a gambit building
               this line; one chip is all we ask you to risk.
             </p>
             <div class="hero-badges" aria-label="Product highlights">
-              <span class="badge">80 g (~2.8 oz) bags</span>
-              <span class="badge">$6 / bag shipped</span>
+              <span class="badge">3 servings per bag</span>
+              <span class="badge">$6 / bag · free shipping</span>
               <span class="badge">6-bag minimum</span>
             </div>
             <div class="hero-actions">
@@ -951,7 +1030,7 @@
               src="assets/chips-three-bags.jpeg"
               width="1024"
               height="572"
-              alt="Gambit waffle-cut plantain chips — BBQ, Churro, and Salt bags"
+              alt="Gambit waffle-cut plantain chips: BBQ, Churro, and Salt bags"
             />
           </figure>
         </div>
@@ -965,7 +1044,7 @@
         <div class="about-inner">
           <h2 id="about-title">About Gambit</h2>
           <p class="about-lede">
-            We&rsquo;re making chips that don&rsquo;t play it safe—new <em>shapes</em>, new
+            We&rsquo;re making chips that don&rsquo;t play it safe: new <em>shapes</em>, new
             <em>flavors</em>, plantain instead of the usual playbook. The name isn&rsquo;t marketing
             fluff: we&rsquo;re taking a <em>gambit</em> as a company, and we&rsquo;re asking you to
             take one too. Try a bag. One chip is all it takes to see the vision.
@@ -974,21 +1053,21 @@
             <li>
               <strong>Unconventional by design</strong>
               <p>
-                Waffle-cut lattice, flavors like Churro on plantain—built for people bored of
+                Waffle-cut lattice, flavors like Churro on plantain. Built for people bored of
                 round, flat, predictable.
               </p>
             </li>
             <li>
               <strong>Our gambit</strong>
               <p>
-                We bet on a smaller, weirder chip line instead of chasing every aisle—plantain,
+                We bet on a smaller, weirder chip line instead of chasing every aisle: plantain,
                 waffle-cut, flavors that sound wrong until they don&rsquo;t.
               </p>
             </li>
             <li>
               <strong>Your gambit</strong>
               <p>
-                You don&rsquo;t have to trust a paragraph—trust one chip. That&rsquo;s the whole
+                You don&rsquo;t have to trust a paragraph. Trust one chip. That&rsquo;s the whole
                 pitch.
               </p>
             </li>
@@ -1001,8 +1080,8 @@
         <div class="section-head">
           <h2 id="shop-title">Shop the line</h2>
           <p>
-            <strong>$6 per bag</strong> · 80&nbsp;g (~2.8&nbsp;oz) · 2.5 servings · shipping
-            included · <strong>minimum 6 bags</strong> (mix any flavors) · continental U.S.
+            <strong>$6 per bag</strong> · 3 servings · <strong>free shipping</strong> ·
+            <strong>minimum 6 bags</strong> (mix any flavors) · continental U.S.
           </p>
         </div>
 
@@ -1011,7 +1090,7 @@
             src="assets/chips-three-bags.jpeg"
             width="1024"
             height="572"
-            alt="Gambit BBQ, Churro, and Salt bags — pick your flavor below"
+            alt="Gambit BBQ, Churro, and Salt bags. Pick your flavor below."
             loading="lazy"
           />
         </figure>
@@ -1020,14 +1099,14 @@
           <article class="flavor-card salt">
             <div class="flavor-details">
               <h3 class="flavor-name">Salt</h3>
-              <p class="meta-line">80 g · classic</p>
+              <p class="meta-line">3 servings · classic</p>
               <p>
-                Golden waffle ridges and coarse sea salt—clean, crisp, and the reason we cut the
+                Golden waffle ridges and coarse sea salt. Clean, crisp, and the reason we cut the
                 lattice in the first place.
               </p>
               <div class="price-row">
                 <span class="price">$6</span>
-                <span class="size-note">Per bag · shipped</span>
+                <span class="size-note">Per bag · free shipping</span>
               </div>
             </div>
           </article>
@@ -1035,14 +1114,14 @@
           <article class="flavor-card bbq">
             <div class="flavor-details">
               <h3 class="flavor-name">BBQ</h3>
-              <p class="meta-line">80 g · savory</p>
+              <p class="meta-line">3 servings · savory</p>
               <p>
-                Smoky-sweet rub with paprika and garlic that catches in every waffle pocket—built
+                Smoky-sweet rub with paprika and garlic that catches in every waffle pocket. Built
                 for backyard snacking.
               </p>
               <div class="price-row">
                 <span class="price">$6</span>
-                <span class="size-note">Per bag · shipped</span>
+                <span class="size-note">Per bag · free shipping</span>
               </div>
             </div>
           </article>
@@ -1050,13 +1129,13 @@
           <article class="flavor-card churro">
             <div class="flavor-details">
               <h3 class="flavor-name">Churro</h3>
-              <p class="meta-line">80 g · sweet</p>
+              <p class="meta-line">3 servings · sweet</p>
               <p>
-                Cinnamon-sugar on ripe plantain—fairground nostalgia on a savory plantain base.
+                Cinnamon-sugar on ripe plantain. Fairground nostalgia on a savory plantain base.
               </p>
               <div class="price-row">
                 <span class="price">$6</span>
-                <span class="size-note">Per bag · shipped</span>
+                <span class="size-note">Per bag · free shipping</span>
               </div>
             </div>
           </article>
@@ -1065,8 +1144,7 @@
         <div class="order-panel" id="order">
           <h3>Build your case</h3>
           <p class="order-intro">
-            Pick at least 6 bags in any mix. You&rsquo;ll confirm shipping next; orders land in our
-            Google Sheet for fulfillment.
+            Pick at least 6 bags in any mix. Free shipping. Pay securely, then we pack and ship.
           </p>
 
           <div class="qty-rows" aria-label="Bag quantities">
@@ -1107,7 +1185,7 @@
 
           <div class="order-summary" id="order-summary" aria-live="polite">
             <p class="total-line"><span id="summary-bags">0</span> bags · $<span id="summary-total">0</span></p>
-            <p>Shipping included · 2–4 business days (continental U.S.)</p>
+            <p>Free shipping · 2-4 business days (continental U.S.)</p>
             <p class="warn" id="summary-warn">Add at least 6 bags to check out.</p>
           </div>
 
@@ -1159,8 +1237,8 @@
       </section>
 
       <div class="trust-strip" aria-label="Order basics">
-        <span>80 g bags</span>
-        <span>$6 shipped</span>
+        <span>3 servings / bag</span>
+        <span>Free shipping</span>
         <span>Sunflower oil fry</span>
         <span>14-day satisfaction guarantee</span>
       </div>
@@ -1171,10 +1249,10 @@
             <h2 id="story-title">Why waffle-cut?</h2>
             <p>
               More surface area means more crunch and more room for seasoning. Gambit starts with
-              ripe plantain—not potato—and a cut you can see through the bag.
+              ripe plantain, not potato, and a cut you can see through the bag.
             </p>
             <p>
-              Wrong or damaged order? Email within 14 days—we&rsquo;ll replace or refund.
+              Wrong or damaged order? Email within 14 days and we&rsquo;ll replace or refund.
               <a href="mailto:hello@gambitchips.com" style="color: var(--churro-tan)"
                 >hello@gambitchips.com</a
               >
@@ -1255,15 +1333,6 @@
             : "Submit order";
         }
 
-        if (new URLSearchParams(window.location.search).get("paid") === "1") {
-          var banner = document.createElement("p");
-          banner.setAttribute("role", "status");
-          banner.style.cssText =
-            "margin:0;padding:0.85rem 1.25rem;background:#2e5a3a;color:#f4ede3;text-align:center;font-weight:600;";
-          banner.textContent = "Thanks — payment received. We’ll ship your order soon.";
-          document.body.prepend(banner);
-        }
-
         document.querySelectorAll(".qty-stepper").forEach(function (stepper) {
           var flavor = stepper.getAttribute("data-flavor");
           stepper.querySelectorAll("button").forEach(function (btn) {
@@ -1308,15 +1377,104 @@
           document.body.appendChild(script);
         }
 
-        function showPaidBanner() {
-          if (document.getElementById("paid-banner")) return;
-          var banner = document.createElement("p");
-          banner.id = "paid-banner";
-          banner.setAttribute("role", "status");
-          banner.style.cssText =
-            "margin:0;padding:0.85rem 1.25rem;background:#2e5a3a;color:#f4ede3;text-align:center;font-weight:600;";
-          banner.textContent = "Thanks — payment received. We’ll ship your order soon.";
-          document.body.prepend(banner);
+        function flavorRecap(data) {
+          if (!data || !data.totalBags) return "";
+          var parts = [];
+          if (data.salt) parts.push("Salt × " + data.salt);
+          if (data.bbq) parts.push("BBQ × " + data.bbq);
+          if (data.churro) parts.push("Churro × " + data.churro);
+          return parts.join(" · ");
+        }
+
+        function fireConfetti() {
+          if (typeof confetti !== "function") return;
+          var end = Date.now() + 2200;
+          (function burst() {
+            confetti({
+              particleCount: 4,
+              angle: 60,
+              spread: 55,
+              origin: { x: 0, y: 0.65 },
+              colors: ["#e8b923", "#3d2314", "#f4ede3", "#ff6b00"],
+            });
+            confetti({
+              particleCount: 4,
+              angle: 120,
+              spread: 55,
+              origin: { x: 1, y: 0.65 },
+              colors: ["#e8b923", "#3d2314", "#f4ede3", "#ff6b00"],
+            });
+            if (Date.now() < end) requestAnimationFrame(burst);
+          })();
+        }
+
+        function withConfettiLib(then) {
+          if (typeof confetti === "function") {
+            then();
+            return;
+          }
+          var s = document.createElement("script");
+          s.src =
+            "https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js";
+          s.onload = then;
+          s.onerror = then;
+          document.head.appendChild(s);
+        }
+
+        function showOrderCelebration(data) {
+          if (document.getElementById("celebrate-overlay")) return;
+          var first =
+            (data && data.firstName) ||
+            sessionStorage.getItem("gambit_first_name") ||
+            "friend";
+          sessionStorage.removeItem("gambit_first_name");
+          var recap = flavorRecap(data);
+          var bags = data && data.totalBags ? data.totalBags : "";
+
+          var overlay = document.createElement("div");
+          overlay.id = "celebrate-overlay";
+          overlay.className = "celebrate-overlay";
+          overlay.setAttribute("role", "dialog");
+          overlay.setAttribute("aria-modal", "true");
+          overlay.setAttribute("aria-labelledby", "celebrate-title");
+          overlay.innerHTML =
+            '<div class="celebrate-card">' +
+            '<p class="emoji" aria-hidden="true">🎉</p>' +
+            '<h2 id="celebrate-title">Order locked, ' +
+            escapeHtml(first) +
+            "!</h2>" +
+            "<p>Payment went through. We&rsquo;re packing your gambit now.</p>" +
+            (recap
+              ? '<p class="order-recap"><strong>' +
+                bags +
+                " bags</strong><br />" +
+                escapeHtml(recap) +
+                "</p>"
+              : "") +
+            '<p>Free shipping · 2-4 business days. Watch your inbox for tracking.</p>' +
+            '<button type="button" class="celebrate-dismiss">Nice</button>' +
+            "</div>";
+          document.body.appendChild(overlay);
+          document.body.style.overflow = "hidden";
+          overlay.querySelector(".celebrate-dismiss").addEventListener("click", function () {
+            overlay.remove();
+            document.body.style.overflow = "";
+          });
+          overlay.addEventListener("click", function (ev) {
+            if (ev.target === overlay) {
+              overlay.remove();
+              document.body.style.overflow = "";
+            }
+          });
+          withConfettiLib(fireConfetti);
+        }
+
+        function escapeHtml(s) {
+          return String(s)
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;");
         }
 
         function maybeFulfillFromReturn() {
@@ -1328,7 +1486,7 @@
             "gambitFulfillCb",
             function (data) {
               if (data.ok) {
-                showPaidBanner();
+                showOrderCelebration(data);
                 history.replaceState({}, "", window.location.pathname + "?paid=1");
               } else if (data.error) {
                 setupNote.hidden = false;
@@ -1373,6 +1531,9 @@
               "gambitCheckoutCb",
               function (data) {
                 if (data.url) {
+                  var fullName = document.getElementById("field-name").value.trim();
+                  var first = fullName.split(/\s+/)[0] || "friend";
+                  sessionStorage.setItem("gambit_first_name", first);
                   window.location.href = data.url;
                   return;
                 }
@@ -1449,7 +1610,7 @@
           });
 
         if (new URLSearchParams(window.location.search).get("paid") === "1") {
-          showPaidBanner();
+          showOrderCelebration({ firstName: sessionStorage.getItem("gambit_first_name") || "friend" });
         }
 
         refresh();

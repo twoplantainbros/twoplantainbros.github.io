@@ -27,7 +27,7 @@ def main() -> None:
         "products",
         {
             "name": "Gambit Waffle-Cut Plantain Chips — single bag",
-            "description": "80 g (~2.8 oz), 2.5 servings. Shipping included when ordering 6+ bags.",
+            "description": "3 servings per bag. Free shipping when ordering 6+ bags.",
             "metadata[sku]": "gambit-bag",
         },
     )

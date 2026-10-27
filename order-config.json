@@ -1,8 +1,7 @@
 {
   "pricePerBag": 6,
   "minBags": 6,
-  "gramsPerBag": 80,
-  "servingsPerBag": 2.5,
+  "servingsPerBag": 3,
   "googleForm": {
     "formResponseUrl": "https://docs.google.com/forms/d/e/1FAIpQLSfw8JjKxZPGt3aCCSteS1t58oriqd3AJk4Re4Ig19epbcMqOw/formResponse",
     "entries": {

@@ -84,12 +84,31 @@ function fulfillSessionCore_(sessionId) {
     return { error: "Payment not completed." };
   }
   if (sessionAlreadyRecorded_(sessionId)) {
-    return { ok: true, already: true };
+    return fulfillPayload_(session, true);
   }
 
   var meta = session.metadata || {};
   appendPaidOrderRow_(meta, session);
-  return { ok: true };
+  return fulfillPayload_(session, false);
+}
+
+function fulfillPayload_(session, already) {
+  var meta = session.metadata || {};
+  var salt = num_(meta.salt);
+  var bbq = num_(meta.bbq);
+  var churro = num_(meta.churro);
+  var name = meta.name || "";
+  var first = name.split(/\s+/)[0] || "";
+  return {
+    ok: true,
+    already: !!already,
+    name: name,
+    firstName: first,
+    totalBags: salt + bbq + churro,
+    salt: salt,
+    bbq: bbq,
+    churro: churro,
+  };
 }
 
 function jsonp_(callback, data) {

@@ -13,8 +13,14 @@ Row 1 headers (match your Form sheet or add manually):
 
 B) Stripe — $6 bag price
 ------------------------
-  STRIPE_SECRET_KEY=sk_test_... python3 scripts/create-stripe-bag-product.py
-  Save the printed price_id (price_...).
+  Test:  STRIPE_SECRET_KEY=sk_test_... python3 scripts/create-stripe-bag-product.py
+  Live:  STRIPE_SECRET_KEY=sk_live_... python3 scripts/create-stripe-bag-product.py
+  Save the printed price_id (price_...). Test and live price IDs are different.
+
+  Production (Apps Script Script properties, NOT Google Form):
+    STRIPE_SECRET_KEY = sk_live_...
+    STRIPE_PRICE_ID   = live price_... from command above
+  Redeploy web app (new version). order-config.json unchanged unless /exec URL changes.
 
 C) Apps Script (on the ORDERS spreadsheet)
 -------------------------------------------
