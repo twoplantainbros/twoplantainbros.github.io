@@ -39,9 +39,7 @@ function startCheckout_(p) {
 
   var sessionUrl = createStripeCheckout_(p, salt, bbq, churro, total);
   if (sessionUrl) {
-    return HtmlService.createHtmlOutput(
-      '<meta http-equiv="refresh" content="0;url=' + escapeAttr_(sessionUrl) + '"><p>Redirecting to Stripe…</p>'
-    );
+    return externalRedirect_(sessionUrl, "Redirecting to Stripe…");
   }
   return htmlPage_("<p>Checkout is not configured (Stripe keys in Apps Script). <a href='" + SITE_URL + "/#shop'>Go back</a></p>");
 }
@@ -203,13 +201,33 @@ function flattenStripe_(obj, prefix) {
 }
 
 function htmlPage_(body) {
-  return HtmlService.createHtmlOutput("<!doctype html><html><body>" + body + "</body></html>");
+  return HtmlService.createHtmlOutput(
+    "<!doctype html><html><body>" + body + "</body></html>"
+  ).setXFrameOptionsMode(HtmlService.XFrameOptionsMode.ALLOWALL);
+}
+
+/** Meta refresh fails inside Google's sandbox iframe; break out to top window. */
+function externalRedirect_(url, message) {
+  var safe = JSON.stringify(String(url));
+  var html =
+    "<!doctype html><html><body>" +
+    "<p>" +
+    (message || "Redirecting…") +
+    "</p>" +
+    "<script>window.top.location.replace(" +
+    safe +
+    ");</script>" +
+    "<noscript><p><a href=" +
+    safe +
+    ">Continue</a></p></noscript>" +
+    "</body></html>";
+  return HtmlService.createHtmlOutput(html).setXFrameOptionsMode(
+    HtmlService.XFrameOptionsMode.ALLOWALL
+  );
 }
 
 function redirect_(url) {
-  return HtmlService.createHtmlOutput(
-    '<meta http-equiv="refresh" content="0;url=' + escapeAttr_(url) + '">'
-  );
+  return externalRedirect_(url, "Redirecting…");
 }
 
 function escapeAttr_(url) {
