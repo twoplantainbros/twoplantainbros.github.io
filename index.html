@@ -1587,9 +1587,8 @@
             var useStripe =
               cfg.checkoutMode === "stripe" && cfg.appsScriptCheckoutUrl;
             if (useStripe) {
-              setupNote.hidden = false;
-              setupNote.textContent =
-                "You’ll pay on Stripe first; your order is saved to our sheet after payment.";
+              setupNote.hidden = true;
+              setupNote.textContent = "";
             } else if (cfg.googleForm.formResponseUrl) {
               form.action = cfg.googleForm.formResponseUrl;
               setupNote.hidden = false;
