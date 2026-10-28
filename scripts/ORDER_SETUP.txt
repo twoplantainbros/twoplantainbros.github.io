@@ -1,4 +1,4 @@
-Gambit orders — Stripe FIRST, then Google Sheet (recommended)
+Gambit orders: Stripe FIRST, then Google Sheet (recommended)
 =============================================================
 
 Customers pay on Stripe before a row is added. The Google Form is optional / legacy;
@@ -11,7 +11,7 @@ Row 1 headers (match your Form sheet or add manually):
   G Name | H Email | I Phone | J Street | K Apt | L City | M State | N ZIP | O Notes
   P Status (paid) | Q Stripe session ID
 
-B) Stripe — $6 bag price
+B) Stripe: $6 bag price
 ------------------------
   Test:  STRIPE_SECRET_KEY=sk_test_... python3 scripts/create-stripe-bag-product.py
   Live:  STRIPE_SECRET_KEY=sk_live_... python3 scripts/create-stripe-bag-product.py
@@ -29,14 +29,14 @@ C) Apps Script (on the ORDERS spreadsheet)
 3. Project settings → Script properties, add:
      STRIPE_SECRET_KEY    = your Stripe secret key (same as STRIPE_SECRET_KEY env)
      STRIPE_PRICE_ID      = price_1UUxS0FzJ3XItrD7V4zasfGZ  (see stripe-order-config.json)
-     WEB_APP_URL          = (paste after step 4 — must match deploy URL exactly)
+     WEB_APP_URL          = (paste after step 4; must match deploy URL exactly)
 4. Deploy → New deployment → Web app
      Execute as: Me
      Who has access: Anyone
    Copy the /exec URL → set WEB_APP_URL to that exact URL (same value).
 5. Update deployment if you change code (Manage deployments → Edit → New version).
 
-D) Website — order-config.json
+D) Website: order-config.json
 ------------------------------
   "checkoutMode": "stripe",
   "appsScriptCheckoutUrl": "https://script.google.com/macros/s/XXXX/exec"

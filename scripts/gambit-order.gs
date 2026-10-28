@@ -1,12 +1,12 @@
 /**
- * Gambit checkout — bind to your ORDERS Google Sheet (Extensions → Apps Script).
+ * Gambit checkout. Bind to your ORDERS Google Sheet (Extensions → Apps Script).
  *
  * Site uses JSONP (format=jsonp) so Stripe opens from gambitchips.com, not inside
  * Google's iframe (which blocks redirects).
  *
  * Script properties:
  *   STRIPE_SECRET_KEY
- *   STRIPE_PRICE_ID   ($6/bag — stripe-order-config.json)
+ *   STRIPE_PRICE_ID   ($6/bag, see stripe-order-config.json)
  *
  * Deploy → Web app → Execute as: Me → Anyone
  */

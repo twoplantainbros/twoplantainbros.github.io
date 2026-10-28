@@ -33,8 +33,8 @@ def main() -> None:
         prod = stripe_post(
             "products",
             {
-                "name": f"Gambit Chips — {title}",
-                "description": "Placeholder listing — artwork and story coming soon.",
+                "name": f"Gambit Chips, {title}",
+                "description": "Placeholder listing. Artwork and story coming soon.",
                 "metadata[slug]": slug,
                 "metadata[status]": "placeholder",
             },
@@ -63,7 +63,7 @@ def main() -> None:
     out_path = os.path.join(os.path.dirname(__file__), "..", "stripe-config.json")
     with open(out_path, "w", encoding="utf-8") as f:
         json.dump({"products": products}, f, indent=2)
-    print("Wrote stripe-config.json — copy payment_link_url values into index.html")
+    print("Wrote stripe-config.json. Copy payment_link_url values into index.html")
 
 
 if __name__ == "__main__":

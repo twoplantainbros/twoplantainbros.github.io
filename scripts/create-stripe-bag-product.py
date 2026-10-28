@@ -26,8 +26,8 @@ def main() -> None:
     prod = stripe_post(
         "products",
         {
-            "name": "Gambit Waffle-Cut Plantain Chips — single bag",
-            "description": "3 servings per bag. Free shipping when ordering 6+ bags.",
+            "name": "Gambit Waffle Cut Plantain Chips, single bag",
+            "description": "3 servings per bag. Free shipping.",
             "metadata[sku]": "gambit-bag",
         },
     )
