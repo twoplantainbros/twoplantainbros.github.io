@@ -12,14 +12,14 @@
     <meta property="og:title" content="Gambit | Waffle Cut Plantain Chips" />
     <meta
       property="og:description"
-      content="Salt, BBQ, and Churro. One chip and you'll get it."
+      content="Salt, BBQ, and Churro. One gambit and you'll get it."
     />
     <meta property="og:image" content="https://gambitchips.com/assets/chips-three-bags.jpeg" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Gambit | Waffle Cut Plantain Chips" />
     <meta
       name="twitter:description"
-      content="Salt, BBQ, and Churro. One chip and you'll get it."
+      content="Salt, BBQ, and Churro. One gambit and you'll get it."
     />
     <meta name="twitter:image" content="https://gambitchips.com/assets/chips-three-bags.jpeg" />
     <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
@@ -41,6 +41,15 @@
         --bbq-orange: #ff6b00;
         --churro-russet: #7a3b2a;
         --churro-tan: #d4a574;
+        --salt-bag-bg: #efead9;
+        --salt-bag-bg-deep: #e6dfcd;
+        --salt-bag-title: #e2b45a;
+        --churro-bag-bg: #ad6d3a;
+        --churro-bag-bg-deep: #8f5e44;
+        --churro-bag-title: #f0c994;
+        --bbq-bag-bg: #754038;
+        --bbq-bag-bg-deep: #591818;
+        --bbq-bag-title: #c85520;
         --ink: #1a120c;
         --radius: 18px;
         --shadow: 0 24px 48px rgba(26, 18, 12, 0.18);
@@ -510,16 +519,34 @@
       }
 
       .flavor-card.salt .flavor-details {
-        background: linear-gradient(165deg, #faf6ef, var(--brown-soft));
+        background: linear-gradient(
+          165deg,
+          var(--salt-bag-bg) 0%,
+          var(--salt-bag-bg) 55%,
+          var(--salt-bag-bg-deep) 100%
+        );
         color: var(--ink);
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4);
       }
 
       .flavor-card.bbq .flavor-details {
-        background: linear-gradient(165deg, #5c1515, var(--bbq-maroon));
+        background: linear-gradient(
+          165deg,
+          var(--bbq-bag-bg) 0%,
+          var(--bbq-bag-bg-deep) 100%
+        );
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
       }
 
       .flavor-card.churro .flavor-details {
-        background: linear-gradient(165deg, #9a4a32, var(--churro-russet));
+        background: linear-gradient(
+          165deg,
+          var(--churro-bag-bg) 0%,
+          var(--churro-bag-bg) 50%,
+          var(--churro-bag-bg-deep) 100%
+        );
+        color: var(--cream);
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
       }
 
       .flavor-name {
@@ -531,16 +558,22 @@
       }
 
       .flavor-card.salt .flavor-name {
-        color: var(--salt-yellow);
-        text-shadow: 0 1px 0 var(--brown);
+        color: var(--salt-bag-title);
+        text-shadow:
+          0 1px 0 rgba(61, 35, 20, 0.4),
+          0 0 18px rgba(226, 180, 90, 0.35);
       }
 
       .flavor-card.bbq .flavor-name {
-        color: var(--bbq-orange);
+        color: var(--bbq-bag-title);
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
       }
 
       .flavor-card.churro .flavor-name {
-        color: var(--churro-tan);
+        color: var(--churro-bag-title);
+        text-shadow:
+          0 1px 0 rgba(44, 24, 12, 0.45),
+          0 0 14px rgba(240, 201, 148, 0.25);
       }
 
       .flavor-details p {
@@ -550,8 +583,39 @@
         flex: 1;
       }
 
-      .flavor-card.salt .flavor-details p {
+      .flavor-card.salt .flavor-details p,
+      .flavor-card.salt .meta-line,
+      .flavor-card.salt .size-note {
         color: var(--brown-soft);
+        opacity: 1;
+      }
+
+      .flavor-card.salt .price {
+        color: var(--brown);
+      }
+
+      .flavor-card.bbq .meta-line,
+      .flavor-card.bbq .flavor-details p,
+      .flavor-card.bbq .price,
+      .flavor-card.bbq .size-note {
+        color: var(--cream);
+        opacity: 1;
+      }
+
+      .flavor-card.bbq .size-note {
+        opacity: 0.9;
+      }
+
+      .flavor-card.churro .meta-line,
+      .flavor-card.churro .flavor-details p,
+      .flavor-card.churro .price,
+      .flavor-card.churro .size-note {
+        color: var(--cream);
+        opacity: 1;
+      }
+
+      .flavor-card.churro .size-note {
+        opacity: 0.92;
       }
 
       .meta-line {
@@ -606,8 +670,8 @@
       }
 
       .flavor-card.churro .btn-buy {
-        background: var(--churro-tan);
-        color: var(--ink);
+        background: var(--churro-bag-title);
+        color: var(--churro-bag-bg-deep);
       }
 
       .btn-buy:hover {
@@ -820,35 +884,6 @@
         color: var(--brown-soft);
       }
 
-      .trust-strip {
-        max-width: 1140px;
-        margin: 0 auto;
-        padding: 0 1.25rem 2.5rem;
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 0.65rem 1.25rem;
-        font-size: 0.82rem;
-        font-weight: 600;
-        letter-spacing: 0.04em;
-        text-transform: uppercase;
-        color: var(--brown-soft);
-      }
-
-      .trust-strip span {
-        white-space: nowrap;
-      }
-
-      .trust-strip span::before {
-        content: "·";
-        margin-right: 1.25rem;
-        opacity: 0.4;
-      }
-
-      .trust-strip span:first-child::before {
-        content: none;
-      }
-
       .story {
         background: var(--brown);
         color: var(--cream);
@@ -1002,7 +1037,7 @@
             <p class="hero-flavor-line">Waffle cut. Ridiculously crisp.</p>
             <p class="hero-lede">
               Unconventional cuts and flavors: Salt, BBQ, and Churro. We took a gambit building
-              this line; one chip is all we ask you to risk.
+              this line; one gambit is all we ask you to risk.
             </p>
             <div class="hero-badges" aria-label="Product highlights">
               <span class="badge">3 servings per bag</span>
@@ -1026,7 +1061,7 @@
       </section>
 
       <div class="tagline-band" role="doc-subtitle">
-        <p>One chip and you&rsquo;ll get it.</p>
+        <p>One gambit and you&rsquo;ll get it.</p>
       </div>
 
       <section class="flavors" id="shop" aria-labelledby="shop-title">
@@ -1197,7 +1232,7 @@
             We&rsquo;re making chips that don&rsquo;t play it safe: new <em>shapes</em>, new
             <em>flavors</em>, plantain instead of the usual playbook. The name isn&rsquo;t marketing
             fluff: we&rsquo;re taking a <em>gambit</em> as a company, and we&rsquo;re asking you to
-            take one too. Try a bag. One chip is all it takes to see the vision.
+            take one too. Try a bag. One gambit is all it takes to see the vision.
           </p>
           <ul class="about-pillars">
             <li>
@@ -1217,7 +1252,7 @@
             <li>
               <strong>Your gambit</strong>
               <p>
-                You don&rsquo;t have to trust a paragraph. Trust one chip. That&rsquo;s the whole
+                You don&rsquo;t have to trust a paragraph. Trust one gambit. That&rsquo;s the whole
                 pitch.
               </p>
             </li>
@@ -1225,12 +1260,6 @@
           <p class="about-cta"><a href="#order">Build your case</a></p>
         </div>
       </section>
-
-      <div class="trust-strip" aria-label="Order basics">
-        <span>3 servings / bag</span>
-        <span>Free shipping</span>
-        <span>Continental U.S.</span>
-      </div>
 
       <section class="story" id="story" aria-labelledby="story-title">
         <div class="story-inner">
@@ -1248,7 +1277,7 @@
     <footer>
       <p>&copy; Gambit · Waffle cut plantain chips · gambitchips.com</p>
       <p>
-        <a href="mailto:hello@gambitchips.com">hello@gambitchips.com</a>
+        <a href="mailto:twoplantainbros@gmail.com">twoplantainbros@gmail.com</a>
       </p>
     </footer>
 
@@ -1338,7 +1367,7 @@
           script.onerror = function () {
             delete window[callbackName];
             script.remove();
-            onDone({ error: "Could not reach checkout. Try again or email hello@gambitchips.com." });
+            onDone({ error: "Could not reach checkout. Try again or email twoplantainbros@gmail.com." });
           };
           document.body.appendChild(script);
         }
@@ -1409,7 +1438,7 @@
             '<h2 id="celebrate-title">Order locked, ' +
             escapeHtml(first) +
             "!</h2>" +
-            "<p>Payment went through. We&rsquo;re packing your gambit now.</p>" +
+            "<p>Payment went through. We&rsquo;re packing your gambits now.</p>" +
             (recap
               ? '<p class="order-recap"><strong>' +
                 bags +
