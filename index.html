@@ -6,7 +6,7 @@
     <title>Gambit | Waffle Cut Plantain Chips</title>
     <meta
       name="description"
-      content="Gambit waffle cut plantain chips: Salt, BBQ, and Churro. Crisp lattice cut plantain with free shipping."
+      content="Gambit waffle cut plantain chips: Salt, BBQ, and Churro. Case of 6 with free shipping from $36."
     />
     <meta property="og:type" content="website" />
     <meta property="og:title" content="Gambit | Waffle Cut Plantain Chips" />
@@ -647,6 +647,24 @@
         text-transform: uppercase;
       }
 
+      .case-note {
+        margin: 0.5rem 0 0;
+        font-size: 0.72rem;
+        font-weight: 600;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        opacity: 0.85;
+      }
+
+      .flavor-card.salt .case-note {
+        color: var(--brown-soft);
+      }
+
+      .flavor-card.bbq .case-note,
+      .flavor-card.churro .case-note {
+        color: rgba(244, 237, 227, 0.88);
+      }
+
       .btn-buy {
         display: inline-flex;
         align-items: center;
@@ -1040,9 +1058,9 @@
               this line; one chip is all we ask you to risk.
             </p>
             <div class="hero-badges" aria-label="Product highlights">
+              <span class="badge">Case of 6 · from $36</span>
+              <span class="badge">Free shipping</span>
               <span class="badge">3 servings per bag</span>
-              <span class="badge">$6 / bag · free shipping</span>
-              <span class="badge">6 bag minimum</span>
             </div>
             <div class="hero-actions">
               <a class="btn btn-primary" href="#order">Shop all flavors</a>
@@ -1066,10 +1084,10 @@
 
       <section class="flavors" id="shop" aria-labelledby="shop-title">
         <div class="section-head">
-          <h2 id="shop-title">Shop the line</h2>
+          <h2 id="shop-title">Order by the case</h2>
           <p>
-            <strong>$6 per bag</strong> · 3 servings · <strong>free shipping</strong> ·
-            continental U.S. · <strong>minimum purchase 6 bags</strong> (mix any flavors)
+            <strong>Case of 6</strong> · <strong>free shipping</strong> · from <strong>$36</strong> ·
+            continental U.S. · mix any flavors · add extra bags anytime
           </p>
         </div>
 
@@ -1092,10 +1110,7 @@
                 Golden waffle ridges and coarse sea salt. Clean, crisp, and the reason we cut the
                 lattice in the first place.
               </p>
-              <div class="price-row">
-                <span class="price">$6</span>
-                <span class="size-note">Per bag · free shipping</span>
-              </div>
+              <p class="case-note">Sold by the case · mix flavors below</p>
             </div>
           </article>
 
@@ -1107,10 +1122,7 @@
                 Smoky sweet rub with paprika and garlic that catches in every waffle pocket. Built
                 for backyard snacking.
               </p>
-              <div class="price-row">
-                <span class="price">$6</span>
-                <span class="size-note">Per bag · free shipping</span>
-              </div>
+              <p class="case-note">Sold by the case · mix flavors below</p>
             </div>
           </article>
 
@@ -1121,10 +1133,7 @@
               <p>
                 Cinnamon sugar on ripe plantain. Fairground nostalgia on a savory plantain base.
               </p>
-              <div class="price-row">
-                <span class="price">$6</span>
-                <span class="size-note">Per bag · free shipping</span>
-              </div>
+              <p class="case-note">Sold by the case · mix flavors below</p>
             </div>
           </article>
         </div>
@@ -1132,8 +1141,9 @@
         <div class="order-panel" id="order">
           <h3>Build your case</h3>
           <p class="order-intro">
-            Minimum purchase is 6 bags (any mix). Every order ships free. Pay securely, then we
-            pack and ship.
+            Every order is a <strong>case of 6 or more</strong> with free shipping (from
+            <strong>$36</strong> for 6 bags, any mix). Stack extra bags on the same case if you
+            want more. Pay securely, then we pack and ship.
           </p>
 
           <div class="qty-rows" aria-label="Bag quantities">
@@ -1174,8 +1184,9 @@
 
           <div class="order-summary" id="order-summary" aria-live="polite">
             <p class="total-line"><span id="summary-bags">0</span> bags · $<span id="summary-total">0</span></p>
+            <p id="summary-case-line">Cases start at $36 (6 bags, any mix).</p>
             <p>Free shipping · continental U.S. · confirmation email shortly after checkout</p>
-            <p class="warn" id="summary-warn">Add at least 6 bags to check out.</p>
+            <p class="warn" id="summary-warn">Add 6 bags to your case to check out.</p>
           </div>
 
           <form id="order-form" method="post" action="#" target="_blank">
@@ -1285,6 +1296,8 @@
         var cfg = {
           pricePerBag: 6,
           minBags: 6,
+          caseBags: 6,
+          casePrice: 36,
           checkoutMode: "form",
           googleForm: { formResponseUrl: "", entries: {} },
           appsScriptCheckoutUrl: "",
@@ -1294,6 +1307,7 @@
         var summary = document.getElementById("order-summary");
         var summaryBags = document.getElementById("summary-bags");
         var summaryTotal = document.getElementById("summary-total");
+        var summaryCaseLine = document.getElementById("summary-case-line");
         var submitBtn = document.getElementById("order-submit");
         var setupNote = document.getElementById("order-setup-note");
 
@@ -1316,6 +1330,26 @@
           var dollars = totalBags * cfg.pricePerBag;
           summaryBags.textContent = String(totalBags);
           summaryTotal.textContent = String(dollars);
+          if (summaryCaseLine) {
+            if (totalBags === 0) {
+              summaryCaseLine.textContent =
+                "Cases start at $" + cfg.casePrice + " (" + cfg.caseBags + " bags, any mix).";
+            } else if (totalBags < cfg.minBags) {
+              summaryCaseLine.textContent =
+                "Add " +
+                (cfg.minBags - totalBags) +
+                " more bag(s) to reach a $" +
+                cfg.casePrice +
+                " case.";
+            } else if (totalBags === cfg.minBags) {
+              summaryCaseLine.textContent = "One case · $" + cfg.casePrice + " · free shipping.";
+            } else {
+              summaryCaseLine.textContent =
+                "One case plus " +
+                (totalBags - cfg.minBags) +
+                " extra bag(s) · free shipping.";
+            }
+          }
           var ok = totalBags >= cfg.minBags;
           summary.classList.toggle("ok", ok);
           var useStripe =
@@ -1575,6 +1609,9 @@
           .then(function (json) {
             cfg.pricePerBag = json.pricePerBag || 6;
             cfg.minBags = json.minBags || 6;
+            cfg.caseBags = json.caseBags || cfg.minBags;
+            cfg.casePrice =
+              json.casePrice || cfg.caseBags * cfg.pricePerBag;
             cfg.checkoutMode = json.checkoutMode || "form";
             cfg.googleForm = json.googleForm || cfg.googleForm;
             cfg.appsScriptCheckoutUrl = json.appsScriptCheckoutUrl || "";
