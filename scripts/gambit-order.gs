@@ -42,6 +42,9 @@ function jsonpAction_(p) {
     return fulfillSessionCore_(p.session_id);
   }
   if (p.action === "checkout") {
+    if (p.tier === "solo") {
+      return checkoutSoloCore_(p);
+    }
     return checkoutCore_(p);
   }
   if (p.action === "checkout_solo") {
@@ -216,10 +219,11 @@ function createStripeCheckout_(p, salt, bbq, churro, total, tier) {
   if (churro > 0) lineItems.push({ price: priceId, quantity: churro });
   if (lineItems.length === 0) return null;
 
+  var returnPage = isSolo ? SOLO_PAGE : ORDER_PAGE;
   var payload = {
     mode: "payment",
-    success_url: SITE_URL + ORDER_PAGE + "?session_id={CHECKOUT_SESSION_ID}",
-    cancel_url: isSolo ? SITE_URL + SOLO_PAGE : SITE_URL + ORDER_PAGE,
+    success_url: SITE_URL + returnPage + "?session_id={CHECKOUT_SESSION_ID}",
+    cancel_url: SITE_URL + returnPage,
     customer_email: p.email,
     line_items: lineItems,
     metadata: {
