@@ -26,5 +26,5 @@
     }
   },
   "checkoutMode": "stripe",
-  "appsScriptCheckoutUrl": "https://script.google.com/macros/s/AKfycbxLTAG6_S-52nIlvKzkuVHwqNOkLqaL0M21uxL2D3kQHb5eX8P5tBFzAyqXdpekgd4C/exec"
+  "appsScriptCheckoutUrl": "https://script.google.com/macros/s/AKfycbwyA_aGYfBLS5NW6r8i46z_gqzLjX32-PPI6UzeXkGPcFDTvq91YOYm3ROieLGHvLCk/exec"
 }
