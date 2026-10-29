@@ -82,16 +82,16 @@
                 <button type="button" data-action="inc" aria-label="Increase BBQ" disabled>+</button>
               </div>
             </div>
-            <div class="qty-row">
+            <div class="qty-row qty-row--sold-out">
               <div>
                 <strong>Churro</strong>
                 <span class="flavor-hint">Cinnamon &amp; sugar</span>
-                <span class="stock-pill stock-pill--limited">6 left</span>
+                <span class="stock-pill stock-pill--sold-out">Sold out</span>
               </div>
-              <div class="qty-stepper" data-flavor="churro">
-                <button type="button" data-action="dec" aria-label="Decrease Churro"></button>
-                <input type="number" min="0" max="99" value="0" inputmode="numeric" aria-label="Churro bags" />
-                <button type="button" data-action="inc" aria-label="Increase Churro">+</button>
+              <div class="qty-stepper" data-flavor="churro" data-sold-out="true">
+                <button type="button" data-action="dec" aria-label="Decrease Churro" disabled></button>
+                <input type="number" min="0" max="0" value="0" inputmode="numeric" aria-label="Churro bags" disabled />
+                <button type="button" data-action="inc" aria-label="Increase Churro" disabled>+</button>
               </div>
             </div>
           </div>
