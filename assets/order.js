@@ -323,7 +323,7 @@
           });
         });
 
-        fetch("order-config.json")
+        fetch("order-config.json", { cache: "no-store" })
           .then(function (r) {
             return r.json();
           })

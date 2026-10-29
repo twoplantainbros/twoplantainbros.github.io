@@ -333,7 +333,7 @@
           });
         });
 
-        fetch("order-config.json")
+        fetch("order-config.json", { cache: "no-store" })
           .then(function (r) {
             return r.json();
           })
@@ -361,6 +361,7 @@
               setupNote.textContent =
                 "Checkout wiring: set appsScriptCheckoutUrl + checkoutMode stripe (see scripts/ORDER_SETUP.txt).";
             }
+            applyPrefillFromQuery();
             refresh();
             maybeFulfillFromReturn();
           })
