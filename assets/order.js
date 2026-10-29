@@ -1,3 +1,4 @@
+(function () {
         var cfg = {
           pricePerBag: 6,
           minBags: 6,
