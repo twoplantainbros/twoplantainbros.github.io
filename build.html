@@ -40,7 +40,7 @@
         <nav class="purchase-tier" aria-label="How to buy">
           <a class="purchase-tier-card" href="buy.html">
             <span class="tier-label">Try one chip</span>
-            <span class="tier-price">$11.49 / bag</span>
+            <span class="tier-price">$11.25 / bag</span>
             <span class="tier-note">1–5 bags · solo pricing</span>
           </a>
           <a class="purchase-tier-card is-active" href="build.html" aria-current="page">
@@ -62,7 +62,8 @@
             <div class="qty-row">
               <div>
                 <strong>Salt</strong>
-                <span class="flavor-hint">Sea salt · golden crisp · limited bags left</span>
+                <span class="flavor-hint">Sea salt · golden crisp</span>
+                <span class="stock-pill stock-pill--limited">Limited bags left</span>
               </div>
               <div class="qty-stepper" data-flavor="salt">
                 <button type="button" data-action="dec" aria-label="Decrease Salt"></button>
@@ -70,21 +71,23 @@
                 <button type="button" data-action="inc" aria-label="Increase Salt">+</button>
               </div>
             </div>
-            <div class="qty-row">
+            <div class="qty-row qty-row--sold-out">
               <div>
                 <strong>BBQ</strong>
-                <span class="flavor-hint">Smoky sweet rub · limited bags left</span>
+                <span class="flavor-hint">Smoky sweet rub</span>
+                <span class="stock-pill stock-pill--sold-out">Sold out</span>
               </div>
-              <div class="qty-stepper" data-flavor="bbq">
-                <button type="button" data-action="dec" aria-label="Decrease BBQ"></button>
-                <input type="number" min="0" max="99" value="0" inputmode="numeric" aria-label="BBQ bags" />
-                <button type="button" data-action="inc" aria-label="Increase BBQ">+</button>
+              <div class="qty-stepper" data-flavor="bbq" data-sold-out="true">
+                <button type="button" data-action="dec" aria-label="Decrease BBQ" disabled></button>
+                <input type="number" min="0" max="0" value="0" inputmode="numeric" aria-label="BBQ bags" disabled />
+                <button type="button" data-action="inc" aria-label="Increase BBQ" disabled>+</button>
               </div>
             </div>
             <div class="qty-row">
               <div>
                 <strong>Churro</strong>
                 <span class="flavor-hint">Cinnamon &amp; sugar</span>
+                <span class="stock-pill stock-pill--limited">Limited bags left</span>
               </div>
               <div class="qty-stepper" data-flavor="churro">
                 <button type="button" data-action="dec" aria-label="Decrease Churro"></button>

@@ -18,8 +18,9 @@ B) Stripe: $6 bag price
   Save the printed price_id (price_...). Test and live price IDs are different.
 
   Production (Apps Script Script properties, NOT Google Form):
-    STRIPE_SECRET_KEY = sk_live_...
-    STRIPE_PRICE_ID   = live price_... from command above
+    STRIPE_SECRET_KEY      = sk_live_...
+    STRIPE_PRICE_ID        = live case price_... ($6/bag, 6+ case checkout)
+    STRIPE_PRICE_ID_SOLO   = live solo price_... ($11.25/bag, 1–5 on buy.html)
   Redeploy web app (new version). order-config.json unchanged unless /exec URL changes.
 
 C) Apps Script (on the ORDERS spreadsheet)
@@ -28,7 +29,8 @@ C) Apps Script (on the ORDERS spreadsheet)
 2. Replace code with scripts/gambit-order.gs (copy/paste).
 3. Project settings → Script properties, add:
      STRIPE_SECRET_KEY    = your Stripe secret key (same as STRIPE_SECRET_KEY env)
-     STRIPE_PRICE_ID      = price_1UUxS0FzJ3XItrD7V4zasfGZ  (see stripe-order-config.json)
+     STRIPE_PRICE_ID        = price_... case (see stripe-order-config.json)
+     STRIPE_PRICE_ID_SOLO   = price_... solo ($11.25)
      WEB_APP_URL          = (paste after step 4; must match deploy URL exactly)
 4. Deploy → New deployment → Web app
      Execute as: Me

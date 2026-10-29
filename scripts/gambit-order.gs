@@ -7,7 +7,7 @@
  * Script properties:
  *   STRIPE_SECRET_KEY
  *   STRIPE_PRICE_ID       ($6/bag case, see stripe-order-config.json)
- *   STRIPE_PRICE_ID_SOLO  ($11.49/bag solo, 1–5 bags)
+ *   STRIPE_PRICE_ID_SOLO  ($11.25/bag solo, 1–5 bags)
  *
  * Deploy → Web app → Execute as: Me → Anyone
  */
@@ -15,7 +15,7 @@
 var MIN_BAGS = 6;
 var MAX_SOLO_BAGS = 5;
 var PRICE_CENTS = 600;
-var SOLO_PRICE_CENTS = 1149;
+var SOLO_PRICE_CENTS = 1125;
 var SITE_URL = "https://gambitchips.com";
 var ORDER_PAGE = "/build.html";
 var SOLO_PAGE = "/buy.html";

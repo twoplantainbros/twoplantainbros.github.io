@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Create Stripe products/prices for Gambit case ($6/bag) and solo ($11.49/bag)."""
+"""Create Stripe products/prices for Gambit case ($6/bag) and solo ($11.25/bag)."""
 import json
 import os
 import sys
@@ -7,7 +7,7 @@ import urllib.parse
 import urllib.request
 
 CASE_CENTS = 600
-SOLO_CENTS = 1149
+SOLO_CENTS = 1125
 
 
 def stripe_post(path: str, data: dict) -> dict:

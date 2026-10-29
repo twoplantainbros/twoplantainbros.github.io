@@ -17,12 +17,19 @@
         var submitBtn = document.getElementById("order-submit");
         var setupNote = document.getElementById("order-setup-note");
 
+        function flavorSoldOut(flavor) {
+          var stepper = document.querySelector('.qty-stepper[data-flavor="' + flavor + '"]');
+          return stepper && stepper.getAttribute("data-sold-out") === "true";
+        }
+
         function qty(flavor) {
+          if (flavorSoldOut(flavor)) return 0;
           var row = document.querySelector('.qty-stepper[data-flavor="' + flavor + '"] input');
           return row ? Math.max(0, parseInt(row.value, 10) || 0) : 0;
         }
 
         function setQty(flavor, n) {
+          if (flavorSoldOut(flavor)) n = 0;
           var input = document.querySelector('.qty-stepper[data-flavor="' + flavor + '"] input');
           if (input) input.value = String(Math.min(99, Math.max(0, n)));
           refresh();

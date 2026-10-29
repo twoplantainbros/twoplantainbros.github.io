@@ -459,6 +459,11 @@
         box-shadow: 0 32px 56px rgba(26, 18, 12, 0.22);
       }
 
+      .flavor-card.is-sold-out:hover {
+        transform: none;
+        box-shadow: var(--shadow);
+      }
+
       .flavor-card:focus-within {
         outline: 3px solid var(--brown);
         outline-offset: 4px;
@@ -503,6 +508,27 @@
           var(--bbq-bag-bg-deep) 100%
         );
         box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
+      }
+
+      .flavor-card.is-sold-out .flavor-details {
+        position: relative;
+        background: linear-gradient(165deg, #4a4542 0%, #2f2c2a 100%) !important;
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+      }
+
+      .flavor-card.is-sold-out .flavor-name {
+        color: rgba(244, 237, 227, 0.5) !important;
+        text-shadow: none;
+      }
+
+      .flavor-card.is-sold-out .meta-line,
+      .flavor-card.is-sold-out .flavor-details p:not(.sold-out-banner) {
+        color: rgba(244, 237, 227, 0.55) !important;
+      }
+
+      .flavor-card.is-sold-out .sold-out-banner {
+        color: rgba(244, 237, 227, 0.75);
+        margin-bottom: 0.4rem;
       }
 
       .flavor-card.churro .flavor-details {
@@ -550,7 +576,7 @@
         flex: 1;
       }
 
-      .flavor-card.salt .flavor-details p,
+      .flavor-card.salt .flavor-details p:not(.sold-out-banner):not(.limited-banner),
       .flavor-card.salt .meta-line,
       .flavor-card.salt .size-note {
         color: var(--brown-soft);
@@ -562,7 +588,7 @@
       }
 
       .flavor-card.bbq .meta-line,
-      .flavor-card.bbq .flavor-details p,
+      .flavor-card.bbq .flavor-details p:not(.sold-out-banner):not(.limited-banner),
       .flavor-card.bbq .price,
       .flavor-card.bbq .size-note {
         color: var(--cream);
@@ -574,7 +600,7 @@
       }
 
       .flavor-card.churro .meta-line,
-      .flavor-card.churro .flavor-details p,
+      .flavor-card.churro .flavor-details p:not(.sold-out-banner):not(.limited-banner),
       .flavor-card.churro .price,
       .flavor-card.churro .size-note {
         color: var(--cream);
@@ -980,20 +1006,48 @@
         filter: brightness(1.05);
       }
 
-      .limited-banner {
-        margin: 0 0 0.45rem;
-        font-size: 0.72rem;
-        font-weight: 700;
+      .limited-banner,
+      .stock-pill--limited {
+        display: inline-block;
+        margin: 0 0 0.55rem;
+        padding: 0.4rem 0.75rem;
+        font-size: 0.8rem;
+        font-weight: 800;
+        letter-spacing: 0.07em;
+        text-transform: uppercase;
+        line-height: 1.15;
+        border-radius: 999px;
+        color: #3d2314;
+        background: #f0c929;
+        box-shadow: 0 0 0 1px rgba(61, 35, 20, 0.22);
+      }
+
+      .sold-out-banner,
+      .stock-pill--sold-out {
+        display: block;
+        margin: 0.35rem 0 0;
+        padding: 0;
+        background: none;
+        box-shadow: none;
+        border-radius: 0;
+        font-size: 0.78rem;
+        font-weight: 800;
         letter-spacing: 0.1em;
         text-transform: uppercase;
+        color: var(--brown-soft);
       }
 
-      .flavor-card.salt .limited-banner {
-        color: #9a6b0a;
+      .qty-row .stock-pill--limited {
+        margin: 0.35rem 0 0;
+        font-size: 0.75rem;
       }
 
-      .flavor-card.bbq .limited-banner {
-        color: #ffb380;
+      .qty-row--sold-out {
+        background: rgba(61, 35, 20, 0.06);
+      }
+
+      .qty-row--sold-out .qty-stepper {
+        opacity: 0.45;
       }
 
       .shop-cta-panel {
