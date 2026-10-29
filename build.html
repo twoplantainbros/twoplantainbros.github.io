@@ -59,16 +59,16 @@
           </p>
 
           <div class="qty-rows" aria-label="Bag quantities">
-            <div class="qty-row">
+            <div class="qty-row qty-row--sold-out">
               <div>
                 <strong>Salt</strong>
                 <span class="flavor-hint">Sea salt · golden crisp</span>
-                <span class="stock-pill stock-pill--limited">Limited bags left</span>
+                <span class="stock-pill stock-pill--sold-out">Sold out</span>
               </div>
-              <div class="qty-stepper" data-flavor="salt">
-                <button type="button" data-action="dec" aria-label="Decrease Salt"></button>
-                <input type="number" min="0" max="99" value="0" inputmode="numeric" aria-label="Salt bags" />
-                <button type="button" data-action="inc" aria-label="Increase Salt">+</button>
+              <div class="qty-stepper" data-flavor="salt" data-sold-out="true">
+                <button type="button" data-action="dec" aria-label="Decrease Salt" disabled></button>
+                <input type="number" min="0" max="0" value="0" inputmode="numeric" aria-label="Salt bags" disabled />
+                <button type="button" data-action="inc" aria-label="Increase Salt" disabled>+</button>
               </div>
             </div>
             <div class="qty-row qty-row--sold-out">
@@ -87,7 +87,7 @@
               <div>
                 <strong>Churro</strong>
                 <span class="flavor-hint">Cinnamon &amp; sugar</span>
-                <span class="stock-pill stock-pill--limited">Limited bags left</span>
+                <span class="stock-pill stock-pill--limited">6 left</span>
               </div>
               <div class="qty-stepper" data-flavor="churro">
                 <button type="button" data-action="dec" aria-label="Decrease Churro"></button>
