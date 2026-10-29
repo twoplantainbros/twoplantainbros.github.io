@@ -1,10 +1,13 @@
 #!/usr/bin/env python3
-"""Create one Stripe Product + $6 Price for Gambit bags (used by Checkout / Apps Script)."""
+"""Create Stripe products/prices for Gambit case ($6/bag) and solo ($11.49/bag)."""
 import json
 import os
 import sys
 import urllib.parse
 import urllib.request
+
+CASE_CENTS = 600
+SOLO_CENTS = 1149
 
 
 def stripe_post(path: str, data: dict) -> dict:
@@ -23,25 +26,52 @@ def stripe_post(path: str, data: dict) -> dict:
 
 
 def main() -> None:
-    prod = stripe_post(
+    case_prod = stripe_post(
         "products",
         {
-            "name": "Gambit Waffle Cut Plantain Chips, single bag",
-            "description": "3 servings per bag. Free shipping.",
-            "metadata[sku]": "gambit-bag",
+            "name": "Gambit Waffle Cut Plantain Chips, case bag",
+            "description": "Case pricing. 3 servings per bag. Free shipping on cases of 6+.",
+            "metadata[sku]": "gambit-case-bag",
         },
     )
-    price = stripe_post(
+    case_price = stripe_post(
         "prices",
         {
-            "product": prod["id"],
-            "unit_amount": "600",
+            "product": case_prod["id"],
+            "unit_amount": str(CASE_CENTS),
             "currency": "usd",
         },
     )
-    out = {"product_id": prod["id"], "price_id": price["id"], "unit_amount_cents": 600}
+
+    solo_prod = stripe_post(
+        "products",
+        {
+            "name": "Gambit Waffle Cut Plantain Chips, solo bag",
+            "description": "Try one chip. Single bag up to 5 before case pricing.",
+            "metadata[sku]": "gambit-solo-bag",
+        },
+    )
+    solo_price = stripe_post(
+        "prices",
+        {
+            "product": solo_prod["id"],
+            "unit_amount": str(SOLO_CENTS),
+            "currency": "usd",
+        },
+    )
+
+    out = {
+        "case_product_id": case_prod["id"],
+        "case_price_id": case_price["id"],
+        "case_unit_amount_cents": CASE_CENTS,
+        "solo_product_id": solo_prod["id"],
+        "solo_price_id": solo_price["id"],
+        "solo_unit_amount_cents": SOLO_CENTS,
+    }
     print(json.dumps(out, indent=2))
-    print("\nSet STRIPE_PRICE_ID in Apps Script to:", price["id"], file=sys.stderr)
+    print("\nApps Script Script properties:", file=sys.stderr)
+    print("  STRIPE_PRICE_ID      =", case_price["id"], file=sys.stderr)
+    print("  STRIPE_PRICE_ID_SOLO =", solo_price["id"], file=sys.stderr)
 
 
 if __name__ == "__main__":

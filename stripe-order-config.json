@@ -1,7 +1,12 @@
 {
   "mode": "test",
-  "unit_amount_cents": 600,
+  "case_unit_amount_cents": 600,
+  "solo_unit_amount_cents": 1149,
   "product_id": "prod_VVzQvHeTzGvYd7",
   "price_id": "price_1UUxS0FzJ3XItrD7V4zasfGZ",
-  "apps_script_price_property": "STRIPE_PRICE_ID"
+  "solo_price_id": "",
+  "apps_script_properties": {
+    "STRIPE_PRICE_ID": "case price_... from create-stripe-bag-product.py",
+    "STRIPE_PRICE_ID_SOLO": "solo price_... from create-stripe-bag-product.py"
+  }
 }

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Try one chip | Gambit</title>
+    <meta
+      name="description"
+      content="Order 1–5 Gambit bags at solo pricing ($11.49/bag). Cases of 6+ on Build your box."
+    />
+    <meta name="robots" content="noindex" />
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Permanent+Marker&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="assets/site.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="brand-lockup" href="index.html">
+          <span>Waffle cut plantain chips</span>
+          <span class="gambit">Gambit</span>
+        </a>
+        <nav class="header-nav" aria-label="Primary">
+          <a href="index.html#about">About</a>
+          <a class="header-cta" href="build.html">Shop</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="build-page" id="top">
+      <div class="build-page-inner">
+        <a class="build-back" href="index.html#shop">&larr; Back to flavors</a>
+
+        <nav class="purchase-tier" aria-label="How to buy">
+          <a class="purchase-tier-card is-active" href="buy.html" aria-current="page">
+            <span class="tier-label">Try one chip</span>
+            <span class="tier-price">$11.49 / bag</span>
+            <span class="tier-note">1–5 bags · solo pricing</span>
+          </a>
+          <a class="purchase-tier-card" href="build.html">
+            <span class="tier-label">Build your box</span>
+            <span class="tier-price">From $36</span>
+            <span class="tier-note">Case of 6+ · free shipping</span>
+          </a>
+        </nav>
+
+        <div class="order-panel" id="order">
+          <h1 class="build-title">Try one chip</h1>
+          <p class="order-intro">
+            Not ready for a full case? Grab <strong>1–5 bags</strong> at
+            <strong>$11.49 per bag</strong>. Hit <strong>6 bags</strong> and we&rsquo;ll move you to
+            <a href="build.html">Build your box</a> for case pricing and free shipping.
+          </p>
+
+          <div class="qty-rows" aria-label="Bag quantities">
+            <div class="qty-row">
+              <div>
+                <strong>Salt</strong>
+                <span class="flavor-hint">Sea salt · limited bags left</span>
+              </div>
+              <div class="qty-stepper" data-flavor="salt">
+                <button type="button" data-action="dec" aria-label="Decrease Salt"></button>
+                <input type="number" min="0" max="99" value="0" inputmode="numeric" aria-label="Salt bags" />
+                <button type="button" data-action="inc" aria-label="Increase Salt">+</button>
+              </div>
+            </div>
+            <div class="qty-row">
+              <div>
+                <strong>BBQ</strong>
+                <span class="flavor-hint">Smoky sweet · limited bags left</span>
+              </div>
+              <div class="qty-stepper" data-flavor="bbq">
+                <button type="button" data-action="dec" aria-label="Decrease BBQ"></button>
+                <input type="number" min="0" max="99" value="0" inputmode="numeric" aria-label="BBQ bags" />
+                <button type="button" data-action="inc" aria-label="Increase BBQ">+</button>
+              </div>
+            </div>
+            <div class="qty-row">
+              <div>
+                <strong>Churro</strong>
+                <span class="flavor-hint">Cinnamon &amp; sugar</span>
+              </div>
+              <div class="qty-stepper" data-flavor="churro">
+                <button type="button" data-action="dec" aria-label="Decrease Churro"></button>
+                <input type="number" min="0" max="99" value="0" inputmode="numeric" aria-label="Churro bags" />
+                <button type="button" data-action="inc" aria-label="Increase Churro">+</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="order-summary" id="order-summary" aria-live="polite">
+            <p class="total-line"><span id="summary-bags">0</span> bags · $<span id="summary-total">0</span></p>
+            <p id="summary-case-line">Solo bags · $11.49 each · 1–5 bags before case pricing.</p>
+            <p>Continental U.S. · confirmation email shortly after checkout</p>
+            <p class="warn" id="summary-warn">Pick 1–5 bags to check out solo.</p>
+          </div>
+
+          <form id="order-form" method="post" action="#" target="_blank">
+            <div class="ship-fields">
+              <label class="full">
+                Full name
+                <input type="text" name="name" id="field-name" autocomplete="name" required />
+              </label>
+              <label>
+                Email
+                <input type="email" name="email" id="field-email" autocomplete="email" required />
+              </label>
+              <label>
+                Phone
+                <input type="tel" name="phone" id="field-phone" autocomplete="tel" />
+              </label>
+              <label class="full">
+                Street address
+                <input type="text" name="street" id="field-street" autocomplete="address-line1" required />
+              </label>
+              <label class="full">
+                Apt / unit (optional)
+                <input type="text" name="street2" id="field-street2" autocomplete="address-line2" />
+              </label>
+              <label>
+                City
+                <input type="text" name="city" id="field-city" autocomplete="address-level2" required />
+              </label>
+              <label>
+                State
+                <input type="text" name="state" id="field-state" autocomplete="address-level1" required />
+              </label>
+              <label>
+                ZIP
+                <input type="text" name="zip" id="field-zip" autocomplete="postal-code" required inputmode="numeric" />
+              </label>
+              <label class="full">
+                Notes (optional)
+                <textarea name="notes" id="field-notes" rows="2"></textarea>
+              </label>
+            </div>
+            <button type="submit" class="order-submit" id="order-submit" disabled>
+              Continue to secure payment
+            </button>
+            <p class="order-setup-note" id="order-setup-note" hidden></p>
+          </form>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <p>&copy; Gambit · Waffle cut plantain chips · gambitchips.com</p>
+      <p>
+        <a href="mailto:twoplantainbros@gmail.com">twoplantainbros@gmail.com</a>
+      </p>
+    </footer>
+
+    <script src="assets/solo-order.js"></script>
+  </body>
+</html>

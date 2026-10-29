@@ -6,14 +6,19 @@
  *
  * Script properties:
  *   STRIPE_SECRET_KEY
- *   STRIPE_PRICE_ID   ($6/bag, see stripe-order-config.json)
+ *   STRIPE_PRICE_ID       ($6/bag case, see stripe-order-config.json)
+ *   STRIPE_PRICE_ID_SOLO  ($11.49/bag solo, 1–5 bags)
  *
  * Deploy → Web app → Execute as: Me → Anyone
  */
 
 var MIN_BAGS = 6;
+var MAX_SOLO_BAGS = 5;
 var PRICE_CENTS = 600;
+var SOLO_PRICE_CENTS = 1149;
 var SITE_URL = "https://gambitchips.com";
+var ORDER_PAGE = "/build.html";
+var SOLO_PAGE = "/buy.html";
 
 function doGet(e) {
   var p = e.parameter || {};
@@ -39,6 +44,9 @@ function jsonpAction_(p) {
   if (p.action === "checkout") {
     return checkoutCore_(p);
   }
+  if (p.action === "checkout_solo") {
+    return checkoutSoloCore_(p);
+  }
   return { error: "Unknown action" };
 }
 
@@ -53,11 +61,32 @@ function checkoutCore_(p) {
   if (!p.email || !p.name || !p.street || !p.city || !p.state || !p.zip) {
     return { error: "Missing shipping info." };
   }
-  var sessionUrl = createStripeCheckout_(p, salt, bbq, churro, total);
+  var sessionUrl = createStripeCheckout_(p, salt, bbq, churro, total, "case");
   if (sessionUrl) {
     return { url: sessionUrl };
   }
   return { error: "Checkout not configured (Stripe keys in Apps Script)." };
+}
+
+function checkoutSoloCore_(p) {
+  var salt = num_(p.salt);
+  var bbq = num_(p.bbq);
+  var churro = num_(p.churro);
+  var total = salt + bbq + churro;
+  if (total < 1) {
+    return { error: "Pick at least 1 bag." };
+  }
+  if (total > MAX_SOLO_BAGS) {
+    return { error: "For 6+ bags use case checkout on Build your box." };
+  }
+  if (!p.email || !p.name || !p.street || !p.city || !p.state || !p.zip) {
+    return { error: "Missing shipping info." };
+  }
+  var sessionUrl = createStripeCheckout_(p, salt, bbq, churro, total, "solo");
+  if (sessionUrl) {
+    return { url: sessionUrl };
+  }
+  return { error: "Solo checkout not configured (STRIPE_PRICE_ID_SOLO)." };
 }
 
 function fulfillSessionCore_(sessionId) {
@@ -173,9 +202,12 @@ function getOrderSheet_() {
   return ss.getSheets()[0];
 }
 
-function createStripeCheckout_(p, salt, bbq, churro, total) {
+function createStripeCheckout_(p, salt, bbq, churro, total, tier) {
   var key = PropertiesService.getScriptProperties().getProperty("STRIPE_SECRET_KEY");
-  var priceId = PropertiesService.getScriptProperties().getProperty("STRIPE_PRICE_ID");
+  var isSolo = tier === "solo";
+  var priceId = PropertiesService.getScriptProperties().getProperty(
+    isSolo ? "STRIPE_PRICE_ID_SOLO" : "STRIPE_PRICE_ID"
+  );
   if (!key || !priceId) return null;
 
   var lineItems = [];
@@ -186,8 +218,8 @@ function createStripeCheckout_(p, salt, bbq, churro, total) {
 
   var payload = {
     mode: "payment",
-    success_url: SITE_URL + "/?session_id={CHECKOUT_SESSION_ID}",
-    cancel_url: SITE_URL + "/#shop",
+    success_url: SITE_URL + ORDER_PAGE + "?session_id={CHECKOUT_SESSION_ID}",
+    cancel_url: isSolo ? SITE_URL + SOLO_PAGE : SITE_URL + ORDER_PAGE,
     customer_email: p.email,
     line_items: lineItems,
     metadata: {
@@ -203,6 +235,7 @@ function createStripeCheckout_(p, salt, bbq, churro, total) {
       state: trimMeta_(p.state),
       zip: trimMeta_(p.zip),
       notes: trimMeta_(p.notes),
+      tier: isSolo ? "solo" : "case",
     },
   };
 

@@ -28,6 +28,14 @@
           refresh();
         }
 
+        function applyPrefillFromQuery() {
+          var qs = new URLSearchParams(window.location.search);
+          ["salt", "bbq", "churro"].forEach(function (flavor) {
+            if (!qs.has(flavor)) return;
+            setQty(flavor, parseInt(qs.get(flavor), 10) || 0);
+          });
+        }
+
         function refresh() {
           var salt = qty("salt");
           var bbq = qty("bbq");
@@ -336,6 +344,7 @@
               setupNote.textContent =
                 "Checkout wiring: set appsScriptCheckoutUrl + checkoutMode stripe (see scripts/ORDER_SETUP.txt).";
             }
+            applyPrefillFromQuery();
             refresh();
             maybeFulfillFromReturn();
           })
