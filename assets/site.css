@@ -576,12 +576,15 @@
         flex: 1;
       }
 
-      .flavor-details p.limited-banner,
       .flavor-details p.sold-out-banner {
         flex: 0 0 auto;
         align-self: flex-start;
         opacity: 1;
-        font-size: 0.8rem;
+      }
+
+      .flavor-details .limited-banner {
+        flex: none;
+        align-self: flex-start;
       }
 
       .flavor-card.salt .flavor-details p:not(.sold-out-banner):not(.limited-banner),
@@ -1016,10 +1019,14 @@
 
       .limited-banner,
       .stock-pill--limited {
-        display: inline-block;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        box-sizing: border-box;
+        height: 1.375rem;
         margin: 0 0 0.55rem;
-        padding: 0.32rem 0.7rem;
-        font-size: 0.75rem;
+        padding: 0 0.65rem;
+        font-size: 0.6875rem;
         font-weight: 800;
         letter-spacing: 0.07em;
         text-transform: uppercase;
@@ -1047,7 +1054,6 @@
 
       .qty-row .stock-pill--limited {
         margin: 0.35rem 0 0;
-        font-size: 0.75rem;
       }
 
       .qty-row--sold-out {
