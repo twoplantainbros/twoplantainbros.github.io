@@ -19,6 +19,14 @@ var SOLO_PRICE_CENTS = 1125;
 var SITE_URL = "https://gambitchips.com";
 var ORDER_PAGE = "/build.html";
 var SOLO_PAGE = "/buy.html";
+var DEPLOY_BUILD = "2026-03-29-solo";
+
+function param_(p, key) {
+  var v = p[key];
+  if (v == null || v === "") return "";
+  if (Array.isArray(v)) return String(v[0]);
+  return String(v);
+}
 
 function doGet(e) {
   var p = e.parameter || {};
@@ -38,17 +46,21 @@ function doGet(e) {
 }
 
 function jsonpAction_(p) {
-  if (p.action === "fulfill") {
+  var action = param_(p, "action");
+  if (action === "ping") {
+    return { ok: true, build: DEPLOY_BUILD, solo: true };
+  }
+  if (action === "fulfill") {
     return fulfillSessionCore_(p.session_id);
   }
-  if (p.action === "checkout") {
-    if (p.tier === "solo") {
+  if (action === "solo" || action === "checkout_solo") {
+    return checkoutSoloCore_(p);
+  }
+  if (action === "checkout") {
+    if (param_(p, "tier") === "solo") {
       return checkoutSoloCore_(p);
     }
     return checkoutCore_(p);
-  }
-  if (p.action === "checkout_solo") {
-    return checkoutSoloCore_(p);
   }
   return { error: "Unknown action" };
 }

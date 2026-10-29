@@ -273,8 +273,7 @@
             submitBtn.textContent = "Opening Stripe…";
             jsonpToAppsScript(
               {
-                action: "checkout",
-                tier: "solo",
+                action: "solo",
                 salt: salt,
                 bbq: bbq,
                 churro: churro,

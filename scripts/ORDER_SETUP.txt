@@ -37,6 +37,9 @@ C) Apps Script (on the ORDERS spreadsheet)
      Who has access: Anyone
    Copy the /exec URL → set WEB_APP_URL to that exact URL (same value).
 5. Update deployment if you change code (Manage deployments → Edit → New version).
+   Verify live code: open .../exec?format=jsonp&callback=x&action=ping
+   You should see build "2026-03-29-solo". If not, the Web app URL still runs an old version
+   (edit that deployment’s version, or create a new Web app deployment and update appsScriptCheckoutUrl).
 
 D) Website: order-config.json
 ------------------------------
