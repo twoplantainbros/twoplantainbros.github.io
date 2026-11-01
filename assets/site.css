@@ -1180,3 +1180,126 @@
         color: var(--brown);
         font-weight: 400;
       }
+
+      .build-page-inner--narrow {
+        max-width: 36rem;
+      }
+
+      .waitlist-panel {
+        margin: 1.25rem 0 0;
+        padding: 1.35rem 1.25rem;
+        border-radius: var(--radius);
+        background: #fff;
+        border: 1px solid rgba(61, 35, 20, 0.12);
+        box-shadow: var(--shadow);
+      }
+
+      .waitlist-panel--hero {
+        margin-top: 0.5rem;
+      }
+
+      .waitlist-modal {
+        position: fixed;
+        inset: 0;
+        z-index: 200;
+        display: grid;
+        place-items: center;
+        padding: 1.25rem;
+        background: rgba(26, 18, 12, 0.55);
+        backdrop-filter: blur(6px);
+        animation: celebrate-in 0.35s ease;
+      }
+
+      .waitlist-modal-card {
+        max-width: 420px;
+        width: 100%;
+        padding: clamp(1.5rem, 5vw, 2rem);
+        border-radius: 20px;
+        background: linear-gradient(165deg, #faf6ef, var(--cream));
+        border: 1px solid rgba(61, 35, 20, 0.12);
+        box-shadow: 0 32px 64px rgba(26, 18, 12, 0.35);
+        text-align: center;
+      }
+
+      .waitlist-modal-card .waitlist-eyebrow {
+        margin-bottom: 0.5rem;
+      }
+
+      .waitlist-modal-card .waitlist-title {
+        margin-bottom: 0.75rem;
+      }
+
+      .waitlist-modal-card .waitlist-copy {
+        margin-bottom: 1.25rem;
+      }
+
+      .waitlist-actions--center {
+        justify-content: center;
+      }
+
+      .waitlist-modal-close {
+        display: block;
+        margin: 1rem auto 0;
+        padding: 0;
+        border: none;
+        background: none;
+        font: inherit;
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: var(--brown-soft);
+        cursor: pointer;
+        text-decoration: underline;
+        text-underline-offset: 3px;
+      }
+
+      .waitlist-modal-close:hover {
+        color: var(--brown);
+      }
+
+      .waitlist-eyebrow {
+        margin: 0 0 0.35rem;
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--brown-soft);
+      }
+
+      .waitlist-title {
+        margin: 0 0 0.65rem;
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 1.65rem;
+        letter-spacing: 0.06em;
+        color: var(--brown);
+        font-weight: 400;
+        line-height: 1.1;
+      }
+
+      .waitlist-panel--hero .waitlist-title {
+        font-size: clamp(1.85rem, 5vw, 2.35rem);
+      }
+
+      .waitlist-copy {
+        margin: 0 0 1.1rem;
+        font-size: 0.95rem;
+        line-height: 1.55;
+        color: var(--brown-soft);
+      }
+
+      .waitlist-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.65rem;
+      }
+
+      .waitlist-fine {
+        margin: 0.85rem 0 0;
+        font-size: 0.78rem;
+        color: var(--brown-soft);
+        opacity: 0.85;
+      }
+
+      body.all-flavors-sold-out .order-checkout-block {
+        display: none;
+      }
+

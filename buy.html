@@ -32,7 +32,7 @@
       </div>
     </header>
 
-    <main class="build-page" id="top">
+    <main class="build-page" id="top" data-waitlist-checkout>
       <div class="build-page-inner">
         <a class="build-back" href="index.html#shop">&larr; Back to flavors</a>
 
@@ -96,6 +96,7 @@
             </div>
           </div>
 
+          <div class="order-checkout-block" data-hide-when-all-sold-out>
           <div class="order-summary" id="order-summary" aria-live="polite">
             <p class="total-line"><span id="summary-bags">0</span> bags · $<span id="summary-total">0</span></p>
             <p id="summary-case-line">Solo bags · $11.25 each · 1–5 bags before case pricing.</p>
@@ -147,6 +148,7 @@
             </button>
             <p class="order-setup-note" id="order-setup-note" hidden></p>
           </form>
+          </div>
         </div>
       </div>
     </main>
@@ -159,5 +161,6 @@
     </footer>
 
     <script src="assets/solo-order.js?v=7b2c433"></script>
+    <script src="assets/waitlist.js"></script>
   </body>
 </html>
