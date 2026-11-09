@@ -2,14 +2,28 @@
   var root = document.querySelector(".about-carousel");
   if (!root) return;
 
-  var slides = root.querySelectorAll(".about-carousel-slide");
+  var tablist = root.querySelector(".about-carousel-tabs");
   var tabs = root.querySelectorAll(".about-carousel-tab");
-  var triggers = root.querySelectorAll(".about-carousel-trigger");
+  var slides = root.querySelectorAll(".about-carousel-slide");
   var active = 0;
   var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var stacked = reduceMotion || root.classList.contains("about-carousel--stacked");
 
-  function setSlide(index) {
-    if (index < 0 || index >= slides.length || index === active) return;
+  if (stacked) {
+    root.classList.add("about-carousel--stacked");
+    slides.forEach(function (slide) {
+      slide.classList.add("is-active");
+      slide.hidden = false;
+    });
+    tabs.forEach(function (tab) {
+      tab.setAttribute("aria-selected", "false");
+      tab.tabIndex = -1;
+    });
+    return;
+  }
+
+  function setSlide(index, focusTab) {
+    if (index < 0 || index >= slides.length) return;
     active = index;
     slides.forEach(function (slide, i) {
       var on = i === index;
@@ -20,33 +34,40 @@
       var on = i === index;
       tab.classList.toggle("is-active", on);
       tab.setAttribute("aria-selected", on ? "true" : "false");
+      tab.tabIndex = on ? 0 : -1;
     });
+    if (focusTab && tabs[index]) tabs[index].focus();
   }
 
-  tabs.forEach(function (tab) {
+  tabs.forEach(function (tab, i) {
+    tab.id = tab.id || "about-tab-btn-" + i;
+    tab.setAttribute("role", "tab");
+    tab.tabIndex = i === 0 ? 0 : -1;
     tab.addEventListener("click", function () {
-      var i = parseInt(tab.getAttribute("data-slide"), 10);
-      setSlide(i);
-      var target = triggers[i];
-      if (target) target.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "center" });
+      setSlide(i, false);
+    });
+    tab.addEventListener("keydown", function (ev) {
+      var next = active;
+      if (ev.key === "ArrowRight" || ev.key === "ArrowDown") {
+        ev.preventDefault();
+        next = (active + 1) % tabs.length;
+      } else if (ev.key === "ArrowLeft" || ev.key === "ArrowUp") {
+        ev.preventDefault();
+        next = (active - 1 + tabs.length) % tabs.length;
+      } else if (ev.key === "Home") {
+        ev.preventDefault();
+        next = 0;
+      } else if (ev.key === "End") {
+        ev.preventDefault();
+        next = tabs.length - 1;
+      } else {
+        return;
+      }
+      setSlide(next, true);
     });
   });
 
-  if (!reduceMotion && triggers.length) {
-    var observer = new IntersectionObserver(
-      function (entries) {
-        entries.forEach(function (entry) {
-          if (!entry.isIntersecting) return;
-          var i = parseInt(entry.target.getAttribute("data-slide"), 10);
-          if (!isNaN(i)) setSlide(i);
-        });
-      },
-      { root: null, rootMargin: "-35% 0px -35% 0px", threshold: 0 }
-    );
-    triggers.forEach(function (el) {
-      observer.observe(el);
-    });
-  } else {
-    setSlide(0);
-  }
+  if (tablist) tablist.setAttribute("role", "tablist");
+
+  setSlide(0, false);
 })();

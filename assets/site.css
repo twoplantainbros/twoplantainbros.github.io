@@ -32,6 +32,38 @@
         scroll-behavior: smooth;
       }
 
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+      }
+
+      .skip-link {
+        position: absolute;
+        left: -9999px;
+        top: 0;
+        z-index: 300;
+        padding: 0.65rem 1rem;
+        background: var(--brown);
+        color: var(--cream);
+        font-weight: 600;
+        text-decoration: none;
+        border-radius: 0 0 8px 0;
+      }
+
+      .skip-link:focus {
+        left: 0;
+      }
+
+      :focus {
+        outline: none;
+      }
+
+      :focus-visible {
+        outline: 2px solid var(--salt-yellow);
+        outline-offset: 3px;
+      }
+
       body {
         margin: 0;
         font-family: "DM Sans", system-ui, sans-serif;
@@ -329,15 +361,8 @@
         border-block: 1px solid rgba(61, 35, 20, 0.08);
       }
 
-      .about-carousel-pin {
-        position: sticky;
-        top: 0;
-        z-index: 5;
-        min-height: 100vh;
-        min-height: 100dvh;
-        display: flex;
-        align-items: center;
-        padding: clamp(1.25rem, 4vw, 2.5rem);
+      .about-carousel-inner {
+        padding: clamp(2.5rem, 6vw, 4rem) clamp(1.25rem, 4vw, 2.5rem);
         background: #fff;
       }
 
@@ -350,8 +375,8 @@
         display: flex;
         flex-wrap: wrap;
         gap: 0.5rem;
-        justify-content: center;
-        margin: 0 0 1.25rem;
+        justify-content: flex-start;
+        margin: 0 0 1.75rem;
       }
 
       .about-carousel-tab {
@@ -378,15 +403,20 @@
         color: var(--cream);
       }
 
+      .about-carousel-tab:focus-visible {
+        outline: 2px solid var(--salt-yellow);
+        outline-offset: 2px;
+      }
+
       .about-carousel-stage {
         position: relative;
-        min-height: clamp(22rem, 58vh, 32rem);
+        min-height: 0;
       }
 
       .about-carousel-slide {
         display: grid;
         gap: 1.5rem;
-        align-items: center;
+        align-items: start;
         opacity: 0;
         visibility: hidden;
         transition:
@@ -412,8 +442,17 @@
 
       @media (min-width: 800px) {
         .about-carousel-slide {
-          grid-template-columns: 1fr 1fr;
-          gap: 2rem;
+          grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+          gap: clamp(2rem, 4vw, 3.25rem);
+        }
+
+        .about-carousel-slide--intro {
+          grid-template-columns: 1fr;
+          gap: 1.75rem;
+        }
+
+        .about-carousel-slide--intro .about-carousel-copy {
+          max-width: 40rem;
         }
       }
 
@@ -459,49 +498,57 @@
 
       .about-carousel-visual--trio {
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 0.35rem;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: clamp(0.5rem, 1.5vw, 1rem);
         box-shadow: none;
         border-radius: 0;
         overflow: visible;
+        width: 100%;
       }
 
       .about-carousel-visual--trio img {
-        border-radius: 10px;
-        box-shadow: var(--shadow);
-        aspect-ratio: 1;
+        display: block;
+        width: 100%;
+        aspect-ratio: 1448 / 1086;
         object-fit: cover;
+        object-position: center;
+        border-radius: 12px;
+        box-shadow: 0 10px 24px rgba(26, 18, 12, 0.1);
+        overflow: hidden;
       }
 
-      .about-carousel-triggers {
+      @media (min-width: 800px) {
+        .about-carousel-slide--intro .about-carousel-visual--trio {
+          gap: clamp(0.75rem, 2vw, 1.25rem);
+        }
+      }
+
+      @media (max-width: 479px) {
+        .about-carousel-visual--trio {
+          gap: 0.4rem;
+        }
+      }
+
+      .about-carousel--stacked .about-carousel-tabs {
+        display: none;
+      }
+
+      .about-carousel--stacked .about-carousel-stage {
+        min-height: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 2.5rem;
+      }
+
+      .about-carousel--stacked .about-carousel-slide {
         position: relative;
-        z-index: 1;
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
       }
 
-      .about-carousel-trigger {
-        height: 100vh;
-        height: 100dvh;
-        pointer-events: none;
-      }
-
-      @media (prefers-reduced-motion: reduce) {
-        .about-carousel-pin {
-          position: relative;
-          min-height: auto;
-        }
-
-        .about-carousel-triggers {
-          display: none;
-        }
-
-        .about-carousel-slide:not(.is-active) {
-          position: relative;
-          display: none;
-        }
-
-        .about-carousel-stage {
-          min-height: auto;
-        }
+      .about-carousel--stacked .about-carousel-slide:not(.is-active) {
+        position: relative;
       }
 
       .flavors {
@@ -538,6 +585,10 @@
       @media (min-width: 720px) {
         .flavor-grid {
           grid-template-columns: repeat(3, 1fr);
+        }
+
+        .flavor-card {
+          height: 100%;
         }
       }
 
@@ -669,13 +720,23 @@
         margin: 0 0 1rem;
         font-size: 0.92rem;
         opacity: 0.92;
-        flex: 1;
+        flex: 0 0 auto;
       }
 
       .flavor-details p.sold-out-banner {
         flex: 0 0 auto;
         align-self: flex-start;
         opacity: 1;
+      }
+
+      .flavor-details > p.meta-line {
+        margin-bottom: 0.75rem;
+      }
+
+      .flavor-details > p:last-child {
+        flex: 1 1 auto;
+        margin-bottom: 0;
+        padding-bottom: 0.15rem;
       }
 
       .flavor-details .limited-banner {
@@ -984,50 +1045,21 @@
         color: var(--brown-soft);
       }
 
-      .story {
-        background: var(--brown);
-        color: var(--cream);
-        padding: clamp(3rem, 8vw, 4.5rem) 1.25rem;
-      }
-
-      .story-inner {
-        max-width: 900px;
-        margin: 0 auto;
-        display: grid;
-        gap: 2rem;
-        align-items: start;
-      }
-
-      @media (min-width: 768px) {
-        .story-inner {
-          grid-template-columns: 1fr 1fr;
-        }
-      }
-
-      .story h2 {
-        margin: 0 0 1rem;
-        font-family: "Bebas Neue", sans-serif;
-        font-size: 2.25rem;
-        letter-spacing: 0.06em;
-      }
-
-      .story p {
-        margin: 0 0 1rem;
-        color: rgba(244, 237, 227, 0.88);
-        font-size: 1.02rem;
-      }
-
       footer {
         padding: 2.5rem 1.25rem 3rem;
         text-align: center;
         font-size: 0.88rem;
-        color: var(--brown-soft);
-        background: var(--cream);
+        color: rgba(244, 237, 227, 0.88);
+        background: var(--brown);
       }
 
       footer a {
-        color: var(--brown);
+        color: var(--cream);
         font-weight: 600;
+      }
+
+      footer a:hover {
+        color: var(--salt-yellow);
       }
 
       footer p {

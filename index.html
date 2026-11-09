@@ -15,6 +15,12 @@
       content="Salt, BBQ, and Churro. One chip and you'll get it."
     />
     <meta property="og:image" content="https://gambitchips.com/assets/chips-three-bags.jpeg" />
+    <meta property="og:image:width" content="1024" />
+    <meta property="og:image:height" content="572" />
+    <meta
+      property="og:image:alt"
+      content="Gambit waffle cut plantain chips: BBQ, Churro, and Salt bags"
+    />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Gambit | Waffle Cut Plantain Chips" />
     <meta
@@ -22,6 +28,9 @@
       content="Salt, BBQ, and Churro. One chip and you'll get it."
     />
     <meta name="twitter:image" content="https://gambitchips.com/assets/chips-three-bags.jpeg" />
+    <link rel="canonical" href="https://gambitchips.com/" />
+    <meta property="og:url" content="https://gambitchips.com/" />
+    <meta name="theme-color" content="#3d2314" />
     <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="assets/favicon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -30,9 +39,34 @@
       href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Permanent+Marker&display=swap"
       rel="stylesheet"
     />
+    <link rel="preload" href="assets/chips-three-bags.jpeg" as="image" />
     <link rel="stylesheet" href="assets/site.css" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Organization",
+            "@id": "https://gambitchips.com/#organization",
+            "name": "Gambit",
+            "url": "https://gambitchips.com/",
+            "logo": "https://gambitchips.com/assets/favicon.svg",
+            "email": "twoplantainbros@gmail.com"
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://gambitchips.com/#website",
+            "url": "https://gambitchips.com/",
+            "name": "Gambit | Waffle Cut Plantain Chips",
+            "description": "Gambit waffle cut plantain chips: Salt, BBQ, and Churro. Case of 6 with free shipping from $36.",
+            "publisher": { "@id": "https://gambitchips.com/#organization" }
+          }
+        ]
+      }
+    </script>
   </head>
   <body>
+    <a class="skip-link" href="#top">Skip to main content</a>
     <header class="site-header">
       <div class="header-inner">
         <a class="brand-lockup" href="index.html">
@@ -54,7 +88,7 @@
             <h1 id="hero-title">Gambit</h1>
             <p class="hero-flavor-line">Waffle cut. Ridiculously crisp.</p>
             <p class="hero-lede">
-              We took a gambit on these chips and we&rsquo;re hoping you will to.
+              We took a gambit on these chips and we&rsquo;re hoping you will too.
               <strong>One chip and you&rsquo;ll get it.</strong>
             </p>
             <div class="hero-badges" aria-label="Product highlights">
@@ -73,6 +107,9 @@
               width="1024"
               height="572"
               alt="Gambit waffle cut plantain chips: BBQ, Churro, and Salt bags"
+              fetchpriority="high"
+              loading="eager"
+              decoding="async"
             />
           </figure>
         </div>
@@ -108,8 +145,8 @@
               <p class="sold-out-banner" role="status">Sold out</p>
               <p class="meta-line">3 servings · classic</p>
               <p>
-                Golden waffle ridges and coarse sea salt. Clean, crisp, and the reason we cut the
-                lattice in the first place.
+                Golden waffle cut plantain chips with sea salt. Clean and simple, these are the gold
+                standard for Gambit chips
               </p>
             </div>
           </article>
@@ -120,8 +157,8 @@
               <p class="sold-out-banner" role="status">Sold out</p>
               <p class="meta-line">3 servings · savory</p>
               <p>
-                Smoky sweet rub with paprika and garlic that catches in every waffle pocket. Built
-                for backyard snacking.
+                The same waffle chip texture we love, with a smoky sweet bbq rub we formulated in
+                house. Try one and you&rsquo;ll come back for seconds.
               </p>
             </div>
           </article>
@@ -132,7 +169,8 @@
               <p class="sold-out-banner" role="status">Sold out</p>
               <p class="meta-line">3 servings · sweet</p>
               <p>
-                Cinnamon sugar on ripe plantain. Fairground nostalgia on a savory plantain base.
+                The same crisp, with cinnamon sugar filling every waffle pocket. It was the dark horse
+                flavor in our flavor tests, but Churro came out on top, consistently.
               </p>
             </div>
           </article>
@@ -150,18 +188,18 @@
       <section
         class="about-carousel"
         id="about"
-        aria-roledescription="carousel"
         aria-label="About Gambit"
       >
-        <div class="about-carousel-pin">
+        <div class="about-carousel-inner">
           <div class="about-carousel-layout">
-            <nav class="about-carousel-tabs" aria-label="About sections">
+            <div class="about-carousel-tabs" role="tablist" aria-label="About sections">
               <button
                 type="button"
                 class="about-carousel-tab is-active"
                 data-slide="0"
                 aria-controls="about-slide-0"
                 aria-selected="true"
+                id="about-tab-btn-0"
               >
                 About Gambit
               </button>
@@ -171,6 +209,7 @@
                 data-slide="1"
                 aria-controls="about-slide-1"
                 aria-selected="false"
+                id="about-tab-btn-1"
               >
                 Our gambit
               </button>
@@ -180,18 +219,19 @@
                 data-slide="2"
                 aria-controls="about-slide-2"
                 aria-selected="false"
+                id="about-tab-btn-2"
               >
                 Your gambit
               </button>
-            </nav>
+            </div>
 
             <div class="about-carousel-stage">
               <article
-                class="about-carousel-slide is-active"
+                class="about-carousel-slide about-carousel-slide--intro is-active"
                 id="about-slide-0"
                 data-slide="0"
                 role="tabpanel"
-                aria-labelledby="about-tab-0"
+                aria-labelledby="about-tab-btn-0"
               >
                 <div class="about-carousel-copy">
                   <h2 class="about-carousel-title" id="about-tab-0">About Gambit</h2>
@@ -203,25 +243,25 @@
                     something special. Try one and you&rsquo;ll get it too.
                   </p>
                 </div>
-                <div class="about-carousel-visual about-carousel-visual--trio" aria-hidden="false">
+                <div class="about-carousel-visual about-carousel-visual--trio">
                   <img
                     src="assets/about/about-bbq-bowl.jpg"
-                    width="800"
-                    height="800"
+                    width="2048"
+                    height="1150"
                     alt="Gambit BBQ waffle cut chips in a bowl"
                     loading="lazy"
                   />
                   <img
                     src="assets/about/about-salt-bowl.jpg"
-                    width="800"
-                    height="800"
+                    width="2048"
+                    height="1150"
                     alt="Gambit Salt waffle cut chips in a bowl"
                     loading="lazy"
                   />
                   <img
                     src="assets/about/about-churro-bowl.jpg"
-                    width="800"
-                    height="800"
+                    width="1448"
+                    height="1086"
                     alt="Gambit Churro waffle cut chips in a bowl"
                     loading="lazy"
                   />
@@ -233,7 +273,7 @@
                 id="about-slide-1"
                 data-slide="1"
                 role="tabpanel"
-                aria-labelledby="about-tab-1"
+                aria-labelledby="about-tab-btn-1"
                 hidden
               >
                 <div class="about-carousel-copy">
@@ -267,7 +307,7 @@
                 id="about-slide-2"
                 data-slide="2"
                 role="tabpanel"
-                aria-labelledby="about-tab-2"
+                aria-labelledby="about-tab-btn-2"
                 hidden
               >
                 <div class="about-carousel-copy">
@@ -288,23 +328,6 @@
                 </figure>
               </article>
             </div>
-          </div>
-        </div>
-        <div class="about-carousel-triggers" aria-hidden="true">
-          <div class="about-carousel-trigger" data-slide="0"></div>
-          <div class="about-carousel-trigger" data-slide="1"></div>
-          <div class="about-carousel-trigger" data-slide="2"></div>
-        </div>
-      </section>
-
-      <section class="story" id="story" aria-labelledby="story-title">
-        <div class="story-inner">
-          <div>
-            <h2 id="story-title">Why waffle cut?</h2>
-            <p>
-              More surface area means more crunch and more room for seasoning. Gambit starts with
-              ripe plantain, not potato, and a cut you can see through the bag.
-            </p>
           </div>
         </div>
       </section>

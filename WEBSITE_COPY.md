@@ -42,7 +42,7 @@ Edit tone and wording in this file, then ask to **sync copy to the site**. Each 
 | `home.hero.eyebrow` | Waffle cut plantain chips |
 | `home.hero.title` | Gambit |
 | `home.hero.flavor_line` | Waffle cut. Ridiculously crisp. |
-| `home.hero.lede` | We took a gambit on these chips and we're hoping you will to. **One chip and you'll get it.** |
+| `home.hero.lede` | We took a gambit on these chips and we're hoping you will too. **One chip and you'll get it.** |
 | `home.hero.badge.case` | Case of 6 · from $36 |
 | `home.hero.badge.shipping` | Free shipping |
 | `home.hero.badge.servings` | 3 servings per bag |
@@ -74,7 +74,7 @@ Edit tone and wording in this file, then ask to **sync copy to the site**. Each 
 | `home.flavor.salt.name` | Salt |
 | `home.flavor.salt.stock` | Sold out |
 | `home.flavor.salt.meta` | 3 servings · classic |
-| `home.flavor.salt.body` | Golden waffle ridges and coarse sea salt. Clean, crisp, and the reason we cut the lattice in the first place. |
+| `home.flavor.salt.body` | Golden waffle cut plantain chips with sea salt. Clean and simple, these are the gold standard for Gambit chips |
 
 **BBQ**
 
@@ -83,7 +83,7 @@ Edit tone and wording in this file, then ask to **sync copy to the site**. Each 
 | `home.flavor.bbq.name` | BBQ |
 | `home.flavor.bbq.stock` | Sold out |
 | `home.flavor.bbq.meta` | 3 servings · savory |
-| `home.flavor.bbq.body` | Smoky sweet rub with paprika and garlic that catches in every waffle pocket. Built for backyard snacking. |
+| `home.flavor.bbq.body` | The same waffle chip texture we love, with a smoky sweet bbq rub we formulated in house. Try one and you'll come back for seconds. |
 
 **Churro**
 
@@ -92,7 +92,7 @@ Edit tone and wording in this file, then ask to **sync copy to the site**. Each 
 | `home.flavor.churro.name` | Churro |
 | `home.flavor.churro.stock` | Sold out |
 | `home.flavor.churro.meta` | 3 servings · sweet |
-| `home.flavor.churro.body` | Cinnamon sugar on ripe plantain. Fairground nostalgia on a savory plantain base. |
+| `home.flavor.churro.body` | The same crisp, with cinnamon sugar filling every waffle pocket. It was the dark horse flavor in our flavor tests, but Churro came out on top, consistently. |
 
 *(Stock labels: use `Sold out`, `12 left`, etc. — sync updates placard + checkout when you restock.)*
 
@@ -107,15 +107,6 @@ Edit tone and wording in this file, then ask to **sync copy to the site**. Each 
 | `home.about.slide3.title` | Your gambit |
 | `home.about.slide3.body` | Try one and you'll get it too. |
 | `home.about.slide3.cta` | Build your box |
-
-### Story
-
-| ID | Copy |
-|----|------|
-| `home.story.title` | Why waffle cut? |
-| `home.story.body` | More surface area means more crunch and more room for seasoning. Gambit starts with ripe plantain, not potato, and a cut you can see through the bag. |
-
----
 
 ## Solo checkout (`buy.html`)
 
