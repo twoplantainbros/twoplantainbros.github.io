@@ -147,38 +147,153 @@
         </div>
       </section>
 
-      <section class="about" id="about" aria-labelledby="about-title">
-        <div class="about-inner">
-          <h2 id="about-title">About Gambit</h2>
-          <p class="about-lede">
-            Our chips break out of boundaries. We understand what makes plantain chips so good,
-            that&rsquo;s why we&rsquo;re not afraid to take a gambit with new shapes and flavors.
-            We&rsquo;ve run tests day after day for months to narrow down on the Gambits we have
-            today, and we&rsquo;ve landed on something special. Try one and you&rsquo;ll get it too.
-          </p>
-          <ul class="about-pillars">
-            <li>
-              <strong>Unconventional by design</strong>
-              <p>
-                Waffle cut lattice, flavors like Churro on plantain. Built for people bored of
-                round, flat, predictable.
-              </p>
-            </li>
-            <li>
-              <strong>Our gambit</strong>
-              <p>
-                We bet on a smaller, weirder chip line instead of chasing every aisle: plantain,
-                waffle cut, flavors that sound wrong until they don&rsquo;t.
-              </p>
-            </li>
-            <li>
-              <strong>Your gambit</strong>
-              <p>
-                Try one chip. That&rsquo;s the whole pitch.
-              </p>
-            </li>
-          </ul>
-          <p class="about-cta"><a href="build.html">Build your box</a></p>
+      <section
+        class="about-carousel"
+        id="about"
+        aria-roledescription="carousel"
+        aria-label="About Gambit"
+      >
+        <div class="about-carousel-pin">
+          <div class="about-carousel-layout">
+            <nav class="about-carousel-tabs" aria-label="About sections">
+              <button
+                type="button"
+                class="about-carousel-tab is-active"
+                data-slide="0"
+                aria-controls="about-slide-0"
+                aria-selected="true"
+              >
+                About Gambit
+              </button>
+              <button
+                type="button"
+                class="about-carousel-tab"
+                data-slide="1"
+                aria-controls="about-slide-1"
+                aria-selected="false"
+              >
+                Our gambit
+              </button>
+              <button
+                type="button"
+                class="about-carousel-tab"
+                data-slide="2"
+                aria-controls="about-slide-2"
+                aria-selected="false"
+              >
+                Your gambit
+              </button>
+            </nav>
+
+            <div class="about-carousel-stage">
+              <article
+                class="about-carousel-slide is-active"
+                id="about-slide-0"
+                data-slide="0"
+                role="tabpanel"
+                aria-labelledby="about-tab-0"
+              >
+                <div class="about-carousel-copy">
+                  <h2 class="about-carousel-title" id="about-tab-0">About Gambit</h2>
+                  <p>
+                    Our chips break out of boundaries. We understand what makes plantain chips so
+                    good, that&rsquo;s why we&rsquo;re not afraid to take a gambit with new shapes
+                    and flavors. We&rsquo;ve run tests day after day for months to narrow down on the
+                    shapes and flavors we have for Gambits today, and we&rsquo;ve landed on
+                    something special. Try one and you&rsquo;ll get it too.
+                  </p>
+                </div>
+                <div class="about-carousel-visual about-carousel-visual--trio" aria-hidden="false">
+                  <img
+                    src="assets/about/about-bbq-bowl.jpg"
+                    width="800"
+                    height="800"
+                    alt="Gambit BBQ waffle cut chips in a bowl"
+                    loading="lazy"
+                  />
+                  <img
+                    src="assets/about/about-salt-bowl.jpg"
+                    width="800"
+                    height="800"
+                    alt="Gambit Salt waffle cut chips in a bowl"
+                    loading="lazy"
+                  />
+                  <img
+                    src="assets/about/about-churro-bowl.jpg"
+                    width="800"
+                    height="800"
+                    alt="Gambit Churro waffle cut chips in a bowl"
+                    loading="lazy"
+                  />
+                </div>
+              </article>
+
+              <article
+                class="about-carousel-slide"
+                id="about-slide-1"
+                data-slide="1"
+                role="tabpanel"
+                aria-labelledby="about-tab-1"
+                hidden
+              >
+                <div class="about-carousel-copy">
+                  <h2 class="about-carousel-title" id="about-tab-1">Our gambit</h2>
+                  <p>
+                    It all started when Himanshu grabbed a bag of &ldquo;Hot and Spicy&rdquo;
+                    Plantain Chips to get a taste of childhood. But those chips sucked. The chips we
+                    grew up with were crunchy, salty and always around for us. We realized we took
+                    those chips for granted. As we scoured the aisles and saw rows and rows of fancy
+                    new flavors and shapes on potato chip we realized that plantain chips had been
+                    left behind and we set out to change that. Our first chips sucked. But each batch
+                    was better than the last and we didn&rsquo;t stop when we reached
+                    &ldquo;good&rdquo;. We strove to break boundaries with these chips in the pursuit
+                    of something &ldquo;great&rdquo; and we landed at waffle-cut with crazy good
+                    flavors like Churro and BBQ.
+                  </p>
+                </div>
+                <figure class="about-carousel-visual">
+                  <img
+                    src="assets/about/our-gambit-founders.jpg"
+                    width="1200"
+                    height="1600"
+                    alt="Two plantain bros smiling, founders of Gambit chips"
+                    loading="lazy"
+                  />
+                </figure>
+              </article>
+
+              <article
+                class="about-carousel-slide"
+                id="about-slide-2"
+                data-slide="2"
+                role="tabpanel"
+                aria-labelledby="about-tab-2"
+                hidden
+              >
+                <div class="about-carousel-copy">
+                  <h2 class="about-carousel-title" id="about-tab-2">Your gambit</h2>
+                  <p class="about-carousel-cta-line">
+                    Try one and you&rsquo;ll get it too.
+                    <a class="btn btn-primary about-carousel-shop" href="build.html">Build your box</a>
+                  </p>
+                </div>
+                <figure class="about-carousel-visual">
+                  <img
+                    src="assets/about/your-gambit-bags.jpg"
+                    width="1200"
+                    height="675"
+                    alt="Gambit Salt, BBQ, and Churro chip bags"
+                    loading="lazy"
+                  />
+                </figure>
+              </article>
+            </div>
+          </div>
+        </div>
+        <div class="about-carousel-triggers" aria-hidden="true">
+          <div class="about-carousel-trigger" data-slide="0"></div>
+          <div class="about-carousel-trigger" data-slide="1"></div>
+          <div class="about-carousel-trigger" data-slide="2"></div>
         </div>
       </section>
 
@@ -202,6 +317,7 @@
       </p>
     </footer>
 
+    <script src="assets/about-carousel.js"></script>
     <script>
       (function () {
         var qs = window.location.search;

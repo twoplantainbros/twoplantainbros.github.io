@@ -323,89 +323,185 @@
         letter-spacing: 0.18em;
       }
 
-      .about {
-        padding: clamp(3rem, 8vw, 5rem) 1.25rem;
+      .about-carousel {
+        position: relative;
         background: #fff;
         border-block: 1px solid rgba(61, 35, 20, 0.08);
       }
 
-      .about-inner {
-        max-width: 900px;
+      .about-carousel-pin {
+        position: sticky;
+        top: 0;
+        z-index: 5;
+        min-height: 100vh;
+        min-height: 100dvh;
+        display: flex;
+        align-items: center;
+        padding: clamp(1.25rem, 4vw, 2.5rem);
+        background: #fff;
+      }
+
+      .about-carousel-layout {
+        width: min(1100px, 100%);
         margin: 0 auto;
       }
 
-      .about h2 {
+      .about-carousel-tabs {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        justify-content: center;
+        margin: 0 0 1.25rem;
+      }
+
+      .about-carousel-tab {
+        padding: 0.45rem 0.85rem;
+        border-radius: 999px;
+        border: 1px solid rgba(61, 35, 20, 0.2);
+        background: var(--cream);
+        font: inherit;
+        font-size: 0.78rem;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--brown-soft);
+        cursor: pointer;
+        transition:
+          background 0.2s ease,
+          color 0.2s ease,
+          border-color 0.2s ease;
+      }
+
+      .about-carousel-tab.is-active {
+        background: var(--brown);
+        border-color: var(--brown);
+        color: var(--cream);
+      }
+
+      .about-carousel-stage {
+        position: relative;
+        min-height: clamp(22rem, 58vh, 32rem);
+      }
+
+      .about-carousel-slide {
+        display: grid;
+        gap: 1.5rem;
+        align-items: center;
+        opacity: 0;
+        visibility: hidden;
+        transition:
+          opacity 0.35s ease,
+          visibility 0.35s ease;
+      }
+
+      .about-carousel-slide.is-active {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .about-carousel-slide:not(.is-active) {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+      }
+
+      .about-carousel-slide.is-active {
+        position: relative;
+        pointer-events: auto;
+      }
+
+      @media (min-width: 800px) {
+        .about-carousel-slide {
+          grid-template-columns: 1fr 1fr;
+          gap: 2rem;
+        }
+      }
+
+      .about-carousel-title {
         margin: 0 0 0.75rem;
         font-family: "Bebas Neue", sans-serif;
         font-size: clamp(2rem, 5vw, 2.75rem);
         letter-spacing: 0.08em;
         color: var(--brown);
-        text-align: center;
+        line-height: 1.05;
       }
 
-      .about-lede {
-        margin: 0 auto 2.25rem;
-        max-width: 38rem;
-        text-align: center;
-        font-size: 1.12rem;
+      .about-carousel-copy p {
+        margin: 0;
+        font-size: 1.02rem;
+        line-height: 1.55;
         color: var(--brown-soft);
       }
 
-      .about-lede em {
-        font-style: normal;
-        font-family: "Permanent Marker", cursive;
-        font-size: 1.05em;
-        color: var(--brown);
-      }
-
-      .about-pillars {
-        display: grid;
-        gap: 1.15rem;
-        margin: 0 0 2rem;
-        padding: 0;
-        list-style: none;
-      }
-
-      @media (min-width: 720px) {
-        .about-pillars {
-          grid-template-columns: repeat(3, 1fr);
-        }
-      }
-
-      .about-pillars li {
-        padding: 1.25rem 1.2rem;
-        border-radius: 14px;
-        background: var(--cream);
-        border: 1px solid rgba(61, 35, 20, 0.08);
-      }
-
-      .about-pillars strong {
-        display: block;
-        font-family: "Bebas Neue", sans-serif;
-        letter-spacing: 0.08em;
-        font-size: 1.15rem;
-        color: var(--brown);
-        margin-bottom: 0.4rem;
-      }
-
-      .about-pillars p {
-        margin: 0;
-        font-size: 0.92rem;
-        color: var(--brown-soft);
-      }
-
-      .about-cta {
-        text-align: center;
-        margin: 0;
-        font-size: 1rem;
-        color: var(--brown);
+      .about-carousel-cta-line {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+        font-size: 1.2rem !important;
         font-weight: 600;
+        color: var(--brown) !important;
       }
 
-      .about-cta a {
-        color: var(--brown);
-        text-decoration: underline;
-        text-underline-offset: 3px;
+      .about-carousel-visual {
+        margin: 0;
+        border-radius: var(--radius);
+        overflow: hidden;
+        box-shadow: var(--shadow);
+      }
+
+      .about-carousel-visual img {
+        display: block;
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+      }
+
+      .about-carousel-visual--trio {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0.35rem;
+        box-shadow: none;
+        border-radius: 0;
+        overflow: visible;
+      }
+
+      .about-carousel-visual--trio img {
+        border-radius: 10px;
+        box-shadow: var(--shadow);
+        aspect-ratio: 1;
+        object-fit: cover;
+      }
+
+      .about-carousel-triggers {
+        position: relative;
+        z-index: 1;
+      }
+
+      .about-carousel-trigger {
+        height: 100vh;
+        height: 100dvh;
+        pointer-events: none;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .about-carousel-pin {
+          position: relative;
+          min-height: auto;
+        }
+
+        .about-carousel-triggers {
+          display: none;
+        }
+
+        .about-carousel-slide:not(.is-active) {
+          position: relative;
+          display: none;
+        }
+
+        .about-carousel-stage {
+          min-height: auto;
+        }
       }
 
       .flavors {

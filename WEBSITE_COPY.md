@@ -96,19 +96,17 @@ Edit tone and wording in this file, then ask to **sync copy to the site**. Each 
 
 *(Stock labels: use `Sold out`, `12 left`, etc. — sync updates placard + checkout when you restock.)*
 
-### About
+### About (scroll carousel, `index.html` #about)
 
 | ID | Copy |
 |----|------|
-| `home.about.title` | About Gambit |
-| `home.about.lede` | Our chips break out of boundaries. We understand what makes plantain chips so good, that's why we're not afraid to take a gambit with new shapes and flavors. We've run tests day after day for months to narrow down on the Gambits we have today, and we've landed on something special. Try one and you'll get it too. |
-| `home.about.pillar1.title` | Unconventional by design |
-| `home.about.pillar1.body` | Waffle cut lattice, flavors like Churro on plantain. Built for people bored of round, flat, predictable. |
-| `home.about.pillar2.title` | Our gambit |
-| `home.about.pillar2.body` | We bet on a smaller, weirder chip line instead of chasing every aisle: plantain, waffle cut, flavors that sound wrong until they don't. |
-| `home.about.pillar3.title` | Your gambit |
-| `home.about.pillar3.body` | Try one chip. That's the whole pitch. |
-| `home.about.cta` | Build your box |
+| `home.about.slide1.title` | About Gambit |
+| `home.about.slide1.body` | Our chips break out of boundaries. We understand what makes plantain chips so good, that's why we're not afraid to take a gambit with new shapes and flavors. We've run tests day after day for months to narrow down on the shapes and flavors we have for Gambits today, and we've landed on something special. Try one and you'll get it too. |
+| `home.about.slide2.title` | Our gambit |
+| `home.about.slide2.body` | It all started when Himanshu grabbed a bag of "Hot and Spicy" Plantain Chips… (see `index.html` for full story) |
+| `home.about.slide3.title` | Your gambit |
+| `home.about.slide3.body` | Try one and you'll get it too. |
+| `home.about.slide3.cta` | Build your box |
 
 ### Story
 
