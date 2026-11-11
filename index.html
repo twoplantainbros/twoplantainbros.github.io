@@ -1,353 +1,811 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="is-sold-out">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <script>
+      (function () {
+        var instock = /instock/i.test(location.search);
+        document.documentElement.classList.remove("is-sold-out", "is-in-stock");
+        document.documentElement.classList.add(instock ? "is-in-stock" : "is-sold-out");
+      })();
+    </script>
     <title>Gambit | Waffle Cut Plantain Chips</title>
     <meta
       name="description"
-      content="Gambit waffle cut plantain chips: Salt, BBQ, and Churro. Case of 6 with free shipping from $36."
+      content="Gambit waffle cut plantain chips: Salt, BBQ, and Churro. Waffle cut — one chip and you'll get it."
     />
     <meta property="og:type" content="website" />
     <meta property="og:title" content="Gambit | Waffle Cut Plantain Chips" />
-    <meta
-      property="og:description"
-      content="Salt, BBQ, and Churro. One chip and you'll get it."
-    />
-    <meta property="og:image" content="https://gambitchips.com/assets/chips-three-bags.jpeg" />
-    <meta property="og:image:width" content="1024" />
-    <meta property="og:image:height" content="572" />
-    <meta
-      property="og:image:alt"
-      content="Gambit waffle cut plantain chips: BBQ, Churro, and Salt bags"
-    />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Gambit | Waffle Cut Plantain Chips" />
-    <meta
-      name="twitter:description"
-      content="Salt, BBQ, and Churro. One chip and you'll get it."
-    />
-    <meta name="twitter:image" content="https://gambitchips.com/assets/chips-three-bags.jpeg" />
-    <link rel="canonical" href="https://gambitchips.com/" />
+    <meta property="og:description" content="Waffle cut. One chip and you'll get it. Salt, BBQ, and Churro." />
+    <meta property="og:image" content="https://gambitchips.com/assets/scene-salt.webp" />
     <meta property="og:url" content="https://gambitchips.com/" />
-    <meta name="theme-color" content="#3d2314" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="theme-color" content="#F6F0E6" />
+    <link rel="canonical" href="https://gambitchips.com/" />
     <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
-    <link rel="apple-touch-icon" href="assets/favicon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Permanent+Marker&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&display=swap"
       rel="stylesheet"
     />
-    <link rel="preload" href="assets/chips-three-bags.jpeg" as="image" />
-    <link rel="stylesheet" href="assets/site.css" />
+    <link rel="preload" href="assets/bowl-salt.webp" as="image" />
+    <link rel="preload" href="assets/bowl-bbq.webp" as="image" />
+    <link rel="preload" href="assets/bowl-churro.webp" as="image" />
+    <link rel="stylesheet" href="assets/gambit.css" />
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
         "@graph": [
           {
             "@type": "Organization",
-            "@id": "https://gambitchips.com/#organization",
             "name": "Gambit",
             "url": "https://gambitchips.com/",
-            "logo": "https://gambitchips.com/assets/favicon.svg",
+            "logo": "https://gambitchips.com/assets/logo-dark.png",
+            "sameAs": ["https://www.instagram.com/twoplantainbros/"],
             "email": "twoplantainbros@gmail.com"
-          },
-          {
-            "@type": "WebSite",
-            "@id": "https://gambitchips.com/#website",
-            "url": "https://gambitchips.com/",
-            "name": "Gambit | Waffle Cut Plantain Chips",
-            "description": "Gambit waffle cut plantain chips: Salt, BBQ, and Churro. Case of 6 with free shipping from $36.",
-            "publisher": { "@id": "https://gambitchips.com/#organization" }
           }
         ]
       }
     </script>
   </head>
-  <body>
-    <a class="skip-link" href="#top">Skip to main content</a>
-    <header class="site-header">
-      <div class="header-inner">
-        <a class="brand-lockup" href="index.html">
-          <span>Waffle cut plantain chips</span>
-          <span class="gambit">Gambit</span>
+  <body class="gambit-page">
+    <a class="g-skip" href="#top">Skip to main content</a>
+
+    <header class="g-header">
+      <nav class="g-header__nav" aria-label="Main">
+        <a class="g-header__logo" href="#top" aria-label="Gambit home">
+          <img src="assets/logo-dark.png" width="941" height="248" alt="Gambit" />
         </a>
-        <nav class="header-nav" aria-label="Primary">
-          <a href="#about">About</a>
-          <a class="header-cta" href="build.html">Shop</a>
-        </nav>
-      </div>
+        <div class="g-header__links g-header__links--desk">
+          <a href="#flavors" class="g-link">Flavors</a>
+          <a href="#about" class="g-link">About</a>
+          <a href="#faq" class="g-link">FAQ</a>
+        </div>
+        <a
+          class="g-header__ig"
+          href="https://www.instagram.com/twoplantainbros/"
+          aria-label="Gambit on Instagram, @twoplantainbros"
+        >
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+            <rect x="3" y="3" width="18" height="18" rx="5"></rect>
+            <circle cx="12" cy="12" r="4"></circle>
+            <circle cx="17.5" cy="6.5" r="0.6" fill="currentColor"></circle>
+          </svg>
+        </a>
+        <a href="#box" class="g-btn g-header__pill in-stock-only" aria-label="Your box">
+          <span>Box</span>
+          <span class="g-header__pill-count" data-box-count>0</span>
+        </a>
+        <a href="#waitlist" class="g-btn g-header__waitlist sold-out-only" aria-label="Join the waitlist">
+          <span class="g-header__waitlist-long">Join the waitlist</span>
+          <span class="g-header__waitlist-short">Join waitlist</span>
+        </a>
+      </nav>
     </header>
 
     <main id="top">
-      <section class="hero waffle-texture" aria-labelledby="hero-title">
-        <div class="hero-inner">
-          <div class="hero-copy">
-            <p class="eyebrow">Waffle cut plantain chips</p>
-            <h1 id="hero-title">Gambit</h1>
-            <p class="hero-flavor-line">Waffle cut. Ridiculously crisp.</p>
-            <p class="hero-lede">
-              We took a gambit on these chips and we&rsquo;re hoping you will too.
-              <strong>One chip and you&rsquo;ll get it.</strong>
-            </p>
-            <div class="hero-badges" aria-label="Product highlights">
-              <span class="badge">Case of 6 · from $36</span>
-              <span class="badge">Free shipping</span>
-              <span class="badge">3 servings per bag</span>
-            </div>
-            <div class="hero-actions">
-              <a class="btn btn-primary" href="build.html">Shop all flavors</a>
-              <a class="btn btn-ghost" href="#about">Our gambit</a>
+      <!-- Desktop hero -->
+      <section class="g-hero-desk g-wrap" aria-labelledby="hero-title-d">
+        <div class="g-hero-desk__top">
+          <h1 id="hero-title-d">
+            <span class="g-hero-desk__line"><span class="g-rise" style="animation-delay: 0.05s">Waffle cut.</span></span>
+            <span class="g-hero-desk__line"
+              ><span class="g-rise" style="animation-delay: 0.17s">One chip and you&rsquo;ll get it.</span></span
+            >
+          </h1>
+          <div class="g-hero-desk__intro g-fadeup" style="animation-delay: 1.5s">
+            <p>We took a gambit on these chips and we&rsquo;re hoping you will too.</p>
+            <div style="display: flex; gap: 18px; align-items: center; flex-wrap: wrap">
+              <a href="#box" class="g-btn in-stock-only">Build your box</a>
+              <a href="#waitlist" class="g-btn sold-out-only">Join the waitlist</a>
+              <span class="g-hero-desk__meta in-stock-only">Free shipping on every order</span>
+              <span class="g-hero-desk__meta sold-out-only">Every flavor is sold out for now</span>
             </div>
           </div>
-          <figure class="hero-lineup">
-            <img
-              src="assets/chips-three-bags.jpeg"
-              width="1024"
-              height="572"
-              alt="Gambit waffle cut plantain chips: BBQ, Churro, and Salt bags"
-              fetchpriority="high"
-              loading="eager"
-              decoding="async"
-            />
-          </figure>
+        </div>
+        <div class="g-trio">
+          <a href="#chapter-salt" class="g-bowl-btn" data-flavor="salt" aria-label="Salt: Golden, with sea salt.">
+            <div class="g-bowl-stage">
+              <div class="g-bowl-shadow g-shadowin" style="animation-delay: 1.15s">
+                <div class="g-bowl-shadow__blur shade"></div>
+              </div>
+              <div class="g-roll" style="position: absolute; inset: 0; animation-delay: 0.35s">
+                <div class="g-bowl-lift">
+                  <div class="g-bowl-spin">
+                    <img
+                      class="g-bowl-img g-idle"
+                      src="assets/bowl-salt.webp"
+                      width="1200"
+                      height="1200"
+                      alt="A bowl of Gambit Salt waffle cut chips"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="g-bowl-bag g-bagin" style="animation-delay: 1.6s">
+                <img src="assets/bag-salt.webp" width="800" height="1280" alt="Gambit Salt bag" />
+                <span class="g-sticker sold-out-only">Sold out</span>
+              </div>
+            </div>
+            <div class="g-bowl-cap g-fadeup" style="animation-delay: 1.3s">
+              <strong>Salt</strong>
+              <span>Golden, with sea salt.</span>
+              <span class="g-arrow" aria-hidden="true">→</span>
+            </div>
+          </a>
+          <a href="#chapter-bbq" class="g-bowl-btn" data-flavor="bbq" aria-label="BBQ: Smoky sweet, made in house.">
+            <div class="g-bowl-stage">
+              <div class="g-bowl-shadow g-shadowin" style="animation-delay: 1.31s">
+                <div class="g-bowl-shadow__blur"></div>
+              </div>
+              <div class="g-roll" style="position: absolute; inset: 0; animation-delay: 0.51s">
+                <div class="g-bowl-lift">
+                  <div class="g-bowl-spin">
+                    <img
+                      class="g-bowl-img g-idle"
+                      style="animation-delay: -37s"
+                      src="assets/bowl-bbq.webp"
+                      width="1200"
+                      height="1200"
+                      alt="A bowl of Gambit BBQ waffle cut chips"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="g-bowl-bag g-bagin" style="animation-delay: 1.76s">
+                <img src="assets/bag-bbq.webp" width="800" height="1280" alt="Gambit BBQ bag" />
+                <span class="g-sticker sold-out-only">Sold out</span>
+              </div>
+            </div>
+            <div class="g-bowl-cap g-fadeup" style="animation-delay: 1.44s">
+              <strong>BBQ</strong>
+              <span>Smoky sweet, made in house.</span>
+              <span class="g-arrow" aria-hidden="true">→</span>
+            </div>
+          </a>
+          <a
+            href="#chapter-churro"
+            class="g-bowl-btn"
+            data-flavor="churro"
+            aria-label="Churro: Cinnamon sugar, every pocket."
+          >
+            <div class="g-bowl-stage">
+              <div class="g-bowl-shadow g-shadowin" style="animation-delay: 1.47s">
+                <div class="g-bowl-shadow__blur"></div>
+              </div>
+              <div class="g-roll" style="position: absolute; inset: 0; animation-delay: 0.67s">
+                <div class="g-bowl-lift">
+                  <div class="g-bowl-spin">
+                    <img
+                      class="g-bowl-img g-idle"
+                      style="animation-delay: -74s"
+                      src="assets/bowl-churro.webp"
+                      width="960"
+                      height="960"
+                      alt="A bowl of Gambit Churro waffle cut chips"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="g-bowl-bag g-bagin" style="animation-delay: 1.92s">
+                <img src="assets/bag-churro.webp" width="800" height="1280" alt="Gambit Churro bag" />
+                <span class="g-sticker sold-out-only">Sold out</span>
+              </div>
+            </div>
+            <div class="g-bowl-cap g-fadeup" style="animation-delay: 1.58s">
+              <strong>Churro</strong>
+              <span>Cinnamon sugar, every pocket.</span>
+              <span class="g-arrow" aria-hidden="true">→</span>
+            </div>
+          </a>
         </div>
       </section>
 
-      <div class="tagline-band" role="doc-subtitle">
-        <p>One chip and you&rsquo;ll get it.</p>
+      <!-- Mobile hero -->
+      <section
+        id="hero-mobile"
+        class="g-hero-mob"
+        style="background: #f3e2ae; color: #22130b"
+        aria-labelledby="hero-title-m"
+      >
+        <div class="g-mob-col">
+        <h1 id="hero-title-m">
+          <span class="g-hero-desk__line"><span class="g-rise" style="animation-delay: 0.05s">Waffle cut.</span></span>
+          <span class="g-hero-desk__line"
+            ><span class="g-rise" style="animation-delay: 0.16s">One chip and</span></span
+          >
+          <span class="g-hero-desk__line"
+            ><span class="g-rise" style="animation-delay: 0.28s">you&rsquo;ll get it.</span></span
+          >
+        </h1>
+        <p class="g-hero-mob__intro g-fadeup" data-theme-sub style="animation-delay: 0.3s">
+          We took a gambit on these chips and we&rsquo;re hoping you will too.
+        </p>
+        <div class="m-stage">
+          <svg class="m-stage__ring g-ring" viewBox="0 0 358 358" aria-hidden="true">
+            <defs>
+              <path id="gmb-ring-m" d="M179,179 m-170,0 a170,170 0 1,1 340,0 a170,170 0 1,1 -340,0"></path>
+            </defs>
+            <text style="font-size: 9.5px; font-weight: 700; letter-spacing: 0.3em; fill: currentColor; opacity: 0.7">
+              <textPath href="#gmb-ring-m" textLength="1062" lengthAdjust="spacing">
+                WAFFLE-CUT PLANTAIN CHIPS • ONE CHIP AND YOU'LL GET IT • WAFFLE-CUT PLANTAIN CHIPS • ONE CHIP AND YOU'LL
+                GET IT •
+              </textPath>
+            </text>
+          </svg>
+          <div class="m-stage__shadow g-shadowin" style="animation-delay: 1s"></div>
+          <div class="m-stage__bowl-shell g-roll" style="animation-delay: 0.3s">
+            <div class="m-stage__turn" id="mob-bowl-turn">
+              <img
+                class="m-stage__bowl is-active"
+                data-flavor="salt"
+                src="assets/bowl-salt.webp"
+                alt="A bowl of Gambit Salt waffle cut chips"
+              />
+              <img
+                class="m-stage__bowl"
+                data-flavor="bbq"
+                src="assets/bowl-bbq.webp"
+                alt="A bowl of Gambit BBQ waffle cut chips"
+              />
+              <img
+                class="m-stage__bowl"
+                data-flavor="churro"
+                src="assets/bowl-churro.webp"
+                alt="A bowl of Gambit Churro waffle cut chips"
+              />
+            </div>
+          </div>
+          <div class="m-stage__bag g-bagin" style="animation-delay: 1.3s">
+            <img
+              class="m-stage__bag-img is-active"
+              data-flavor="salt"
+              src="assets/bag-salt.webp"
+              alt="Gambit Salt bag"
+            />
+            <img class="m-stage__bag-img" data-flavor="bbq" src="assets/bag-bbq.webp" alt="Gambit BBQ bag" />
+            <img class="m-stage__bag-img" data-flavor="churro" src="assets/bag-churro.webp" alt="Gambit Churro bag" />
+            <span class="g-sticker g-sticker--mob sold-out-only">Sold out</span>
+          </div>
+        </div>
+        <div
+          class="g-flavor-tabs g-fadeup"
+          data-theme-pill
+          style="background: rgba(34, 19, 11, 0.1); animation-delay: 1.1s"
+          role="group"
+          aria-label="Pick a flavor"
+        >
+          <button type="button" data-flavor-tab data-flavor="salt" aria-pressed="true">Salt</button>
+          <button type="button" data-flavor-tab data-flavor="bbq" aria-pressed="false">BBQ</button>
+          <button type="button" data-flavor-tab data-flavor="churro" aria-pressed="false">Churro</button>
+        </div>
+        <div class="g-mob-flavor-copy g-fadeup" data-mob-flavor-panel data-flavor="salt" style="animation-delay: 1.25s">
+          <div class="g-eyebrow" data-theme-accent>01 · Classic</div>
+          <p data-theme-sub style="margin: 0; font-size: 16px; line-height: 1.55">
+            Golden waffle cut plantain chips with sea salt. Clean and simple, these are the gold standard for Gambit
+            chips.
+          </p>
+          <div class="sold-out-only" style="display: flex; flex-direction: column; gap: 10px; margin-top: 8px">
+            <span class="g-eyebrow" style="opacity: 0.85">Sold out for now</span>
+            <a href="#waitlist" class="g-btn g-btn--block">Join the waitlist</a>
+          </div>
+        </div>
+        <div class="g-mob-flavor-copy" data-mob-flavor-panel data-flavor="bbq" hidden>
+          <div class="g-eyebrow" data-theme-accent>02 · Savory</div>
+          <p data-theme-sub style="margin: 0; font-size: 16px; line-height: 1.55">
+            The same waffle chip texture we love, with a smoky sweet BBQ rub we formulated in house. Try one and
+            you&rsquo;ll come back for seconds.
+          </p>
+          <div class="sold-out-only" style="display: flex; flex-direction: column; gap: 10px; margin-top: 8px">
+            <span class="g-eyebrow" style="opacity: 0.85">Sold out for now</span>
+            <a href="#waitlist" class="g-btn g-btn--block">Join the waitlist</a>
+          </div>
+        </div>
+        <div class="g-mob-flavor-copy" data-mob-flavor-panel data-flavor="churro" hidden>
+          <div class="g-eyebrow" data-theme-accent>03 · Sweet</div>
+          <p data-theme-sub style="margin: 0; font-size: 16px; line-height: 1.55">
+            The same crisp, with cinnamon sugar filling every waffle pocket. It was the dark horse flavor in our flavor
+            tests, but Churro came out on top, consistently.
+          </p>
+          <div class="sold-out-only" style="display: flex; flex-direction: column; gap: 10px; margin-top: 8px">
+            <span class="g-eyebrow" style="opacity: 0.85">Sold out for now</span>
+            <a href="#waitlist" class="g-btn g-btn--block">Join the waitlist</a>
+          </div>
+        </div>
+        </div>
+      </section>
+
+      <div class="g-band" aria-hidden="true">
+        <div class="g-ticker">
+          <span class="g-band__item"
+            >Waffle cut<svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"
+              ><g fill="none" stroke="#E3A92B" stroke-width="3">
+                <path d="M2 6h18M2 16h18M6 2v18M16 2v18"></path></g
+            ></svg></span
+          >
+          <span class="g-band__item"
+            >One chip and you&rsquo;ll get it<svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"
+              ><g fill="none" stroke="#E3A92B" stroke-width="3">
+                <path d="M2 6h18M2 16h18M6 2v18M16 2v18"></path></g
+            ></svg></span
+          >
+          <span class="g-band__item"
+            >Plantain chips<svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"
+              ><g fill="none" stroke="#E3A92B" stroke-width="3">
+                <path d="M2 6h18M2 16h18M6 2v18M16 2v18"></path></g
+            ></svg></span
+          >
+          <span class="g-band__item"
+            >Waffle cut<svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"
+              ><g fill="none" stroke="#E3A92B" stroke-width="3">
+                <path d="M2 6h18M2 16h18M6 2v18M16 2v18"></path></g
+            ></svg></span
+          >
+          <span class="g-band__item"
+            >One chip and you&rsquo;ll get it<svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"
+              ><g fill="none" stroke="#E3A92B" stroke-width="3">
+                <path d="M2 6h18M2 16h18M6 2v18M16 2v18"></path></g
+            ></svg></span
+          >
+          <span class="g-band__item"
+            >Plantain chips<svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"
+              ><g fill="none" stroke="#E3A92B" stroke-width="3">
+                <path d="M2 6h18M2 16h18M6 2v18M16 2v18"></path></g
+            ></svg></span
+          >
+          <span class="g-band__item"
+            >Waffle cut<svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"
+              ><g fill="none" stroke="#E3A92B" stroke-width="3">
+                <path d="M2 6h18M2 16h18M6 2v18M6 2v18"></path></g
+            ></svg></span
+          >
+          <span class="g-band__item"
+            >One chip and you&rsquo;ll get it<svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"
+              ><g fill="none" stroke="#E3A92B" stroke-width="3">
+                <path d="M2 6h18M2 16h18M6 2v18M16 2v18"></path></g
+            ></svg></span
+          >
+        </div>
       </div>
 
-      <section class="flavors" id="shop" aria-labelledby="shop-title">
-        <div class="section-head">
-          <h2 id="shop-title">Order by the case</h2>
-          <p>
-            <strong>Case of 6</strong> · <strong>free shipping</strong> · from <strong>$36</strong> ·
-            continental U.S. · mix any flavors · add extra bags anytime
+      <section id="flavors" class="g-showcase" style="background: #f3e2ae; color: #22130b" aria-label="Flavors">
+        <div class="g-scrolly">
+          <div>
+            <article class="g-chapter" data-chapter data-flavor="salt" id="chapter-salt">
+              <div class="g-eyebrow" data-theme-accent>01 · Classic</div>
+              <h2>Salt</h2>
+              <p data-theme-sub>
+                Golden waffle cut plantain chips with sea salt. Clean and simple, these are the gold standard for Gambit
+                chips.
+              </p>
+              <div class="in-stock-only" style="max-width: 340px; padding-top: 10px">
+                <button type="button" class="g-btn" style="width: 100%" data-cart-add data-flavor="salt">
+                  Add Salt to box
+                </button>
+              </div>
+              <div class="sold-out-only" style="max-width: 340px; padding-top: 10px; display: flex; flex-direction: column; gap: 12px">
+                <span class="g-eyebrow" style="opacity: 0.85">Sold out for now</span>
+                <a href="#waitlist" class="g-btn" style="width: 100%; text-align: center">Join the waitlist</a>
+              </div>
+            </article>
+            <article class="g-chapter" data-chapter data-flavor="bbq" id="chapter-bbq">
+              <div class="g-eyebrow" data-theme-accent>02 · Savory</div>
+              <h2>BBQ</h2>
+              <p data-theme-sub>
+                The same waffle chip texture we love, with a smoky sweet BBQ rub we formulated in house. Try one and
+                you&rsquo;ll come back for seconds.
+              </p>
+              <div class="sold-out-only" style="max-width: 340px; padding-top: 10px; display: flex; flex-direction: column; gap: 12px">
+                <span class="g-eyebrow" style="opacity: 0.85">Sold out for now</span>
+                <a href="#waitlist" class="g-btn" style="width: 100%; text-align: center">Join the waitlist</a>
+              </div>
+            </article>
+            <article class="g-chapter" data-chapter data-flavor="churro" id="chapter-churro">
+              <div class="g-eyebrow" data-theme-accent>03 · Sweet</div>
+              <h2>Churro</h2>
+              <p data-theme-sub>
+                The same crisp, with cinnamon sugar filling every waffle pocket. It was the dark horse flavor in our
+                flavor tests, but Churro came out on top, consistently.
+              </p>
+              <div class="sold-out-only" style="max-width: 340px; padding-top: 10px; display: flex; flex-direction: column; gap: 12px">
+                <span class="g-eyebrow" style="opacity: 0.85">Sold out for now</span>
+                <a href="#waitlist" class="g-btn" style="width: 100%; text-align: center">Join the waitlist</a>
+              </div>
+            </article>
+          </div>
+          <div class="g-stage-col">
+            <div class="g-stage">
+              <svg class="g-ring" viewBox="0 0 620 620" aria-hidden="true" style="position: absolute; inset: 0; width: 100%; height: 100%">
+                <defs>
+                  <path id="gmb-ring" d="M310,310 m-292,0 a292,292 0 1,1 584,0 a292,292 0 1,1 -584,0"></path>
+                </defs>
+                <text style="font-size: 13px; font-weight: 700; letter-spacing: 0.32em; fill: currentColor; opacity: 0.7">
+                  <textPath href="#gmb-ring" textLength="1825" lengthAdjust="spacing">
+                    WAFFLE-CUT PLANTAIN CHIPS • ONE CHIP AND YOU'LL GET IT • WAFFLE-CUT PLANTAIN CHIPS • ONE CHIP AND
+                    YOU'LL GET IT •
+                  </textPath>
+                </text>
+              </svg>
+              <div class="g-stage__spin" id="showcase-spin">
+                <img
+                  class="g-stage__bowl is-active"
+                  data-flavor="salt"
+                  src="assets/bowl-salt.webp"
+                  alt="A bowl of Gambit Salt waffle cut chips"
+                />
+                <img
+                  class="g-stage__bowl"
+                  data-flavor="bbq"
+                  src="assets/bowl-bbq.webp"
+                  alt="A bowl of Gambit BBQ waffle cut chips"
+                />
+                <img
+                  class="g-stage__bowl"
+                  data-flavor="churro"
+                  src="assets/bowl-churro.webp"
+                  alt="A bowl of Gambit Churro waffle cut chips"
+                />
+              </div>
+              <div class="g-stage__bag-pocket">
+                <img
+                  class="g-stage__bag is-active"
+                  data-flavor="salt"
+                  src="assets/bag-salt.webp"
+                  alt="Gambit Salt bag"
+                />
+                <img class="g-stage__bag" data-flavor="bbq" src="assets/bag-bbq.webp" alt="Gambit BBQ bag" />
+                <img class="g-stage__bag" data-flavor="churro" src="assets/bag-churro.webp" alt="Gambit Churro bag" />
+              </div>
+              <span class="g-sticker g-sticker--showcase sold-out-only">Sold out</span>
+              <nav class="g-stage-dots" aria-label="Flavor sections">
+                <button type="button" class="g-dot" data-flavor-dot="salt" aria-label="Salt" aria-current="true"></button>
+                <button type="button" class="g-dot" data-flavor-dot="bbq" aria-label="BBQ" aria-current="false"></button>
+                <button type="button" class="g-dot" data-flavor-dot="churro" aria-label="Churro" aria-current="false"></button>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="g-photos" aria-label="Gambit bags and bowls">
+        <div class="g-drift g-photos__track">
+          <img src="assets/scene-salt.webp" alt="Gambit Salt bowl on bags" loading="lazy" width="2000" height="1122" />
+          <img src="assets/scene-bbq.webp" alt="Gambit BBQ bowl on bags" loading="lazy" width="2000" height="1122" />
+          <img src="assets/scene-churro.webp" alt="Gambit Churro bowl on bags" loading="lazy" width="1448" height="1086" />
+          <img src="assets/scene-salt.webp" alt="" loading="lazy" width="2000" height="1122" />
+          <img src="assets/scene-bbq.webp" alt="" loading="lazy" width="2000" height="1122" />
+          <img src="assets/scene-churro.webp" alt="" loading="lazy" width="1448" height="1086" />
+        </div>
+      </section>
+
+      <section id="box" class="g-box">
+        <div class="g-box__head g-wrap">
+          <h2 class="in-stock-only">Build your box</h2>
+          <h2 class="sold-out-only">Sold out, for now.</h2>
+          <p class="in-stock-only">
+            Mix any flavors in a case of 6 for $6 a bag, or grab single bags for $11.25. Shipping is free on every order.
+          </p>
+          <p class="sold-out-only">
+            Every flavor sold out. Join the waitlist and you&rsquo;ll be the first to know when we restock.
           </p>
         </div>
 
-        <figure class="shop-lineup">
-          <img
-            src="assets/chips-three-bags.jpeg"
-            width="1024"
-            height="572"
-            alt="Gambit BBQ, Churro, and Salt bags. Pick your flavor below."
-            loading="lazy"
-          />
-        </figure>
-
-        <div class="flavor-grid">
-          <article class="flavor-card salt is-sold-out">
-            <div class="flavor-details">
-              <h3 class="flavor-name">Salt</h3>
-              <p class="sold-out-banner" role="status">Sold out</p>
-              <p class="meta-line">3 servings · classic</p>
-              <p>
-                Golden waffle cut plantain chips with sea salt. Clean and simple, these are the gold
-                standard for Gambit chips
-              </p>
+        <div class="g-flavor-cards">
+          <article class="g-flavor-card g-flavor-card--salt">
+            <div class="g-flavor-card__bag">
+              <img src="assets/bag-salt.webp" alt="Gambit Salt bag" loading="lazy" />
+                <span class="g-sticker g-sticker--card sold-out-only">Sold out</span>
             </div>
+            <div style="text-align: center">
+              <h3 style="margin: 0; font-size: 26px; font-weight: 800">Salt</h3>
+              <div style="font-size: 15px; color: rgba(34, 19, 11, 0.7)">Sea salt · 3 servings</div>
+            </div>
+            <p style="margin: 0; font-size: 14px"><strong>$6</strong> a bag in a case · $11.25 single</p>
+            <div class="in-stock-only" style="width: 100%">
+              <button type="button" class="g-btn" style="width: 100%" data-cart-add data-flavor="salt">Add Salt</button>
+            </div>
+            <div class="sold-out-only g-sold-label">Sold out for now</div>
           </article>
-
-          <article class="flavor-card bbq is-sold-out">
-            <div class="flavor-details">
-              <h3 class="flavor-name">BBQ</h3>
-              <p class="sold-out-banner" role="status">Sold out</p>
-              <p class="meta-line">3 servings · savory</p>
-              <p>
-                The same waffle chip texture we love, with a smoky sweet bbq rub we formulated in
-                house. Try one and you&rsquo;ll come back for seconds.
-              </p>
+          <article class="g-flavor-card g-flavor-card--bbq">
+            <div class="g-flavor-card__bag">
+              <img src="assets/bag-bbq.webp" alt="Gambit BBQ bag" loading="lazy" />
+                <span class="g-sticker g-sticker--card sold-out-only">Sold out</span>
             </div>
+            <div style="text-align: center">
+              <h3 style="margin: 0; font-size: 26px; font-weight: 800">BBQ</h3>
+              <div style="font-size: 15px; color: rgba(34, 19, 11, 0.7)">Smoky sweet · 3 servings</div>
+            </div>
+            <p style="margin: 0; font-size: 14px"><strong>$6</strong> a bag in a case · $11.25 single</p>
+            <div class="sold-out-only g-sold-label">Sold out for now</div>
           </article>
-
-          <article class="flavor-card churro is-sold-out">
-            <div class="flavor-details">
-              <h3 class="flavor-name">Churro</h3>
-              <p class="sold-out-banner" role="status">Sold out</p>
-              <p class="meta-line">3 servings · sweet</p>
-              <p>
-                The same crisp, with cinnamon sugar filling every waffle pocket. It was the dark horse
-                flavor in our flavor tests, but Churro came out on top, consistently.
-              </p>
+          <article class="g-flavor-card g-flavor-card--churro">
+            <div class="g-flavor-card__bag">
+              <img src="assets/bag-churro.webp" alt="Gambit Churro bag" loading="lazy" />
+                <span class="g-sticker g-sticker--card sold-out-only">Sold out</span>
             </div>
+            <div style="text-align: center">
+              <h3 style="margin: 0; font-size: 26px; font-weight: 800">Churro</h3>
+              <div style="font-size: 15px; color: rgba(34, 19, 11, 0.7)">Cinnamon &amp; sugar · 3 servings</div>
+            </div>
+            <p style="margin: 0; font-size: 14px"><strong>$6</strong> a bag in a case · $11.25 single</p>
+            <div class="sold-out-only g-sold-label">Sold out for now</div>
           </article>
         </div>
 
-        <div class="shop-cta-panel">
-          <div class="shop-cta-actions">
-            <a class="btn btn-primary shop-cta-btn" href="build.html">Build your box</a>
-            <a class="btn btn-ghost shop-cta-btn" href="buy.html">Try one chip · $11.25</a>
+        <div class="g-checkout-grid in-stock-only">
+          <div class="g-case">
+            <div style="display: flex; justify-content: space-between; align-items: baseline">
+              <h3 style="margin: 0; font-size: 22px; font-weight: 800">Your case</h3>
+              <span style="font-size: 14px; color: rgba(34, 19, 11, 0.65)"
+                ><span id="case-count">0</span> of 6 · <span id="case-note">case pricing at 6</span></span
+              >
+            </div>
+            <div
+              role="img"
+              aria-label="0 of 6 bags in your case"
+              style="display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px"
+              id="case-slots"
+            >
+              <div data-case-slot><img src="assets/bag-salt.webp" alt="" style="width: 100%; opacity: 0" /></div>
+              <div data-case-slot><img src="assets/bag-salt.webp" alt="" style="width: 100%; opacity: 0" /></div>
+              <div data-case-slot><img src="assets/bag-salt.webp" alt="" style="width: 100%; opacity: 0" /></div>
+              <div data-case-slot><img src="assets/bag-salt.webp" alt="" style="width: 100%; opacity: 0" /></div>
+              <div data-case-slot><img src="assets/bag-salt.webp" alt="" style="width: 100%; opacity: 0" /></div>
+              <div data-case-slot><img src="assets/bag-salt.webp" alt="" style="width: 100%; opacity: 0" /></div>
+            </div>
+            <div
+              role="progressbar"
+              aria-label="Bags toward case pricing"
+              aria-valuemin="0"
+              aria-valuemax="6"
+              aria-valuenow="0"
+              style="height: 6px; border-radius: 999px; background: rgba(34, 19, 11, 0.1); overflow: hidden"
+            >
+              <div id="case-progress" style="height: 100%; width: 0; background: #22130b; transition: width 0.5s"></div>
+            </div>
+            <p id="cart-status" style="margin: 0; font-size: 15px">Pick any 6 for case pricing, or 1–5 single bags. Shipping is always free.</p>
+            <button type="button" class="g-btn" id="fill-mix" hidden style="align-self: flex-start; background: transparent; color: #22130b; box-shadow: inset 0 0 0 1.5px #22130b">
+              Fill the rest with a mix
+            </button>
           </div>
-          <p class="shop-cta-note">Case of 6 · from $36 · free shipping · or 1–5 bags solo</p>
-        </div>
-      </section>
-
-      <section
-        class="about-carousel"
-        id="about"
-        aria-label="About Gambit"
-      >
-        <div class="about-carousel-inner">
-          <div class="about-carousel-layout">
-            <div class="about-carousel-tabs" role="tablist" aria-label="About sections">
-              <button
-                type="button"
-                class="about-carousel-tab is-active"
-                data-slide="0"
-                aria-controls="about-slide-0"
-                aria-selected="true"
-                id="about-tab-btn-0"
-              >
-                About Gambit
-              </button>
-              <button
-                type="button"
-                class="about-carousel-tab"
-                data-slide="1"
-                aria-controls="about-slide-1"
-                aria-selected="false"
-                id="about-tab-btn-1"
-              >
-                Our gambit
-              </button>
-              <button
-                type="button"
-                class="about-carousel-tab"
-                data-slide="2"
-                aria-controls="about-slide-2"
-                aria-selected="false"
-                id="about-tab-btn-2"
-              >
-                Your gambit
-              </button>
+          <div class="g-summary">
+            <h3 style="margin: 0; font-size: 22px; font-weight: 800">Order summary</h3>
+            <div id="summary-lines"></div>
+            <div style="display: flex; justify-content: space-between; padding: 10px 0; font-size: 15px; border-bottom: 1px solid rgba(34, 19, 11, 0.08)">
+              <span>Shipping</span><span style="font-weight: 600">Free</span>
             </div>
+            <div style="display: flex; justify-content: space-between; align-items: baseline; padding-top: 12px">
+              <span style="font-size: 16px; font-weight: 700">Total</span>
+              <span style="display: flex; align-items: baseline; gap: 10px">
+                <s id="summary-strike" hidden style="font-size: 15px; color: rgba(34, 19, 11, 0.45)"></s>
+                <span id="summary-total" style="font-size: 32px; font-weight: 800">$0</span>
+              </span>
+            </div>
+            <form id="checkout-form" class="g-ship-fields">
+              <label class="full">Full name <input type="text" id="field-name" autocomplete="name" required /></label>
+              <label>Email <input type="email" id="field-email" autocomplete="email" required /></label>
+              <label>Phone <input type="tel" id="field-phone" autocomplete="tel" /></label>
+              <label class="full">Street <input type="text" id="field-street" autocomplete="address-line1" required /></label>
+              <label class="full">Apt / unit <input type="text" id="field-street2" autocomplete="address-line2" /></label>
+              <label>City <input type="text" id="field-city" autocomplete="address-level2" required /></label>
+              <label>State <input type="text" id="field-state" autocomplete="address-level1" required /></label>
+              <label>ZIP <input type="text" id="field-zip" autocomplete="postal-code" required inputmode="numeric" /></label>
+              <label class="full">Notes <textarea id="field-notes" rows="2"></textarea></label>
+              <button type="submit" class="g-btn" id="checkout-submit" style="width: 100%; grid-column: 1 / -1" disabled>
+                Add a bag to start
+              </button>
+              <p id="checkout-error" hidden style="grid-column: 1 / -1; color: #a42d1e; margin: 0; font-size: 14px"></p>
+            </form>
+          </div>
+        </div>
 
-            <div class="about-carousel-stage">
-              <article
-                class="about-carousel-slide about-carousel-slide--intro is-active"
-                id="about-slide-0"
-                data-slide="0"
-                role="tabpanel"
-                aria-labelledby="about-tab-btn-0"
-              >
-                <div class="about-carousel-copy">
-                  <h2 class="about-carousel-title" id="about-tab-0">About Gambit</h2>
-                  <p>
-                    Our chips break out of boundaries. We understand what makes plantain chips so
-                    good, that&rsquo;s why we&rsquo;re not afraid to take a gambit with new shapes
-                    and flavors. We&rsquo;ve run tests day after day for months to narrow down on the
-                    shapes and flavors we have for Gambits today, and we&rsquo;ve landed on
-                    something special. Try one and you&rsquo;ll get it too.
-                  </p>
-                </div>
-                <div class="about-carousel-visual about-carousel-visual--trio">
-                  <img
-                    src="assets/about/about-bbq-bowl.jpg"
-                    width="2048"
-                    height="1150"
-                    alt="Gambit BBQ waffle cut chips in a bowl"
-                    loading="lazy"
-                  />
-                  <img
-                    src="assets/about/about-salt-bowl.jpg"
-                    width="2048"
-                    height="1150"
-                    alt="Gambit Salt waffle cut chips in a bowl"
-                    loading="lazy"
-                  />
-                  <img
-                    src="assets/about/about-churro-bowl.jpg"
-                    width="1448"
-                    height="1086"
-                    alt="Gambit Churro waffle cut chips in a bowl"
-                    loading="lazy"
-                  />
-                </div>
-              </article>
-
-              <article
-                class="about-carousel-slide"
-                id="about-slide-1"
-                data-slide="1"
-                role="tabpanel"
-                aria-labelledby="about-tab-btn-1"
-                hidden
-              >
-                <div class="about-carousel-copy">
-                  <h2 class="about-carousel-title" id="about-tab-1">Our gambit</h2>
-                  <p>
-                    It all started when Himanshu grabbed a bag of &ldquo;Hot and Spicy&rdquo;
-                    Plantain Chips to get a taste of childhood. But those chips sucked. The chips we
-                    grew up with were crunchy, salty and always around for us. We realized we took
-                    those chips for granted. As we scoured the aisles and saw rows and rows of fancy
-                    new flavors and shapes on potato chip we realized that plantain chips had been
-                    left behind and we set out to change that. Our first chips sucked. But each batch
-                    was better than the last and we didn&rsquo;t stop when we reached
-                    &ldquo;good&rdquo;. We strove to break boundaries with these chips in the pursuit
-                    of something &ldquo;great&rdquo; and we landed at waffle-cut with crazy good
-                    flavors like Churro and BBQ.
-                  </p>
-                </div>
-                <figure class="about-carousel-visual">
-                  <img
-                    src="assets/about/our-gambit-founders.jpg"
-                    width="1200"
-                    height="1600"
-                    alt="Two plantain bros smiling, founders of Gambit chips"
-                    loading="lazy"
-                  />
-                </figure>
-              </article>
-
-              <article
-                class="about-carousel-slide"
-                id="about-slide-2"
-                data-slide="2"
-                role="tabpanel"
-                aria-labelledby="about-tab-btn-2"
-                hidden
-              >
-                <div class="about-carousel-copy">
-                  <h2 class="about-carousel-title" id="about-tab-2">Your gambit</h2>
-                  <p class="about-carousel-cta-line">
-                    Try one and you&rsquo;ll get it too.
-                    <a class="btn btn-primary about-carousel-shop" href="build.html">Build your box</a>
-                  </p>
-                </div>
-                <figure class="about-carousel-visual">
-                  <img
-                    src="assets/about/your-gambit-bags.jpg"
-                    width="1200"
-                    height="675"
-                    alt="Gambit Salt, BBQ, and Churro chip bags"
-                    loading="lazy"
-                  />
-                </figure>
-              </article>
+        <div id="waitlist" class="g-waitlist sold-out-only" data-waitlist-panel>
+          <div style="display: flex; flex-direction: column; gap: 14px">
+            <h3>Join the waitlist</h3>
+            <p class="g-waitlist__lede">
+              We&rsquo;re taking Plantain chips up on the main stage and you&rsquo;re invited on our journey there! Once
+              we restock you&rsquo;ll be the first to know. Thanks for your support!
+            </p>
+          </div>
+          <div class="g-waitlist__form-col">
+            <div data-waitlist-form-wrap>
+              <form class="g-wl-form" data-waitlist-form novalidate>
+                <input type="text" data-wl-hp name="company" tabindex="-1" autocomplete="off" aria-hidden="true" style="position: absolute; left: -9999px" />
+                <label for="wl-name-d" class="visually-hidden">Name</label>
+                <input id="wl-name-d" class="g-wl-input" type="text" data-wl-name autocomplete="name" placeholder="Name" required />
+                <p class="g-field-error" data-wl-name-error hidden></p>
+                <label for="wl-phone-d" class="visually-hidden">Phone number</label>
+                <input
+                  id="wl-phone-d"
+                  class="g-wl-input"
+                  type="tel"
+                  data-wl-phone
+                  inputmode="tel"
+                  autocomplete="tel"
+                  placeholder="Phone number"
+                  aria-describedby="wl-phone-hint"
+                  required
+                />
+                <p id="wl-phone-hint" class="g-waitlist-hint">US number · +1 optional</p>
+                <p class="g-field-error" data-wl-phone-error hidden></p>
+                <p class="g-field-error" data-wl-form-error hidden></p>
+                <button type="submit" class="g-btn g-wl-submit" data-wl-submit disabled>
+                  Join the waitlist
+                </button>
+              </form>
+            </div>
+            <div class="g-waitlist-success" data-waitlist-success hidden role="status">
+              <span class="g-waitlist-success__icon" aria-hidden="true">✓</span>
+              <p class="g-waitlist-success__title" data-waitlist-success-name></p>
+              <p class="g-waitlist-success__body" data-waitlist-joined-msg></p>
             </div>
           </div>
         </div>
       </section>
+
+      <section id="about" class="g-about">
+        <div class="g-about__grid" id="story">
+          <div class="g-about__photo">
+            <figure class="g-about__photo-frame">
+              <img
+                src="assets/founders.webp"
+                width="1450"
+                height="1220"
+                alt="Himanshu and Atharv, Gambit's founders"
+                loading="lazy"
+              />
+            </figure>
+            <div class="g-about__cap">
+              <span style="font-weight: 700">Himanshu &amp; Atharv</span>
+              <a href="https://www.instagram.com/twoplantainbros/" class="g-link">@twoplantainbros</a>
+            </div>
+          </div>
+          <div class="g-about__copy" style="display: flex; flex-direction: column; gap: 20px">
+            <h2>About Gambit</h2>
+            <p class="g-about__lede">Our chips break out of boundaries.</p>
+            <p>
+              We understand what makes plantain chips so good, that&rsquo;s why we&rsquo;re not afraid to take a gambit
+              with new shapes and flavors. We&rsquo;ve run tests day after day for months to narrow down on the shapes
+              and flavors we have for Gambits today, and we&rsquo;ve landed on something special. Try one and you&rsquo;ll
+              get it too.
+            </p>
+            <h2>Our gambit</h2>
+            <p>
+              It all started when Himanshu grabbed a bag of &ldquo;Hot and Spicy&rdquo; Plantain Chips to get a taste of
+              childhood. But those chips sucked. The chips we grew up with were crunchy, salty and always around for us.
+              We realized we took those chips for granted.
+            </p>
+            <p>
+              As we scoured the aisles and saw rows and rows of fancy new flavors and shapes on potato chip we realized
+              that plantain chips had been left behind and we set out to change that.
+            </p>
+            <p>
+              Our first chips sucked. But each batch was better than the last and we didn&rsquo;t stop when we reached
+              &ldquo;good&rdquo;. We strove to break boundaries with these chips in the pursuit of something
+              &ldquo;great&rdquo; and we landed at waffle-cut with crazy good flavors like Churro and BBQ.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="closing" class="g-closing">
+        <div class="g-closing__bowls" aria-hidden="true">
+          <div class="g-closing-roll">
+            <img class="g-idle" src="assets/bowl-salt.webp" alt="" width="250" height="250" />
+          </div>
+          <div class="g-closing-roll">
+            <img class="g-idle" style="animation-delay: -37s" src="assets/bowl-bbq.webp" alt="" width="250" height="250" />
+          </div>
+          <div class="g-closing-roll">
+            <img class="g-idle" style="animation-delay: -74s" src="assets/bowl-churro.webp" alt="" width="250" height="250" />
+          </div>
+        </div>
+        <h2>Try one and you&rsquo;ll get it too.</h2>
+        <a href="#box" class="g-btn in-stock-only">Build your box</a>
+        <a href="#waitlist" class="g-btn sold-out-only">Join the waitlist</a>
+      </section>
+
+      <section id="faq" class="g-faq">
+        <h2>FAQ</h2>
+        <div class="g-faq__item">
+          <h3 style="margin: 0">
+            <button type="button" aria-expanded="false">
+              Where do you ship?
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14"></path><path d="M12 5v14" data-faq-v></path></svg>
+            </button>
+          </h3>
+          <p class="g-faq__answer" hidden>Continental U.S. Every order ships free.</p>
+        </div>
+        <div class="g-faq__item">
+          <h3 style="margin: 0">
+            <button type="button" aria-expanded="false">
+              Can I mix flavors?
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14"></path><path d="M12 5v14" data-faq-v></path></svg>
+            </button>
+          </h3>
+          <p class="g-faq__answer" hidden>Mix any flavors in your case, and add extra bags anytime.</p>
+        </div>
+        <div class="g-faq__item">
+          <h3 style="margin: 0">
+            <button type="button" aria-expanded="false">
+              Can I buy fewer than 6?
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14"></path><path d="M12 5v14" data-faq-v></path></svg>
+            </button>
+          </h3>
+          <p class="g-faq__answer" hidden>
+            Not ready for a full case? Grab a bag for $11.25. Hit 6 bags and you get case pricing. Shipping is free
+            either way.
+          </p>
+        </div>
+        <div class="g-faq__item">
+          <h3 style="margin: 0">
+            <button type="button" aria-expanded="false">
+              What happens after I order?
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14"></path><path d="M12 5v14" data-faq-v></path></svg>
+            </button>
+          </h3>
+          <p class="g-faq__answer" hidden>You&rsquo;ll get a confirmation email shortly after checkout.</p>
+        </div>
+        <div class="g-faq__item">
+          <h3 style="margin: 0">
+            <button type="button" aria-expanded="false">
+              What&rsquo;s in them?
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14"></path><path d="M12 5v14" data-faq-v></path></svg>
+            </button>
+          </h3>
+          <p class="g-faq__answer" hidden><em>Founder to supply: ingredients and allergen info per flavor.</em></p>
+        </div>
+        <p class="g-faq__foot">
+          Still curious?
+          <a href="mailto:twoplantainbros@gmail.com" class="g-link" style="color: #22130b; font-weight: 600"
+            >twoplantainbros@gmail.com</a
+          >
+        </p>
+      </section>
+
+      <div class="g-band g-band--red g-ticker--reverse" aria-hidden="true">
+        <div class="g-ticker">
+          <span class="g-band__item">Plantain chips<svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><g fill="none" stroke="#E3A92B" stroke-width="3"><path d="M2 6h18M2 16h18M6 2v18M16 2v18"></path></g></svg></span>
+          <span class="g-band__item">Waffle cut<svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><g fill="none" stroke="#E3A92B" stroke-width="3"><path d="M2 6h18M2 16h18M6 2v18M16 2v18"></path></g></svg></span>
+          <span class="g-band__item">One chip and you&rsquo;ll get it<svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><g fill="none" stroke="#E3A92B" stroke-width="3"><path d="M2 6h18M2 16h18M6 2v18M16 2v18"></path></g></svg></span>
+          <span class="g-band__item">Plantain chips<svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><g fill="none" stroke="#E3A92B" stroke-width="3"><path d="M2 6h18M2 16h18M6 2v18M16 2v18"></path></g></svg></span>
+          <span class="g-band__item">Waffle cut<svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><g fill="none" stroke="#E3A92B" stroke-width="3"><path d="M2 6h18M2 16h18M6 2v18M16 2v18"></path></g></svg></span>
+          <span class="g-band__item">One chip and you&rsquo;ll get it<svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><g fill="none" stroke="#E3A92B" stroke-width="3"><path d="M2 6h18M2 16h18M6 2v18M16 2v18"></path></g></svg></span>
+        </div>
+      </div>
     </main>
 
-    <footer>
-      <p>&copy; Gambit · Waffle cut plantain chips · gambitchips.com</p>
-      <p>
-        <a href="mailto:twoplantainbros@gmail.com">twoplantainbros@gmail.com</a>
-      </p>
+    <footer class="g-footer">
+      <div class="g-footer__grid">
+        <div>
+          <img src="assets/logo-light.png" width="941" height="248" alt="Gambit" style="height: 34px; width: auto" />
+        </div>
+        <div>
+          <div class="g-footer__col-title">Shop</div>
+          <a href="#flavors" class="g-link" style="display: block">Flavors</a>
+          <a href="#box" class="g-link" style="display: block">Build your box</a>
+        </div>
+        <div>
+          <div class="g-footer__col-title">Gambit</div>
+          <a href="#about" class="g-link" style="display: block">About Gambit</a>
+          <a href="#story" class="g-link" style="display: block">Our gambit</a>
+          <a href="#faq" class="g-link" style="display: block">FAQ</a>
+        </div>
+        <div>
+          <div class="g-footer__col-title">Say hi</div>
+          <a href="https://www.instagram.com/twoplantainbros/" class="g-link" style="display: block">@twoplantainbros</a>
+        </div>
+      </div>
+      <div class="g-footer__legal">
+        <span>&copy; Gambit · Waffle cut plantain chips</span>
+        <span>Ships to the continental U.S.</span>
+      </div>
     </footer>
 
-    <script src="assets/about-carousel.js"></script>
-    <script>
-      (function () {
-        var qs = window.location.search;
-        if (qs.indexOf("session_id=") !== -1 || qs.indexOf("paid=1") !== -1) {
-          window.location.replace("build.html" + qs);
-        }
-      })();
-    </script>
+    <script src="assets/gambit.js"></script>
+    <script src="assets/gambit-waitlist.js"></script>
+    <script src="assets/gambit-cart.js"></script>
   </body>
 </html>

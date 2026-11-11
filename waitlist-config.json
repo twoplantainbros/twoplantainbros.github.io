@@ -1,5 +1,9 @@
 {
   "waitlistFormUrl": "https://forms.gle/Fcv5u5New5oidTjJ7",
-  "waitlistHeadline": "Restock waitlist",
-  "waitlistNote": "We text when bags are back — usually flavor by flavor."
+  "formResponseUrl": "https://docs.google.com/forms/d/e/1FAIpQLScJREpXQ4RiTi5_xfZW2WmZSuWqhR4NW1svv4EMoLp2OokZog/formResponse",
+  "entries": {
+    "name": "entry.9005319",
+    "phone": "entry.867260026"
+  },
+  "joinedMessage": "Once we restock you'll be the first to know. Thanks for your support!"
 }

@@ -41,7 +41,7 @@ Edit tone and wording in this file, then ask to **sync copy to the site**. Each 
 |----|------|
 | `home.hero.eyebrow` | Waffle cut plantain chips |
 | `home.hero.title` | Gambit |
-| `home.hero.flavor_line` | Waffle cut. Ridiculously crisp. |
+| `home.hero.flavor_line` | Waffle cut. One chip and you'll get it. |
 | `home.hero.lede` | We took a gambit on these chips and we're hoping you will too. **One chip and you'll get it.** |
 | `home.hero.badge.case` | Case of 6 · from $36 |
 | `home.hero.badge.shipping` | Free shipping |

@@ -1,0 +1,583 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Gambit — Waffle cut plantain chips</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:'Archivo',system-ui,sans-serif;background:#F6F0E6;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+.btn{transition:transform .2s ease,background-color .2s ease,box-shadow .2s ease,color .6s ease}
+.btn:hover{transform:translateY(-1px);box-shadow:0 10px 24px rgba(34,19,11,.18)}
+.btn:active{transform:translateY(0)}
+.link{text-decoration:none;background-image:linear-gradient(currentColor,currentColor);background-size:0 1.5px;background-repeat:no-repeat;background-position:0 100%;transition:background-size .3s ease}
+.link:hover{background-size:100% 1.5px}
+button:focus-visible,a:focus-visible,input:focus-visible{outline:2px solid currentColor;outline-offset:3px}
+button:disabled{cursor:not-allowed}
+@keyframes rise{from{transform:translateY(105%)}to{transform:translateY(0)}}
+@keyframes fadeup{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+@keyframes roll{0%{transform:translateX(var(--fromx)) rotate(var(--fromr));opacity:0}10%{opacity:1}100%{transform:translateX(0) rotate(0deg);opacity:1}}
+@keyframes shadowin{from{opacity:0;transform:scale(.6)}to{opacity:1;transform:scale(1)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes marquee{to{transform:translateX(-50%)}}
+.rise{display:inline-block;animation:rise 1s cubic-bezier(.2,.8,.2,1) both}
+.fadeup{animation:fadeup .9s cubic-bezier(.2,.8,.2,1) both}
+.roll{animation:roll 1.7s cubic-bezier(.12,.82,.22,1) both}
+.shadowin{animation:shadowin 1.4s cubic-bezier(.2,.8,.2,1) both}
+.idle{animation:spin 120s linear infinite}
+.ring{animation:spin 60s linear infinite reverse}
+.ticker{display:flex;width:max-content;animation:marquee 36s linear infinite}
+.drift{display:flex;width:max-content;animation:marquee 90s linear infinite}
+.drift:hover{animation-play-state:paused}
+.bowl-btn{display:block;text-decoration:none;color:inherit}
+.bowl-btn .lift{transition:transform 1s cubic-bezier(.2,.8,.2,1)}
+.bowl-btn:hover .lift{transform:translateY(-12px) rotate(28deg)}
+.bowl-btn .shade{transition:transform 1s cubic-bezier(.2,.8,.2,1),opacity 1s ease}
+.bowl-btn:hover .shade{transform:scale(.88);opacity:.7}
+.bowl-btn .go{opacity:0;transform:translateY(-4px);transition:opacity .3s ease,transform .3s ease}
+.bowl-btn:hover .go,.bowl-btn:focus-visible .go{opacity:1;transform:none}
+.scrolly{display:grid;grid-template-columns:minmax(0,560px) minmax(0,560px);justify-content:space-between;gap:clamp(32px,6vw,80px)}
+.stage{position:sticky;top:150px}
+.chapter{min-height:640px;display:flex;flex-direction:column;justify-content:center;gap:18px}
+.thumb-spin{transition:transform .8s cubic-bezier(.2,.8,.2,1)}
+.slot img{transition:transform .5s cubic-bezier(.3,1.6,.5,1),opacity .3s ease}
+@keyframes bagin{from{opacity:0;transform:translateY(40px) rotate(-10deg)}to{opacity:1;transform:translateY(0) rotate(-5deg)}}
+.bagin{animation:bagin 1s cubic-bezier(.2,.9,.25,1.15) both}
+.bag-wiggle{transition:transform .55s cubic-bezier(.3,1.7,.5,1)}
+.sticker{position:absolute;z-index:3;display:inline-grid;place-items:center;padding:6px 10px;border-radius:999px;background:#F6F0E6;color:#22130B;box-shadow:0 0 0 1.5px #22130B,0 6px 14px rgba(34,19,11,.25);font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;white-space:nowrap;transform:rotate(9deg)}
+.wl-input{min-height:54px;border-radius:999px;border:1.5px solid rgba(246,240,230,.25);background:rgba(246,240,230,.06);padding:0 22px;font:inherit;font-size:16px;color:#F6F0E6}
+.wl-input::placeholder{color:rgba(246,240,230,.55)}
+.wl-input:focus{outline:none;border-color:#E3A92B}
+.chip{transition:background-color .25s ease,color .25s ease,box-shadow .25s ease,transform .15s ease}
+.chip:active{transform:scale(.97)}
+.bowl-btn .hbag{transition:transform .8s cubic-bezier(.2,.8,.2,1)}
+.bowl-btn:hover .hbag{transform:translateY(-6px) rotate(-2deg)}
+@media (max-width: 860px){.scrolly{grid-template-columns:minmax(0,1fr)}.stage-col{order:-1}.stage{position:relative;top:0}.chapter{min-height:0;padding:32px 0}.trio{flex-wrap:wrap}}
+@media (prefers-reduced-motion: reduce){.rise,.fadeup,.roll,.shadowin,.idle,.ring,.ticker,.drift,.bagin{animation:none !important}.thumb-spin,.bowl-btn .lift{transition:none !important}html{scroll-behavior:auto}}
+</style>
+</helmet>
+<div style="color: #22130B; background: #F6F0E6; overflow-x: clip">
+
+<header style="position: sticky; top: 0; z-index: 30; background: #F6F0E6; border-bottom: 1px solid rgba(34,19,11,.07)">
+<nav aria-label="Main" style="max-width: 1320px; margin: 0 auto; padding: 14px clamp(16px, 4vw, 48px); display: flex; align-items: center; gap: 28px; flex-wrap: wrap">
+<a href="#top" aria-label="Gambit home" style="display: block; line-height: 0"><img src="/_blob/597dd43ef7c47c8a8d39dffafeddfaf2" alt="Gambit" style="height: 30px; width: auto"></a>
+<div style="display: flex; gap: 28px; font-size: 15px; font-weight: 500; flex-grow: 1; justify-content: center; flex-wrap: wrap">
+<a href="#flavors" class="link">Flavors</a>
+<a href="#about" class="link">About</a>
+<a href="#faq" class="link">FAQ</a>
+</div>
+<a href="https://www.instagram.com/twoplantainbros/" aria-label="Gambit on Instagram, @twoplantainbros" style="display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.5" cy="6.5" r="0.6" fill="currentColor"></circle></svg>
+</a>
+<sc-if value="{{inStock}}" hint-placeholder-val="{{false}}">
+<a href="#box" class="btn" aria-label="Your box, {{n}} bags" style="display: inline-flex; align-items: center; gap: 10px; min-height: 44px; padding: 0 8px 0 18px; border-radius: 999px; background: #22130B; color: #F6F0E6; text-decoration: none; font-weight: 700; font-size: 15px">
+<span>Box</span>
+<span style="display: grid; place-items: center; min-width: 28px; height: 28px; padding: 0 8px; border-radius: 999px; background: #F6F0E6; color: #22130B; font-size: 13px">{{n}}</span>
+</a>
+</sc-if>
+<sc-if value="{{soldOut}}" hint-placeholder-val="{{true}}">
+<a href="#waitlist" class="btn" style="display: inline-flex; align-items: center; min-height: 44px; padding: 0 20px; border-radius: 999px; background: #22130B; color: #F6F0E6; text-decoration: none; font-weight: 700; font-size: 15px">Join the waitlist</a>
+</sc-if>
+</nav>
+</header>
+
+<!-- Hero: the trio spins onto the table -->
+<section id="top" style="max-width: 1320px; margin: 0 auto; padding: clamp(24px, 3vw, 40px) clamp(16px, 4vw, 48px) clamp(64px, 7vw, 104px)">
+<div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 28px 64px; flex-wrap: wrap">
+<h1 style="margin: 0; font-size: clamp(48px, 5.6vw, 88px); line-height: .9; font-weight: 800; letter-spacing: -.04em">
+<span style="display: block; overflow: hidden; padding-bottom: .05em"><span class="rise" style="animation-delay: .05s">Waffle cut.</span></span>
+<span style="display: block; overflow: hidden; padding-bottom: .05em"><span class="rise" style="animation-delay: .17s">Ridiculously crisp.</span></span>
+</h1>
+<div class="fadeup" style="max-width: 360px; display: flex; flex-direction: column; gap: 18px; animation-delay: 1.5s">
+<p style="margin: 0; font-size: 18px; line-height: 1.55; color: #4A3428">We took a gambit on these chips and we’re hoping you will too. One chip and you’ll get it.</p>
+<div style="display: flex; gap: 18px; align-items: center; flex-wrap: wrap">
+<sc-if value="{{inStock}}" hint-placeholder-val="{{false}}">
+<a href="#box" class="btn" style="display: inline-flex; align-items: center; min-height: 52px; padding: 0 26px; border-radius: 999px; background: #22130B; color: #F6F0E6; text-decoration: none; font-weight: 700; font-size: 16px">Build your box</a>
+<span style="font-size: 14px; color: #6B5446">Free shipping on every order</span>
+</sc-if>
+<sc-if value="{{soldOut}}" hint-placeholder-val="{{true}}">
+<a href="#box" class="btn" style="display: inline-flex; align-items: center; min-height: 52px; padding: 0 26px; border-radius: 999px; background: #22130B; color: #F6F0E6; text-decoration: none; font-weight: 700; font-size: 16px">Join the waitlist</a>
+<span style="font-size: 14px; color: #6B5446">Every flavor is sold out for now</span>
+</sc-if>
+</div>
+</div>
+</div>
+
+<div class="trio" style="display: flex; justify-content: space-between; align-items: flex-start; gap: clamp(16px, 3vw, 40px); margin-top: clamp(28px, 3.4vw, 48px)">
+<sc-for list="{{flavors}}" as="item" hint-placeholder-count="3">
+<a href="#flavors" class="bowl-btn" aria-label="{{item.name}}: {{item.short}}" onClick="{{item.go}}" style="flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; align-items: center; gap: 22px">
+<div style="position: relative; width: min(100%, 400px); aspect-ratio: 1 / 1">
+<div class="shadowin" style="position: absolute; left: 10%; right: 10%; bottom: -1%; height: 14%; animation-delay: {{item.shadowDelay}}"><div class="shade" style="width: 100%; height: 100%; border-radius: 50%; background: rgba(34,19,11,.5); filter: blur(16px)"></div></div>
+<div class="roll" style="position: absolute; inset: 0; --fromx: {{item.fromx}}; --fromr: {{item.fromr}}; animation-delay: {{item.delay}}">
+<div class="lift" style="width: 100%; height: 100%">
+<img class="idle" src="{{item.disc}}" alt="{{item.alt}}" style="width: 100%; height: 100%; display: block; animation-delay: {{item.idleDelay}}">
+</div>
+</div>
+<div class="bagin" style="position: absolute; left: -2%; bottom: 3%; width: 24%; z-index: 2; animation-delay: {{item.bagDelay}}"><img class="hbag" src="{{item.bag}}" alt="Gambit {{item.name}} bag" style="width: 100%; height: auto; display: block; filter: drop-shadow(0 14px 14px rgba(34,19,11,.32))"><sc-if value="{{soldOut}}" hint-placeholder-val="{{true}}"><span class="sticker" style="top: -6%; left: 46%; font-size: 9px; padding: 4px 7px">Sold out</span></sc-if></div>
+</div>
+<div class="fadeup" style="display: flex; align-items: baseline; gap: 12px; animation-delay: {{item.capDelay}}">
+<span style="font-size: 26px; font-weight: 800; letter-spacing: -.02em">{{item.name}}</span>
+<span style="font-size: 15px; color: #6B5446">{{item.short}}</span>
+<span class="go" aria-hidden="true" style="font-size: 18px; font-weight: 700">→</span>
+</div>
+</a>
+</sc-for>
+</div>
+</section>
+
+<!-- Ticker -->
+<div aria-hidden="true" style="background: #22130B; color: #F6F0E6; overflow: hidden; padding: 22px 0">
+<div class="ticker">
+<sc-for list="{{tick}}" as="t" hint-placeholder-count="8">
+<span style="display: inline-flex; align-items: center; gap: 36px; padding-right: 36px; font-size: 30px; font-weight: 800; letter-spacing: -.01em; white-space: nowrap; font-stretch: 112%">{{t}}<svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><g fill="none" stroke="#E3A92B" stroke-width="3"><path d="M2 6h18M2 16h18M6 2v18M16 2v18"></path></g></svg></span>
+</sc-for>
+</div>
+</div>
+
+<!-- Flavor showcase: scroll spins the bowl, the room changes color -->
+<section id="flavors" style="background: {{theme.bg}}; color: {{theme.ink}}; transition: background-color .9s ease, color .9s ease">
+<div class="scrolly" ref="{{setScrolly}}" style="max-width: 1320px; margin: 0 auto; padding: 0 clamp(16px, 4vw, 48px)">
+<div>
+<sc-for list="{{flavors}}" as="item" hint-placeholder-count="3">
+<article class="chapter" data-chapter="{{item.id}}">
+<div style="font-size: 13px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: {{theme.accent}}; transition: color .9s ease">{{item.num}} · {{item.tag}}</div>
+<h2 style="margin: 0; font-size: clamp(64px, 8vw, 128px); line-height: .86; font-weight: 800; letter-spacing: -.045em">{{item.name}}</h2>
+<p style="margin: 0; font-size: 20px; line-height: 1.55; max-width: 34ch; color: {{theme.sub}}; transition: color .9s ease">{{item.desc}}</p>
+<div style="padding-top: 10px; max-width: 340px">
+<sc-if value="{{item.showAdd}}" hint-placeholder-val="{{true}}">
+<button type="button" class="btn" onClick="{{item.add}}" style="width: 100%; min-height: 56px; border: 0; border-radius: 999px; background: {{theme.btnBg}}; color: {{theme.btnInk}}; font: inherit; font-size: 16px; font-weight: 700; cursor: pointer">Add {{item.name}} to box</button>
+</sc-if>
+<sc-if value="{{item.showStep}}" hint-placeholder-val="{{false}}">
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 12px; background: {{theme.pill}}; border-radius: 999px; padding: 6px">
+<button type="button" aria-label="Remove one {{item.name}}" onClick="{{item.sub}}" style="width: 44px; height: 44px; border-radius: 50%; border: 0; background: transparent; color: inherit; font: inherit; font-size: 22px; cursor: pointer">−</button>
+<span aria-live="polite" style="font-weight: 700; font-size: 16px">{{item.count}} in your box</span>
+<button type="button" aria-label="Add one {{item.name}}" onClick="{{item.add}}" style="width: 44px; height: 44px; border-radius: 50%; border: 0; background: {{theme.btnBg}}; color: {{theme.btnInk}}; font: inherit; font-size: 22px; cursor: pointer">+</button>
+</div>
+</sc-if>
+<sc-if value="{{item.showSold}}" hint-placeholder-val="{{false}}">
+<div style="display: flex; flex-direction: column; gap: 12px">
+<span style="font-size: 13px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; opacity: .85">Sold out for now</span>
+<a href="#waitlist" class="btn" style="display: grid; place-items: center; min-height: 56px; border-radius: 999px; background: {{theme.btnBg}}; color: {{theme.btnInk}}; text-decoration: none; font-size: 16px; font-weight: 700">Join the waitlist</a>
+</div>
+</sc-if>
+</div>
+</article>
+</sc-for>
+</div>
+<div class="stage-col">
+<div class="stage" style="width: 100%; max-width: 560px; aspect-ratio: 1 / 1; margin-left: auto">
+<svg class="ring" viewBox="0 0 620 620" aria-hidden="true" style="position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible">
+<defs><path id="gmb-ring" d="M310,310 m-292,0 a292,292 0 1,1 584,0 a292,292 0 1,1 -584,0"></path></defs>
+<text style="font-size: 13px; font-weight: 700; letter-spacing: .32em; fill: currentColor; opacity: .7"><textPath href="#gmb-ring" textLength="1825" lengthAdjust="spacing">WAFFLE-CUT PLANTAIN CHIPS • ONE CHIP AND YOU’LL GET IT • WAFFLE-CUT PLANTAIN CHIPS • ONE CHIP AND YOU’LL GET IT •</textPath></text>
+</svg>
+<div style="position: absolute; left: 14%; right: 14%; bottom: 3%; height: 18%; border-radius: 50%; background: rgba(20,8,4,.5); filter: blur(28px)"></div>
+<sc-if value="{{soldOut}}" hint-placeholder-val="{{true}}"><span class="sticker" style="left: 4%; bottom: 30%">Sold out</span></sc-if>
+<div ref="{{setSpin}}" style="position: absolute; inset: 7%; will-change: transform">
+<sc-for list="{{flavors}}" as="item" hint-placeholder-count="3">
+<img src="{{item.disc}}" alt="{{item.alt}}" style="position: absolute; inset: 0; width: 100%; height: 100%; opacity: {{item.stageOpacity}}; transition: opacity .8s ease">
+</sc-for>
+</div>
+<sc-for list="{{flavors}}" as="item" hint-placeholder-count="3">
+<img src="{{item.bag}}" alt="" style="position: absolute; left: -8%; bottom: -4%; width: 23%; height: auto; z-index: 2; opacity: {{item.stageOpacity}}; transform: translateY({{item.stageBagY}}) rotate(-5deg); transition: opacity .6s ease, transform .9s cubic-bezier(.2,.9,.25,1.15); filter: drop-shadow(0 18px 18px rgba(20,8,4,.4))">
+</sc-for>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Real bags, real bowls: a slow drift -->
+<section aria-label="Gambit bags and bowls" style="padding: clamp(64px, 7vw, 104px) 0; overflow: hidden">
+<div class="drift">
+<sc-for list="{{scenes}}" as="s" hint-placeholder-count="6">
+<img src="{{s.src}}" alt="{{s.alt}}" style="height: clamp(280px, 30vw, 440px); width: auto; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 22px; margin-right: 18px; display: block">
+</sc-for>
+</div>
+</section>
+
+<!-- Build your box: the bags lead -->
+<section id="box" style="background: #F6F0E6; border-top: 1px solid rgba(34,19,11,.08)">
+<div style="max-width: 1240px; margin: 0 auto; padding: clamp(80px, 9vw, 120px) clamp(16px, 4vw, 48px); display: flex; flex-direction: column; gap: 40px">
+<div style="display: flex; flex-direction: column; gap: 14px; align-items: center; text-align: center">
+<sc-if value="{{inStock}}" hint-placeholder-val="{{false}}">
+<h2 style="margin: 0; font-size: clamp(44px, 5vw, 72px); line-height: .95; font-weight: 800; letter-spacing: -.035em">Build your box</h2>
+<p style="margin: 0; font-size: 18px; line-height: 1.55; color: #4A3428; max-width: 46ch">Mix any flavors in a case of 6 for $6 a bag, or grab single bags for $11.25. Shipping is free on every order.</p>
+</sc-if>
+<sc-if value="{{soldOut}}" hint-placeholder-val="{{true}}">
+<h2 style="margin: 0; font-size: clamp(44px, 5vw, 72px); line-height: .95; font-weight: 800; letter-spacing: -.035em">Sold out, for now.</h2>
+<p style="margin: 0; font-size: 18px; line-height: 1.55; color: #4A3428; max-width: 48ch">Every flavor sold out. Join the waitlist and you’ll be the first to know when we restock.</p>
+</sc-if>
+</div>
+
+
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 20px">
+<sc-for list="{{flavors}}" as="item" hint-placeholder-count="3">
+<article style="background: {{item.tint}}; border-radius: 28px; padding: 36px 24px 24px; display: flex; flex-direction: column; align-items: center; gap: 18px">
+<div style="position: relative; height: 320px; width: 100%; display: grid; place-items: end center">
+<div style="position: absolute; left: 50%; bottom: -6px; width: 210px; height: 30px; margin-left: -105px; border-radius: 50%; background: rgba(34,19,11,.35); filter: blur(12px)"></div>
+<img class="bag-wiggle" src="{{item.bag}}" alt="Gambit {{item.name}} bag" style="position: relative; height: 300px; width: auto; display: block; transform: translateY({{item.bagLift}}) rotate({{item.bagTilt}})">
+<sc-if value="{{soldOut}}" hint-placeholder-val="{{true}}"><span class="sticker" style="top: 8px; left: calc(50% + 46px)">Sold out</span></sc-if>
+</div>
+<div style="text-align: center; display: flex; flex-direction: column; gap: 4px">
+<h3 style="margin: 0; font-size: 26px; font-weight: 800; letter-spacing: -.02em">{{item.name}}</h3>
+<div style="font-size: 15px; color: rgba(34,19,11,.7)">{{item.note}} · 3 servings</div>
+</div>
+<div style="font-size: 14px; color: rgba(34,19,11,.75)"><strong style="color: #22130B; font-size: 16px">$6</strong> a bag in a case · $11.25 single</div>
+<div style="width: 100%">
+<sc-if value="{{item.showAdd}}" hint-placeholder-val="{{true}}">
+<button type="button" class="btn" onClick="{{item.add}}" style="width: 100%; min-height: 54px; border: 0; border-radius: 999px; background: #22130B; color: #F6F0E6; font: inherit; font-size: 16px; font-weight: 700; cursor: pointer">Add {{item.name}}</button>
+</sc-if>
+<sc-if value="{{item.showStep}}" hint-placeholder-val="{{false}}">
+<div style="display: flex; align-items: center; justify-content: space-between; background: rgba(34,19,11,.08); border-radius: 999px; padding: 5px">
+<button type="button" aria-label="Remove one {{item.name}}" onClick="{{item.sub}}" style="width: 44px; height: 44px; border-radius: 50%; border: 0; background: transparent; color: #22130B; font: inherit; font-size: 22px; cursor: pointer">−</button>
+<span aria-live="polite" style="font-weight: 700; font-size: 16px">{{item.count}} in your box</span>
+<button type="button" aria-label="Add one {{item.name}}" onClick="{{item.add}}" style="width: 44px; height: 44px; border-radius: 50%; border: 0; background: #22130B; color: #F6F0E6; font: inherit; font-size: 22px; cursor: pointer">+</button>
+</div>
+</sc-if>
+<sc-if value="{{item.showSold}}" hint-placeholder-val="{{false}}"><div style="display: grid; place-items: center; min-height: 54px; border-radius: 999px; background: rgba(34,19,11,.07); color: rgba(34,19,11,.62); font-size: 13px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase">Sold out for now</div></sc-if>
+</div>
+</article>
+</sc-for>
+</div>
+
+<sc-if value="{{inStock}}" hint-placeholder-val="{{false}}">
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)); gap: 20px; align-items: start">
+<div style="border-radius: 28px; background: #EFE6D6; color: #22130B; padding: 28px; display: flex; flex-direction: column; gap: 22px">
+<div style="display: flex; justify-content: space-between; align-items: baseline; gap: 12px">
+<h3 style="margin: 0; font-size: 22px; font-weight: 800">Your case</h3>
+<span style="font-size: 14px; color: rgba(34,19,11,.65)">{{nCapped}} of 6 · {{caseNote}}</span>
+</div>
+<div role="img" aria-label="{{nCapped}} of 6 bags in your case" style="display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 10px; align-items: end">
+<sc-for list="{{slots}}" as="sl" hint-placeholder-count="6">
+<div class="slot" style="aspect-ratio: 5 / 8; border-radius: 10px; box-shadow: inset 0 0 0 1.5px rgba(34,19,11,{{sl.ring}}); background: rgba(34,19,11,{{sl.fill}}); display: grid; place-items: end center; overflow: visible">
+<img src="{{sl.img}}" alt="" style="width: 100%; height: auto; display: block; opacity: {{sl.op}}; transform: translateY({{sl.y}}) scale({{sl.scale}})">
+</div>
+</sc-for>
+</div>
+<div role="progressbar" aria-label="Bags toward case pricing" aria-valuemin="0" aria-valuemax="6" aria-valuenow="{{nCapped}}" style="height: 6px; border-radius: 999px; background: rgba(34,19,11,.1); overflow: hidden"><div style="height: 100%; width: {{progress}}; background: #22130B; transition: width .5s cubic-bezier(.2,.8,.2,1)"></div></div>
+<div style="font-size: 15px; color: rgba(34,19,11,.8)">{{msg}}</div>
+<sc-if value="{{showFill}}" hint-placeholder-val="{{false}}"><button type="button" class="btn" onClick="{{fill}}" style="align-self: flex-start; min-height: 48px; padding: 0 22px; border: 1.5px solid #22130B; border-radius: 999px; background: transparent; color: #22130B; font: inherit; font-size: 15px; font-weight: 700; cursor: pointer">Fill the rest with a mix</button></sc-if>
+</div>
+
+<div style="border-radius: 28px; background: #FFFCF6; box-shadow: 0 1px 0 rgba(34,19,11,.06), 0 0 0 1px rgba(34,19,11,.08); padding: 28px; display: flex; flex-direction: column; gap: 16px">
+<h3 style="margin: 0; font-size: 22px; font-weight: 800">Order summary</h3>
+<div style="display: flex; flex-direction: column">
+<sc-for list="{{lines}}" as="ln" hint-placeholder-count="2">
+<div style="display: flex; align-items: center; gap: 12px; padding: 10px 0; border-bottom: 1px solid rgba(34,19,11,.08)">
+<img src="{{ln.bag}}" alt="" style="width: 28px; height: auto; display: block">
+<span style="flex-grow: 1; font-size: 15px">{{ln.count}} × {{ln.name}}</span>
+<span style="font-size: 15px; font-weight: 600">{{ln.amt}}</span>
+</div>
+</sc-for>
+<sc-if value="{{noLines}}" hint-placeholder-val="{{false}}"><div style="padding: 10px 0; font-size: 15px; color: rgba(34,19,11,.55); border-bottom: 1px solid rgba(34,19,11,.08)">Your box is empty.</div></sc-if>
+<div style="display: flex; justify-content: space-between; padding: 10px 0; font-size: 15px; border-bottom: 1px solid rgba(34,19,11,.08)"><span>Shipping</span><span style="font-weight: 600">{{shipLabel}}</span></div>
+<div style="display: flex; justify-content: space-between; align-items: baseline; padding-top: 12px"><span style="font-size: 16px; font-weight: 700">Total</span><span style="display: flex; align-items: baseline; gap: 10px"><sc-if value="{{isCase}}" hint-placeholder-val="{{false}}"><s style="font-size: 15px; color: rgba(34,19,11,.45)">{{soloStr}}</s></sc-if><span style="font-size: 32px; font-weight: 800; letter-spacing: -.02em">{{priceStr}}</span></span></div>
+</div>
+<button type="button" class="btn" disabled="{{ctaDisabled}}" style="min-height: 58px; border: {{ctaBorder}}; border-radius: 999px; background: {{ctaBg}}; color: {{ctaInk}}; font: inherit; font-size: 17px; font-weight: 700; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 10px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg>{{ctaLabel}}</button>
+<ul style="list-style: none; margin: 4px 0 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 10px 16px; font-size: 13px; color: rgba(34,19,11,.7)">
+<li style="display: flex; gap: 8px; align-items: center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg>Secure checkout</li>
+<li style="display: flex; gap: 8px; align-items: center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7"></path><circle cx="7" cy="18" r="1.6"></circle><circle cx="17" cy="18" r="1.6"></circle></svg>Free shipping on every order</li>
+<li style="display: flex; gap: 8px; align-items: center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="M3 7l9 6 9-6"></path></svg>Confirmation email after checkout</li>
+<li style="display: flex; gap: 8px; align-items: center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"></path><circle cx="12" cy="10" r="2.5"></circle></svg>Ships to the continental U.S.</li>
+</ul>
+</div>
+</div>
+</sc-if>
+<sc-if value="{{soldOut}}" hint-placeholder-val="{{true}}">
+<div id="waitlist" style="border-radius: 28px; background: #22130B; color: #F6F0E6; padding: clamp(28px, 4vw, 48px); display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 380px), 1fr)); gap: 32px 56px; align-items: center">
+<div style="display: flex; flex-direction: column; gap: 14px">
+<h3 style="margin: 0; font-size: clamp(32px, 3.2vw, 44px); line-height: 1; font-weight: 800; letter-spacing: -.03em">Join the waitlist</h3>
+<p style="margin: 0; font-size: 17px; line-height: 1.55; color: rgba(246,240,230,.8); max-width: 38ch">We’re taking Plantain chips up on the main stage and you’re invited on our journey there! Once we restock you’ll be the first to know. Thanks for your support!</p>
+</div>
+<div>
+<sc-if value="{{notJoined}}" hint-placeholder-val="{{true}}">
+<form onSubmit="{{join}}" style="display: flex; flex-direction: column; gap: 12px">
+<label for="wl-name" style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0)">Name</label>
+<input id="wl-name" class="wl-input" type="text" required="" autocomplete="name" placeholder="Name" value="{{wlName}}" onInput="{{onName}}">
+<label for="wl-phone" style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0)">Phone number</label>
+<input id="wl-phone" class="wl-input" type="tel" required="" inputmode="tel" autocomplete="tel" placeholder="Phone number" value="{{wlPhone}}" onInput="{{onPhone}}">
+<button type="submit" class="btn" style="min-height: 56px; border: 0; border-radius: 999px; background: #F6F0E6; color: #22130B; font: inherit; font-size: 17px; font-weight: 700; cursor: pointer">Join the waitlist</button>
+</form>
+</sc-if>
+<sc-if value="{{joined}}" hint-placeholder-val="{{false}}">
+<div role="status" style="display: flex; flex-direction: column; align-items: flex-start; gap: 14px">
+<span aria-hidden="true" style="display: grid; place-items: center; width: 56px; height: 56px; border-radius: 50%; background: #E3A92B; color: #22130B; font-size: 26px; font-weight: 800">✓</span>
+<div style="font-size: 26px; font-weight: 800; letter-spacing: -.02em">You’re on the list{{nameComma}}.</div>
+<div style="font-size: 16px; line-height: 1.55; color: rgba(246,240,230,.8)">{{joinedMsg}}</div>
+</div>
+</sc-if>
+</div>
+</div>
+</sc-if>
+</div>
+</section>
+
+<!-- About Gambit + Our gambit -->
+<section id="about" style="background: #22130B; color: #F6F0E6">
+<div id="story" style="max-width: 1320px; margin: 0 auto; padding: clamp(72px, 9vw, 120px) clamp(16px, 4vw, 48px); display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 440px), 1fr)); gap: clamp(40px, 6vw, 88px); align-items: start">
+<div style="position: sticky; top: 104px">
+<figure style="margin: 0; border-radius: 24px; overflow: hidden; aspect-ratio: 1 / 1"><img src="/_blob/6869abdaa7c51b33a8d049a71d63301d" alt="Himanshu and Atharv, Gambit's founders" style="width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%; display: block"></figure>
+<div style="display: flex; justify-content: space-between; gap: 12px; padding: 14px 4px 0; font-size: 15px"><span style="font-weight: 700">Himanshu &amp; Atharv</span><a href="https://www.instagram.com/twoplantainbros/" class="link" style="color: #E3A92B">@twoplantainbros</a></div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 20px; max-width: 58ch">
+<h2 style="margin: 0; font-size: clamp(36px, 3.8vw, 52px); line-height: 1; font-weight: 800; letter-spacing: -.03em">About Gambit</h2>
+<p style="margin: 0; font-size: clamp(22px, 2vw, 27px); line-height: 1.35; font-weight: 600; letter-spacing: -.015em">Our chips break out of boundaries.</p>
+<p style="margin: 0; font-size: 18px; line-height: 1.7; color: rgba(246,240,230,.82)">We understand what makes plantain chips so good, that’s why we’re not afraid to take a gambit with new shapes and flavors. We’ve run tests day after day for months to narrow down on the shapes and flavors we have for Gambits today, and we’ve landed on something special. Try one and you’ll get it too.</p>
+<h2 style="margin: 36px 0 0; font-size: clamp(36px, 3.8vw, 52px); line-height: 1; font-weight: 800; letter-spacing: -.03em">Our gambit</h2>
+<p style="margin: 0; font-size: 18px; line-height: 1.7; color: rgba(246,240,230,.82)">It all started when Himanshu grabbed a bag of “Hot and Spicy” Plantain Chips to get a taste of childhood. But those chips sucked. The chips we grew up with were crunchy, salty and always around for us. We realized we took those chips for granted.</p>
+<p style="margin: 0; font-size: 18px; line-height: 1.7; color: rgba(246,240,230,.82)">As we scoured the aisles and saw rows and rows of fancy new flavors and shapes on potato chip we realized that plantain chips had been left behind and we set out to change that.</p>
+<p style="margin: 0; font-size: 18px; line-height: 1.7; color: rgba(246,240,230,.82)">Our first chips sucked. But each batch was better than the last and we didn’t stop when we reached “good”. We strove to break boundaries with these chips in the pursuit of something “great” and we landed at waffle-cut with crazy good flavors like Churro and BBQ.</p>
+</div>
+</div>
+</section>
+
+<!-- Your gambit -->
+<section ref="{{setEnd}}" style="background: #F3E2AE; overflow: hidden">
+<div style="max-width: 1320px; margin: 0 auto; padding: clamp(88px, 10vw, 140px) clamp(16px, 4vw, 48px); display: flex; flex-direction: column; align-items: center; gap: 36px; text-align: center">
+<div aria-hidden="true" style="display: flex; justify-content: center; opacity: {{endOp}}">
+<sc-for list="{{flavors}}" as="item" hint-placeholder-count="3">
+<div class="{{endClass}}" style="--fromx: {{item.fromx}}; --fromr: {{item.fromr}}; animation-delay: {{item.endDelay}}; margin: 0 -18px"><img class="idle" src="{{item.disc}}" alt="" style="width: clamp(160px, 18vw, 250px); height: auto; display: block; animation-duration: {{item.endSpin}}; filter: drop-shadow(0 26px 24px rgba(34,19,11,.32))"></div>
+</sc-for>
+</div>
+<h2 style="margin: 0; font-size: clamp(44px, 6vw, 88px); line-height: .95; font-weight: 800; letter-spacing: -.035em; max-width: 14ch">Try one and you’ll get it too.</h2>
+<a href="#box" class="btn" style="display: inline-flex; align-items: center; min-height: 56px; padding: 0 32px; border-radius: 999px; background: #22130B; color: #F6F0E6; text-decoration: none; font-weight: 700; font-size: 17px">{{closingCta}}</a>
+</div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" style="border-top: 1px solid rgba(34,19,11,.08)">
+<div style="max-width: 820px; margin: 0 auto; padding: clamp(72px, 9vw, 120px) clamp(16px, 4vw, 48px); display: flex; flex-direction: column; gap: 28px">
+<h2 style="margin: 0; font-size: clamp(36px, 3.8vw, 52px); line-height: 1; font-weight: 800; letter-spacing: -.03em; text-align: center">FAQ</h2>
+<div>
+<sc-for list="{{faqs}}" as="q" hint-placeholder-count="5">
+<div style="border-bottom: 1px solid rgba(34,19,11,.16)">
+<h3 style="margin: 0">
+<button type="button" aria-expanded="{{q.expanded}}" onClick="{{q.toggle}}" style="width: 100%; min-height: 68px; display: flex; justify-content: space-between; align-items: center; gap: 16px; background: none; border: 0; padding: 18px 0; font: inherit; font-size: 19px; font-weight: 700; color: #22130B; text-align: left; cursor: pointer">
+<span>{{q.q}}</span>
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" style="flex-shrink: 0"><path d="M5 12h14"></path><path d="M12 5v14" style="opacity: {{q.vOp}}; transition: opacity .2s ease"></path></svg>
+</button>
+</h3>
+<sc-if value="{{q.open}}" hint-placeholder-val="{{false}}"><p style="margin: 0 0 22px; font-size: 17px; line-height: 1.65; color: #4A3428; max-width: 60ch">{{q.a}}</p></sc-if>
+</div>
+</sc-for>
+</div>
+<p style="margin: 0; text-align: center; font-size: 16px; color: #6B5446">Still curious? <a href="mailto:twoplantainbros@gmail.com" class="link" style="color: #22130B; font-weight: 600">twoplantainbros@gmail.com</a></p>
+</div>
+</section>
+
+<!-- Ticker, again -->
+<div aria-hidden="true" style="background: #A42D1E; color: #FFF3EA; overflow: hidden; padding: 22px 0; border-bottom: 1px solid rgba(255,243,234,.12)">
+<div class="ticker" style="animation-direction: reverse">
+<sc-for list="{{tick}}" as="t" hint-placeholder-count="8">
+<span style="display: inline-flex; align-items: center; gap: 36px; padding-right: 36px; font-size: 30px; font-weight: 800; letter-spacing: -.01em; white-space: nowrap; font-stretch: 112%">{{t}}<svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><g fill="none" stroke="#E3A92B" stroke-width="3"><path d="M2 6h18M2 16h18M6 2v18M16 2v18"></path></g></svg></span>
+</sc-for>
+</div>
+</div>
+
+<footer style="background: #22130B; color: #F6F0E6">
+<div style="max-width: 1320px; margin: 0 auto; padding: clamp(56px, 7vw, 88px) clamp(16px, 4vw, 48px) 28px; display: flex; flex-direction: column; gap: 48px">
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr)); gap: 32px">
+<div><img src="/_blob/8b232a56a9432c3f233b380f97de74a1" alt="Gambit" style="height: 34px; width: auto"></div>
+<div style="display: flex; flex-direction: column; gap: 10px; font-size: 15px">
+<div style="font-size: 12px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: rgba(246,240,230,.55)">Shop</div>
+<a href="#flavors" class="link" style="align-self: flex-start">Flavors</a>
+<a href="#box" class="link" style="align-self: flex-start">Build your box</a>
+</div>
+<div style="display: flex; flex-direction: column; gap: 10px; font-size: 15px">
+<div style="font-size: 12px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: rgba(246,240,230,.55)">Gambit</div>
+<a href="#about" class="link" style="align-self: flex-start">About Gambit</a>
+<a href="#story" class="link" style="align-self: flex-start">Our gambit</a>
+<a href="#faq" class="link" style="align-self: flex-start">FAQ</a>
+</div>
+<div style="display: flex; flex-direction: column; gap: 10px; font-size: 15px">
+<div style="font-size: 12px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: rgba(246,240,230,.55)">Say hi</div>
+<a href="https://www.instagram.com/twoplantainbros/" class="link" style="align-self: flex-start">@twoplantainbros</a>
+</div>
+</div>
+<div style="display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; font-size: 13px; color: rgba(246,240,230,.5); border-top: 1px solid rgba(246,240,230,.12); padding-top: 20px">
+<span>© Gambit · Waffle cut plantain chips</span>
+<span>Ships to the continental U.S.</span>
+</div>
+</div>
+</footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"inventory":{"editor":"enum","options":["In stock","Sold out"],"default":"Sold out"},"$preview":{"width":1440,"height":7795}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { flavor: 'salt', counts: { salt: 0, bbq: 0, churro: 0 }, faq: 0, email: '', wlName: '', wlPhone: '', joined: false, wants: { salt: false, bbq: false, churro: false } };
+    this.order = ['salt', 'bbq', 'churro'];
+    this.spinDeg = 0;
+    const self = this;
+    this.setScrolly = function (el) { self.scrolly = el; };
+    this.setEnd = function (el) { self.endEl = el; };
+    this.setSpin = function (el) { self.spinEl = el; if (el) el.style.transform = 'rotate(' + self.spinDeg + 'deg)'; };
+    this.onScroll = function () {
+      if (self.ticking) return; self.ticking = true;
+      requestAnimationFrame(function () { self.ticking = false; self.updateScroll(); });
+    };
+  }
+  componentDidMount() {
+    document.addEventListener('scroll', this.onScroll, { capture: true, passive: true });
+    window.addEventListener('resize', this.onScroll);
+    this.updateScroll();
+  }
+  componentWillUnmount() {
+    document.removeEventListener('scroll', this.onScroll, { capture: true });
+    window.removeEventListener('resize', this.onScroll);
+  }
+  updateScroll() {
+    const vh = window.innerHeight;
+    if (this.endEl && !this.state.endIn && this.endEl.getBoundingClientRect().top < vh * 0.8) this.setState({ endIn: true });
+    const el = this.scrolly; if (!el) return;
+    const r = el.getBoundingClientRect();
+    // The bowl turns as you scroll through the section: about a turn and a half end to end.
+    const p = Math.max(0, Math.min(1, (vh - r.top) / (r.height + vh)));
+    const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    this.spinDeg = reduce ? 0 : p * 540;
+    if (this.spinEl) this.spinEl.style.transform = 'rotate(' + this.spinDeg.toFixed(2) + 'deg)';
+    const ch = el.querySelectorAll('[data-chapter]'); if (!ch.length) return;
+    const vc = vh * 0.5; let best = 0, bd = 1e9;
+    Array.prototype.forEach.call(ch, function (n, i) { const b = n.getBoundingClientRect(); const d = Math.abs(b.top + b.height / 2 - vc); if (d < bd) { bd = d; best = i; } });
+    const k = this.order[best];
+    if (k !== this.state.flavor) this.setState({ flavor: k });
+  }
+  jump(i) {
+    const el = this.scrolly; if (!el) return;
+    const ch = el.querySelectorAll('[data-chapter]');
+    if (ch[i] && ch[i].scrollIntoView) ch[i].scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+  data() {
+    if (this._d) return this._d;
+    const B = '/_blob/';
+    this._d = {
+      salt: { id: 'salt', num: '01', name: 'Salt', tag: 'Classic', note: 'Sea salt',
+        short: 'Golden, with sea salt.',
+        desc: 'Golden waffle cut plantain chips with sea salt. Clean and simple, these are the gold standard for Gambit chips.',
+        bag: B + '77951ccd3a55119b3f413dac7d4c046f', tint: '#F6EBC8', disc: B + '1bad2ceb03b586d2075e4114843df6d7', scene: B + '176fbd8dde34a3a948064688d3700cb1', alt: 'A bowl of Gambit Salt waffle cut chips',
+        theme: { bg: '#F3E2AE', ink: '#22130B', sub: 'rgba(34,19,11,.78)', accent: '#94650A', btnBg: '#22130B', btnInk: '#F6F0E6', pill: 'rgba(34,19,11,.1)' } },
+      bbq: { id: 'bbq', num: '02', name: 'BBQ', tag: 'Savory', note: 'Smoky sweet',
+        short: 'Smoky sweet, made in house.',
+        desc: 'The same waffle chip texture we love, with a smoky sweet BBQ rub we formulated in house. Try one and you’ll come back for seconds.',
+        bag: B + '824cd89f3ab983d4f07198d0ec107cde', tint: '#F1D6C0', disc: B + '95cfe315c4474e12fd69ab27926d6327', scene: B + '1514b20469d2b68ac96b4993af830ef6', alt: 'A bowl of Gambit BBQ waffle cut chips',
+        theme: { bg: '#A42D1E', ink: '#FFF3EA', sub: 'rgba(255,243,234,.86)', accent: '#FFC9A8', btnBg: '#FFF3EA', btnInk: '#5A140B', pill: 'rgba(255,243,234,.16)' } },
+      churro: { id: 'churro', num: '03', name: 'Churro', tag: 'Sweet', note: 'Cinnamon & sugar',
+        short: 'Cinnamon sugar, every pocket.',
+        desc: 'The same crisp, with cinnamon sugar filling every waffle pocket. It was the dark horse flavor in our flavor tests, but Churro came out on top, consistently.',
+        bag: B + 'fae4aa02ca7b1b6ca595e03613c4752d', tint: '#EEDCCB', disc: B + '307e3d6051c99ed62d282d1dda38a15c', scene: B + '1369770729891af39354d0f3bf0b27e4', alt: 'A bowl of Gambit Churro waffle cut chips',
+        theme: { bg: '#6A381D', ink: '#FBEEDD', sub: 'rgba(251,238,221,.86)', accent: '#F2B36B', btnBg: '#FBEEDD', btnInk: '#3E1F0D', pill: 'rgba(251,238,221,.16)' } }
+    };
+    return this._d;
+  }
+  setCount(k, v) { const c = Object.assign({}, this.state.counts); const up = v > c[k]; c[k] = Math.max(0, Math.min(36, v)); this.setState(up ? { counts: c, last: k } : { counts: c }); }
+  fillRest() {
+    const c = Object.assign({}, this.state.counts); const ks = this.order;
+    let n = c.salt + c.bbq + c.churro;
+    while (n < 6) { const k = ks.reduce(function (a, b) { return c[b] < c[a] ? b : a; }); c[k] += 1; n += 1; }
+    this.setState({ counts: c });
+  }
+  toggleWant(k) { const w = Object.assign({}, this.state.wants); w[k] = !w[k]; this.setState({ wants: w }); }
+  money(v) { return '$' + (Math.round(v * 100) / 100).toFixed(2).replace(/\.00$/, ''); }
+  renderVals() {
+    const D = this.data(); const self = this;
+    const soldOut = (this.props.inventory ?? 'Sold out') === 'Sold out';
+    const st = this.state; const fk = st.flavor || 'salt';
+    const counts = st.counts;
+    const n = soldOut ? 0 : counts.salt + counts.bbq + counts.churro;
+    const isCase = n >= 6;
+    const solo = n * 11.25, casePrice = n * 6, price = isCase ? casePrice : solo;
+    let msg;
+    if (soldOut) msg = 'Sold out. Leave your email above and we’ll let you know.';
+    else if (n === 0) msg = 'Pick any 6 for case pricing, or 1–5 single bags. Shipping is always free.';
+    else if (!isCase) msg = 'Add ' + (6 - n) + ' more and your total drops to $36' + (solo > 36 ? ' (you save ' + this.money(solo - 36) + ')' : '') + '.';
+    else msg = 'Case pricing unlocked. You’re saving ' + this.money(solo - casePrice) + ' vs. single bags.';
+    const seq = [];
+    this.order.forEach(function (k) { for (let i = 0; i < (soldOut ? 0 : counts[k]); i++) seq.push(k); });
+    const blank = 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==';
+    const slots = [0, 1, 2, 3, 4, 5].map(function (i) {
+      const k = seq[i];
+      return k ? { img: D[k].bag, op: 1, scale: 1, y: '0px', ring: '0', fill: '0' } : { img: blank, op: 0, scale: .6, y: '-30px', ring: '.18', fill: '.04' };
+    });
+    const starts = ['70vw', '58vw', '46vw'];
+    const flavors = this.order.map(function (k, idx) {
+      const it = D[k]; const active = fk === k; const count = counts[k];
+      return Object.assign({}, it, {
+        count: count,
+        delay: (0.35 + idx * 0.16).toFixed(2) + 's', shadowDelay: (1.15 + idx * 0.16).toFixed(2) + 's', capDelay: (1.3 + idx * 0.14).toFixed(2) + 's',
+        idleDelay: '-' + (idx * 37) + 's', endSpin: (90 + idx * 25) + 's', endDelay: (idx * 0.14).toFixed(2) + 's',
+        fromx: starts[idx], fromr: (420 + idx * 60) + 'deg',
+        thumbRot: (count * 120) + 'deg', bagDelay: (1.6 + idx * 0.16).toFixed(2) + 's',
+        bagTilt: '0deg', bagLift: count % 2 ? '-10px' : '-4px',
+        stageBagY: active ? '0px' : '24px',
+        stageOpacity: active ? 1 : 0,
+        showAdd: !soldOut && count === 0, showStep: !soldOut && count > 0, showSold: soldOut,
+        wantPressed: st.wants[k] ? 'true' : 'false',
+        wantLabel: st.wants[k] ? '✓ On your waitlist' : 'Add ' + it.name + ' to my waitlist',
+        wantBg: st.wants[k] ? '#22130B' : 'transparent', wantInk: st.wants[k] ? '#F6F0E6' : '#22130B',
+        chipBg: st.wants[k] ? '#F6F0E6' : 'transparent', chipInk: st.wants[k] ? '#22130B' : '#F6F0E6', chipRing: st.wants[k] ? '#F6F0E6' : 'rgba(246,240,230,.3)', checkOp: st.wants[k] ? 1 : 0,
+        toggleWant: function () { self.toggleWant(k); },
+        wantGo: function () { if (!self.state.wants[k]) self.toggleWant(k); },
+        go: function (e) { if (e && e.preventDefault) e.preventDefault(); self.jump(idx); },
+        add: function () { self.setCount(k, self.state.counts[k] + 1); },
+        sub: function () { self.setCount(k, self.state.counts[k] - 1); }
+      });
+    });
+    const scenes = [];
+    for (let r = 0; r < 2; r++) this.order.forEach(function (k) { scenes.push({ src: D[k].scene, alt: r ? '' : 'Gambit ' + D[k].name + ' chips in a bowl with their bags' }); });
+    const tick = [];
+    for (let r = 0; r < 4; r++) ['Waffle cut', 'Ridiculously crisp', 'Plantain chips'].forEach(function (t) { tick.push(t); });
+    const faqData = [
+      { q: 'Where do you ship?', a: 'Continental U.S. Every order ships free.' },
+      { q: 'Can I mix flavors?', a: 'Mix any flavors in your case, and add extra bags anytime.' },
+      { q: 'Can I buy fewer than 6?', a: 'Not ready for a full case? Grab a bag for $11.25. Hit 6 bags and you get case pricing. Shipping is free either way.' },
+      { q: 'What happens after I order?', a: 'You’ll get a confirmation email shortly after checkout.' },
+      { q: 'What’s in them?', a: '[Your words: ingredients and allergen info for each flavor.]' }
+    ];
+    const faqs = faqData.map(function (x, i) {
+      const open = st.faq === i;
+      return { q: x.q, a: x.a, open: open, expanded: open ? 'true' : 'false', vOp: open ? 0 : 1,
+        toggle: function () { self.setState({ faq: open ? -1 : i }); } };
+    });
+    return {
+      flavors: flavors, slots: slots, faqs: faqs, scenes: scenes, tick: tick, theme: D[fk].theme,
+      setScrolly: this.setScrolly, setSpin: this.setSpin, setEnd: this.setEnd,
+      endClass: st.endIn ? 'roll' : '', endOp: st.endIn ? 1 : 0,
+      caseNote: isCase ? 'case pricing unlocked' : (n > 0 ? (6 - n) + ' to case pricing' : 'case pricing at 6'),
+      progress: (Math.min(n, 6) / 6 * 100) + '%',
+      lines: this.order.filter(function (k) { return counts[k] > 0 && !soldOut; }).map(function (k) { return { bag: D[k].bag, name: D[k].name, count: counts[k], amt: self.money(counts[k] * (isCase ? 6 : 11.25)) }; }),
+      noLines: n === 0,
+      shipLabel: 'Free',
+      boxBg: ({ salt: '#F6EBC8', bbq: '#F1D6C0', churro: '#EEDCCB' })[st.last] || '#EFE6D6',
+      n: n, nCapped: Math.min(n, 6), isCase: isCase, soldOut: soldOut, inStock: !soldOut,
+      priceStr: this.money(price), soloStr: this.money(solo), msg: msg,
+      ctaLabel: soldOut ? 'Sold out' : (n > 0 ? 'Continue to secure payment' : 'Add a bag to start'),
+      ctaBorder: '0',
+      hasBags: n > 0,
+      ctaDisabled: soldOut || n === 0,
+      ctaBg: soldOut || n === 0 ? '#EAE0CF' : '#22130B',
+      ctaInk: soldOut || n === 0 ? 'rgba(34,19,11,.55)' : '#F6F0E6',
+      showFill: !soldOut && n > 0 && n < 6,
+      fill: function () { self.fillRest(); },
+      closingCta: soldOut ? 'Join the waitlist' : 'Build your box',
+      wlName: st.wlName, onName: function (e) { self.setState({ wlName: e.target.value }); },
+      nameComma: st.wlName ? ', ' + st.wlName.trim() : '',
+      joinedMsg: 'Once we restock you’ll be the first to know. Thanks for your support!',
+      wlPhone: st.wlPhone, onPhone: function (e) { self.setState({ wlPhone: e.target.value }); },
+      email: st.email, joined: st.joined, notJoined: !st.joined,
+      onEmail: function (e) { self.setState({ email: e.target.value }); },
+      join: function (e) { e.preventDefault(); if ((self.state.wlName || '').trim() && (self.state.wlPhone || '').replace(/\D/g, '').length >= 10) self.setState({ joined: true }); }
+    };
+  }
+}
+</script>
+</body>
+</html>

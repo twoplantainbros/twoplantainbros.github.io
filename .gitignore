@@ -1,4 +1,3 @@
-.DS_Store
-.env
-.env.*
-stripe-config.json
+node_modules/
+design/sticker-review/
+design/check-*.png
