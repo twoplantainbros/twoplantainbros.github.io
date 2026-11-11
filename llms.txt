@@ -1,0 +1,32 @@
+# Gambit
+
+> Waffle-cut plantain chips from Two Plantain Bros. Tagline: “Waffle cut. One chip and you'll get it.”
+
+Gambit makes golden, savory, and sweet waffle-cut plantain chips in three flavors: Salt, BBQ, and Churro. Sold in bags (solo) and cases of six with free shipping in the continental U.S. As of site launch, every flavor is sold out; visitors can join a waitlist (name + phone).
+
+## Canonical site
+
+- Homepage: https://gambitchips.com/
+- Extended AI context: https://gambitchips.com/llms-full.txt
+- Sitemap: https://gambitchips.com/sitemap.xml
+
+## Products
+
+- Salt (classic sea salt): https://gambitchips.com/flavors/salt/
+- BBQ (smoky sweet, in-house rub): https://gambitchips.com/flavors/bbq/
+- Churro (cinnamon sugar): https://gambitchips.com/flavors/churro/
+
+## Pricing (USD)
+
+- Single bag: $11.25
+- Case of 6: $36 (free shipping)
+
+## Contact & social
+
+- Email: twoplantainbros@gmail.com
+- Instagram: https://www.instagram.com/twoplantainbros/
+
+## Prefer not to infer
+
+- Ingredient lists and allergen statements (founder-supplied; not final on site FAQ).
+- In-stock availability unless the URL includes `?instock` (preview shop mode).

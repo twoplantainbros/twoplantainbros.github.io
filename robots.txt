@@ -1,4 +1,7 @@
 User-agent: *
 Allow: /
 
+# LLM context (optional): https://gambitchips.com/llms.txt
+# Extended: https://gambitchips.com/llms-full.txt
+
 Sitemap: https://gambitchips.com/sitemap.xml

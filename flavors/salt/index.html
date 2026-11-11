@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en" class="is-sold-out">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script>
+      (function () {
+        var instock = /instock/i.test(location.search);
+        document.documentElement.classList.remove("is-sold-out", "is-in-stock");
+        document.documentElement.classList.add(instock ? "is-in-stock" : "is-sold-out");
+      })();
+    </script>
+    <title>Gambit Salt | Waffle Cut Plantain Chips</title>
+    <meta
+      name="description"
+      content="Gambit Salt waffle-cut plantain chips with sea salt. Golden, clean, and crisp. Currently sold out — join the waitlist."
+    />
+    <link rel="canonical" href="https://gambitchips.com/flavors/salt/" />
+    <meta property="og:type" content="product" />
+    <meta property="og:title" content="Gambit Salt | Waffle Cut Plantain Chips" />
+    <meta property="og:description" content="Golden waffle-cut plantain chips with sea salt." />
+    <meta property="og:image" content="https://gambitchips.com/assets/scene-salt.webp" />
+    <meta property="og:url" content="https://gambitchips.com/flavors/salt/" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../../assets/gambit.css" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Product",
+            "name": "Gambit Salt Waffle Cut Plantain Chips",
+            "description": "Golden waffle-cut plantain chips with sea salt.",
+            "image": ["https://gambitchips.com/assets/bag-salt.webp", "https://gambitchips.com/assets/bowl-salt.webp"],
+            "brand": { "@type": "Brand", "name": "Gambit" },
+            "url": "https://gambitchips.com/flavors/salt/",
+            "offers": {
+              "@type": "Offer",
+              "url": "https://gambitchips.com/flavors/salt/",
+              "priceCurrency": "USD",
+              "price": "11.25",
+              "availability": "https://schema.org/OutOfStock",
+              "shippingDetails": {
+                "@type": "OfferShippingDetails",
+                "shippingRate": { "@type": "MonetaryAmount", "value": "0", "currency": "USD" }
+              }
+            }
+          },
+          {
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              { "@type": "ListItem", "position": 1, "name": "Gambit", "item": "https://gambitchips.com/" },
+              { "@type": "ListItem", "position": 2, "name": "Salt", "item": "https://gambitchips.com/flavors/salt/" }
+            ]
+          }
+        ]
+      }
+    </script>
+  </head>
+  <body class="gambit-page">
+    <main class="g-flavor-page">
+      <a class="g-link g-flavor-page__back" href="/">← Gambit home</a>
+      <div class="g-eyebrow">01 · Classic</div>
+      <h1>Salt</h1>
+      <p class="g-flavor-page__lede">
+        Golden waffle-cut plantain chips with sea salt. Clean and simple—the gold standard for Gambit chips.
+      </p>
+      <div class="g-flavor-page__visual">
+        <img
+          class="g-flavor-page__bowl"
+          src="../../assets/bowl-salt.webp"
+          width="1200"
+          height="1200"
+          alt="Bowl of Gambit Salt waffle-cut chips"
+        />
+        <img
+          class="g-flavor-page__bag"
+          src="../../assets/bag-salt.webp"
+          width="800"
+          height="1280"
+          alt="Gambit Salt bag"
+        />
+      </div>
+      <p class="g-flavor-page__meta sold-out-only">
+        <strong>Sold out for now.</strong> $11.25 per bag · $36 case of 6 · free shipping in the continental U.S.
+      </p>
+      <div class="g-flavor-page__cta sold-out-only">
+        <a href="/#waitlist" class="g-btn g-btn--block">Join the waitlist</a>
+      </div>
+      <div class="g-flavor-page__cta in-stock-only">
+        <a href="/#box" class="g-btn g-btn--block">Build your box</a>
+      </div>
+      <nav class="g-flavor-page__links" aria-label="Other flavors">
+        <span>Other flavors:</span>
+        <a href="/flavors/bbq/" class="g-link">BBQ</a>
+        <a href="/flavors/churro/" class="g-link">Churro</a>
+        <a href="/#faq" class="g-link">FAQ</a>
+      </nav>
+    </main>
+  </body>
+</html>

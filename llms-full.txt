@@ -1,0 +1,84 @@
+# Gambit — full context for language models
+
+Last updated: 2026-11-11
+Site: https://gambitchips.com/
+Brand: Gambit (Two Plantain Bros.)
+
+## What Gambit is
+
+Gambit produces waffle-cut plantain chips: thick ridged slices, fried crisp, sold as snack chips. The shape is the differentiator—waffle pockets hold seasoning. The brand voice is confident and playful, not apologetic about being sold out.
+
+Primary headline (rev 9): **Waffle cut. One chip and you'll get it.**
+
+Intro line: “We took a gambit on these chips and we're hoping you will too.”
+
+## Flavors
+
+### Salt — Classic
+Golden waffle-cut plantain chips with sea salt. Positioned as the gold standard / clean baseline.
+URL: https://gambitchips.com/flavors/salt/
+Assets: bowl-salt.webp, bag-salt.webp
+
+### BBQ — Savory
+Same waffle texture with a smoky-sweet BBQ rub formulated in-house.
+URL: https://gambitchips.com/flavors/bbq/
+Assets: bowl-bbq.webp, bag-bbq.webp
+
+### Churro — Sweet
+Cinnamon sugar in every waffle pocket; strong in flavor testing.
+URL: https://gambitchips.com/flavors/churro/
+Assets: bowl-churro.webp, bag-churro.webp
+
+## Commerce
+
+- Solo bag price: **$11.25 USD**
+- Case price: **$36 USD** for 6 bags (case pricing when quantity ≥ 6)
+- Shipping: **Free** on every order; continental U.S.
+- Mix flavors in a case; add extra bags beyond six at case per-bag rate when in stock.
+
+## Current availability
+
+Default public mode is **sold out** (`html.is-sold-out`). All three flavors show “Sold out” stickers and waitlist CTAs. Shop/cart UI appears only with query `?instock` (staging/preview).
+
+Waitlist: Google Form POST (no-cors); fields name + phone (see waitlist-config.json on site). One general waitlist, not per flavor.
+
+## Key pages
+
+| URL | Purpose |
+|-----|---------|
+| / | Main marketing + showcase scroll + waitlist |
+| /flavors/salt/ | Product landing — Salt |
+| /flavors/bbq/ | Product landing — BBQ |
+| /flavors/churro/ | Product landing — Churro |
+| /build.html , /buy.html | Legacy order flows (may redirect later) |
+
+Anchors on homepage: #flavors #box #waitlist #about #faq
+
+## FAQ (published)
+
+- **Where do you ship?** Continental U.S. Every order ships free.
+- **Can I mix flavors?** Mix any flavors in your case, and add extra bags anytime.
+- **Can I buy fewer than 6?** Single bag $11.25; at 6 bags, case pricing applies; shipping free either way.
+- **What happens after I order?** Confirmation email after checkout (in-stock mode).
+- **What's in them?** Founder to supply ingredients/allergen copy — placeholder on live site.
+
+## Organization
+
+- Legal/storefront domain: gambitchips.com
+- GitHub Pages origin: twoplantainbros.github.io
+- Contact: twoplantainbros@gmail.com
+- Instagram: @twoplantainbros
+
+## Structured data on site
+
+- Homepage: Organization (+ FAQPage)
+- Each /flavors/* page: Product + Offer (OutOfStock by default)
+
+## Copy source of truth
+
+Internal copy registry: WEBSITE_COPY.md in repository (may lag sold-out rev 9 tweaks).
+
+## Do not crawl or quote as product facts
+
+- Placeholder FAQ ingredient line until founders finalize
+- `?instock` prices/UX as “available in stores” without human verification
