@@ -194,7 +194,7 @@ Edit tone and wording in this file, then ask to **sync copy to the site**. Each 
 | `waitlist.eyebrow` | Sold out right now |
 | `waitlist.title` | Get first dibs on the next restock |
 | `waitlist.body` | Salt, BBQ, and Churro are off the site until the next batch lands. Drop your number on the list and we'll text you when you can order again — no spam, just restocks. |
-| `waitlist.cta.primary` | Join the waitlist |
+| `waitlist.cta.primary` | Hear when we restock |
 | `waitlist.cta.secondary` | Email us |
 | `waitlist.fine_print` | Opens Google Forms in a new tab · takes about a minute |
 
