@@ -67,7 +67,7 @@ Anchors on homepage: #flavors #box #waitlist #about #faq
 - Legal/storefront domain: gambitchips.com
 - GitHub Pages origin: twoplantainbros.github.io
 - Contact: twoplantainbros@gmail.com
-- Instagram: @twoplantainbros
+- Instagram: @gambitchips (https://www.instagram.com/gambitchips/)
 
 ## Structured data on site
 
